@@ -9,23 +9,23 @@
                 <item
                     android:id="@+id/tari_bali"
                     android:title="Tari Bali"
-                    android:icon="@drawable/list" />
+                    android:icon="@drawable/tari" />
                 <item
                     android:id="@+id/tabuh"
                     android:title="Tabuh"
-                    android:icon="@drawable/list" />
+                    android:icon="@drawable/tabuh" />
                 <item
                     android:id="@+id/gamelan_bali"
                     android:title="Gamelan Bali"
-                    android:icon="@drawable/list" />
+                    android:icon="@drawable/gamelan" />
                 <item
                     android:id="@+id/mantram"
                     android:title="Mantram"
-                    android:icon="@drawable/list" />
+                    android:icon="@drawable/mantram" />
                 <item
                     android:id="@+id/kidung"
                     android:title="Kidung"
-                    android:icon="@drawable/list" />
+                    android:icon="@drawable/kidung" />
                 <item
                     android:id="@+id/prosesi_upacara"
                     android:title="Prosesi Upacara"

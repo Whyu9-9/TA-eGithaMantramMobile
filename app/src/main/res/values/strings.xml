@@ -2,4 +2,8 @@
     <string name="app_name">E-GithaMantram</string>
     <string name="open">Open</string>
     <string name="close">Close</string>
+    <string name="login_desc">Untuk menuju ke halaman Admin</string>
+    <string name="app_desc">E-GithaMantram Mobile merupakan sebuah pengembangan lanjutan versi mobile Android dari website E-Yadnya dimana aplikasi ini memiliki tujuan untuk edukasi mengenai prosesi yadnya dan pernak-perniknya. Pengembang aplikasi mobile ini merupakan seorang mahasiswa TI UNUD angkatan 2018 dimana aplikasi ini dikembangkan di platform Android dengan bahasa pemrograman Kotlin. Semoga aplikasi ini dapat dikembangkan lagi lebih jauh dan bisa menyasar lebih banyak platform lagi.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
