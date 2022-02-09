@@ -4,9 +4,13 @@
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     app:cardBackgroundColor="@color/white"
-    app:cardElevation="8dp"
+    app:cardElevation="5dp"
     app:cardCornerRadius="15dp"
-    android:layout_margin="10dp">
+    app:cardPreventCornerOverlap="true"
+    android:layout_marginBottom="10dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginLeft="5dp"
+    app:layout_goneMarginBottom="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,7 +41,7 @@
             android:layout_height="wrap_content"
             android:text="Jenis"
             android:textColor="@color/grey_200"
-            android:textSize="17sp"
+            android:textSize="15sp"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="14dp"
             android:layout_marginBottom="10dp"/>

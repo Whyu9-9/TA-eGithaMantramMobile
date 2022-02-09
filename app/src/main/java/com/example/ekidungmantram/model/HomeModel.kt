@@ -4,5 +4,5 @@ data class HomeModel (
     val id_kategori: Int,
     val nama_kategori: String,
     val deskripsi: String,
-    val gamber: String
+    val gambar: String
         )

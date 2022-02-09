@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var toggle  : ActionBarDrawerToggle
     private var doubleBackToExitPressedOnce = false
-    private val homeFragment = HomeFragment()
-    private val searchFragment = SearchFragment()
-    private val listYadnya = ListYadnyaFragment()
+    private val homeFragment                = HomeFragment()
+    private val searchFragment              = SearchFragment()
+    private val listYadnya                  = ListYadnyaFragment()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +43,8 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         replaceFragment(homeFragment, "Beranda")
 
-        val drawerLayout: DrawerLayout = binding.appDrawer
-        val navView : NavigationView   = binding.navView
+        val drawerLayout : DrawerLayout     = binding.appDrawer
+        val navView : NavigationView       = binding.navView
         val botView : BottomNavigationView = binding.bottomnavView
 
         toggle = ActionBarDrawerToggle(this, drawerLayout,

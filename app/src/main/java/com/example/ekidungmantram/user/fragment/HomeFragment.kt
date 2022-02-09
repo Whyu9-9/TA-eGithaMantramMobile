@@ -3,6 +3,8 @@ package com.example.ekidungmantram.user.fragment
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.text.Html
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,13 +13,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.CardSliderAdapter
+import com.example.ekidungmantram.adapter.NewYadnyaAdapter
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.data.CardSliderData
 import com.example.ekidungmantram.databinding.FragmentHomeBinding
 import com.example.ekidungmantram.model.HomeModel
+import com.example.ekidungmantram.model.NewYadnyaModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,10 +31,14 @@ import retrofit2.Response
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding : FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter : CardSliderAdapter
+    private lateinit var cardAdapter : CardSliderAdapter
+    private lateinit var yadnyaAdapter: NewYadnyaAdapter
     private val list = ArrayList<CardSliderData>()
     private lateinit var dots: ArrayList<TextView>
     private val yadnyaList = ArrayList<String>()
+    private lateinit var handler : Handler
+    private lateinit var runnable: Runnable
+    private var gridLayoutManager:GridLayoutManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +52,62 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getYadnyaMasterData()
+        setupRecyclerView()
+        getLatestYadnyaData()
+        runAutoSlideCard()
+
+        val swiped = binding.swipe
+        swiped.setOnRefreshListener {
+            swiped.isRefreshing = false
+        }
+    }
+
+    private fun runAutoSlideCard() {
+        handler = Handler(Looper.myLooper()!!)
+        runnable = object : Runnable {
+            var index = 0
+            override fun run() {
+                if(index == list.size){
+                    index = 0
+                }
+                binding.viewPager.setCurrentItem(index)
+                index++
+                handler.postDelayed(this, 5000)
+            }
+        }
+        handler.post(runnable)
+    }
+
+    private fun setupRecyclerView() {
+        yadnyaAdapter = NewYadnyaAdapter(arrayListOf())
+        binding.yadnyaBaru.apply {
+            gridLayoutManager = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager     = gridLayoutManager
+            adapter           = yadnyaAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun getLatestYadnyaData() {
+        ApiService.endpoint.getYadnyaNewList()
+            .enqueue(object: Callback<NewYadnyaModel>{
+                override fun onResponse(
+                    call: Call<NewYadnyaModel>,
+                    response: Response<NewYadnyaModel>
+                ) {
+                    showYadnyaData(response.body()!!)
+                }
+
+                override fun onFailure(call: Call<NewYadnyaModel>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+
+            })
+    }
+
+    private fun showYadnyaData(data: NewYadnyaModel) {
+        val results = data.data
+        yadnyaAdapter.setData(results)
     }
 
     private fun getYadnyaMasterData() {
@@ -56,8 +122,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         printLog(result.toString())
                         fetchData(result!!)
 
-                        adapter = CardSliderAdapter(list)
-                        binding.viewPager.adapter = adapter
+                        cardAdapter = CardSliderAdapter(list)
+                        binding.viewPager.adapter = cardAdapter
                         dots = ArrayList()
                         setIndicator()
 
@@ -67,6 +133,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                                 super.onPageSelected(position)
                             }
                         })
+                        setShimmerToStop()
                     }
                 }
 
@@ -77,14 +144,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             })
     }
 
+    private fun setShimmerToStop() {
+        binding.shimmerHome.stopShimmer()
+        binding.shimmerHome.visibility = View.GONE
+        binding.swipe.visibility       = View.VISIBLE
+    }
+
     private fun printLog(message: String) {
         Log.d("HomeFragment", message)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+    override fun onDestroyView() {
+        super.onDestroyView()
         clearList()
+        handler.removeCallbacks(runnable)
+        _binding = null
     }
 
     private fun clearList() {
