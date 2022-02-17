@@ -1,5 +1,6 @@
 package com.example.ekidungmantram.user.fragment
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
@@ -18,52 +19,71 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.CardSliderAdapter
+import com.example.ekidungmantram.adapter.NewKidungAdapter
+import com.example.ekidungmantram.adapter.NewMantramAdapter
 import com.example.ekidungmantram.adapter.NewYadnyaAdapter
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.data.CardSliderData
 import com.example.ekidungmantram.databinding.FragmentHomeBinding
 import com.example.ekidungmantram.model.HomeModel
+import com.example.ekidungmantram.model.NewKidungModel
+import com.example.ekidungmantram.model.NewMantramModel
 import com.example.ekidungmantram.model.NewYadnyaModel
+import com.example.ekidungmantram.user.DetailYadnyaActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
-    private var _binding : FragmentHomeBinding? = null
-    private val binding get() = _binding!!
-    private lateinit var cardAdapter : CardSliderAdapter
-    private lateinit var yadnyaAdapter: NewYadnyaAdapter
-    private val list = ArrayList<CardSliderData>()
-    private lateinit var dots: ArrayList<TextView>
-    private val yadnyaList = ArrayList<String>()
-    private lateinit var handler : Handler
-    private lateinit var runnable: Runnable
-    private var gridLayoutManager:GridLayoutManager? = null
+class HomeFragment : Fragment() {
+    private lateinit var binding        : FragmentHomeBinding
+    private lateinit var dots           : ArrayList<TextView>
+    private val yadnyaList              = ArrayList<String>()
+    private val list                    = ArrayList<CardSliderData>()
+    private lateinit var handler        : Handler
+    private lateinit var runnable       : Runnable
+    private lateinit var cardAdapter    : CardSliderAdapter
+    private lateinit var yadnyaAdapter  : NewYadnyaAdapter
+    private lateinit var kidungAdapter  : NewKidungAdapter
+    private lateinit var mantramAdapter : NewMantramAdapter
+    private var gridLayoutManagerY      : GridLayoutManager? = null
+    private var gridLayoutManagerK      : GridLayoutManager? = null
+    private var gridLayoutManagerM      : GridLayoutManager? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getYadnyaMasterData()
-        setupRecyclerView()
+        setupRecyclerViewY()
+        setupRecyclerViewK()
+        setupRecyclerViewM()
         getLatestYadnyaData()
+        getLatestKidungData()
+        getLatestMantramData()
         runAutoSlideCard()
 
         val swiped = binding.swipe
         swiped.setOnRefreshListener {
+            setupRecyclerViewY()
+            setupRecyclerViewK()
+            setupRecyclerViewM()
+            getLatestYadnyaData()
+            getLatestKidungData()
+            getLatestMantramData()
             swiped.isRefreshing = false
         }
     }
 
     private fun runAutoSlideCard() {
-        handler = Handler(Looper.myLooper()!!)
+        handler  = Handler(Looper.myLooper()!!)
         runnable = object : Runnable {
             var index = 0
             override fun run() {
@@ -78,12 +98,59 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         handler.post(runnable)
     }
 
-    private fun setupRecyclerView() {
-        yadnyaAdapter = NewYadnyaAdapter(arrayListOf())
+    private fun setupRecyclerViewY() {
+        yadnyaAdapter = NewYadnyaAdapter(arrayListOf(), object : NewYadnyaAdapter.OnAdapterListener{
+            override fun onClick(result: NewYadnyaModel.Data) {
+                val bundle = Bundle()
+                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_kategori", result.id_kategori)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
         binding.yadnyaBaru.apply {
-            gridLayoutManager = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
-            layoutManager     = gridLayoutManager
-            adapter           = yadnyaAdapter
+            gridLayoutManagerY = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager      = gridLayoutManagerY
+            adapter            = yadnyaAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun setupRecyclerViewK() {
+        kidungAdapter = NewKidungAdapter(arrayListOf(), object : NewKidungAdapter.OnAdapterKidungListener{
+            override fun onClick(result: NewKidungModel.DataK) {
+                val bundle = Bundle()
+                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_kategori", result.id_kategori)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+        binding.kidungBaru.apply {
+            gridLayoutManagerK = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager      = gridLayoutManagerK
+            adapter            = kidungAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun setupRecyclerViewM() {
+        mantramAdapter = NewMantramAdapter(arrayListOf(), object : NewMantramAdapter.OnAdapterMantramListener{
+            override fun onClick(result: NewMantramModel.DataM) {
+                val bundle = Bundle()
+                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_kategori", result.id_kategori)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+        binding.mantramBaru.apply {
+            gridLayoutManagerM = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            layoutManager      = gridLayoutManagerM
+            adapter            = mantramAdapter
             setHasFixedSize(true)
         }
     }
@@ -96,6 +163,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     response: Response<NewYadnyaModel>
                 ) {
                     showYadnyaData(response.body()!!)
+                    binding.nodatayadnya.visibility  = View.GONE
                 }
 
                 override fun onFailure(call: Call<NewYadnyaModel>, t: Throwable) {
@@ -105,9 +173,55 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             })
     }
 
+    private fun getLatestKidungData() {
+        ApiService.endpoint.getKidungNewList()
+            .enqueue(object: Callback<NewKidungModel>{
+                override fun onResponse(
+                    call: Call<NewKidungModel>,
+                    response: Response<NewKidungModel>
+                ) {
+                    showKidungData(response.body()!!)
+                    binding.nodatakidung.visibility  = View.GONE
+                }
+
+                override fun onFailure(call: Call<NewKidungModel>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+
+            })
+    }
+
+    private fun getLatestMantramData() {
+        ApiService.endpoint.getMantramNewList()
+            .enqueue(object: Callback<NewMantramModel>{
+                override fun onResponse(
+                    call: Call<NewMantramModel>,
+                    response: Response<NewMantramModel>
+                ) {
+                    showMantramData(response.body()!!)
+                    binding.nodatamantram.visibility  = View.GONE
+                }
+
+                override fun onFailure(call: Call<NewMantramModel>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+
+            })
+    }
+
     private fun showYadnyaData(data: NewYadnyaModel) {
         val results = data.data
         yadnyaAdapter.setData(results)
+    }
+
+    private fun showKidungData(data: NewKidungModel) {
+        val results = data.data
+        kidungAdapter.setData(results)
+    }
+
+    private fun showMantramData(data: NewMantramModel) {
+        val results = data.data
+        mantramAdapter.setData(results)
     }
 
     private fun getYadnyaMasterData() {
@@ -139,6 +253,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
                 override fun onFailure(call: Call<List<HomeModel>>, t: Throwable) {
                     Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_SHORT).show()
+                    setShimmerToStop()
                 }
 
             })
@@ -146,8 +261,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setShimmerToStop() {
         binding.shimmerHome.stopShimmer()
-        binding.shimmerHome.visibility = View.GONE
-        binding.swipe.visibility       = View.VISIBLE
+        binding.shimmerHome.visibility   = View.GONE
+        binding.swipe.visibility         = View.VISIBLE
     }
 
     private fun printLog(message: String) {
@@ -155,10 +270,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
         clearList()
         handler.removeCallbacks(runnable)
-        _binding = null
+        super.onDestroyView()
     }
 
     private fun clearList() {
@@ -177,11 +291,11 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun setIndicator() {
         for (i in 0 until list.size){
-            dots.add(TextView(getActivity()))
+            dots.add(TextView(context))
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                dots[i].text = Html.fromHtml("&#9679", Html.FROM_HTML_MODE_LEGACY).toString()
+                dots[i].text = Html.fromHtml("&#9679 ", Html.FROM_HTML_MODE_LEGACY).toString()
             } else {
-                dots[i].text = Html.fromHtml("&#9679")
+                dots[i].text = Html.fromHtml("&#9679 ")
             }
             dots[i].textSize = 8f
             binding.dotsIndicator.addView(dots[i])

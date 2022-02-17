@@ -1,35 +1,30 @@
 package com.example.ekidungmantram.user.fragment
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ekidungmantram.R
+import com.example.ekidungmantram.adapter.*
+import com.example.ekidungmantram.api.ApiService
+import com.example.ekidungmantram.model.AllYadnyaModel
+import com.example.ekidungmantram.model.NewMantramModel
+import com.example.ekidungmantram.user.DetailYadnyaActivity
+import kotlinx.android.synthetic.main.fragment_search.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import kotlin.collections.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
-
+    private var allyadnyaAdapter: AllYadnyaAdapter? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -38,23 +33,95 @@ class SearchFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_search, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            SearchFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        allYadnya1.layoutManager = GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false)
+        allYadnya2.layoutManager = GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false)
+        getAllYadnyaData()
+    }
+
+    private fun printLog(message: String) {
+        Log.d("HomeFragment", message)
+    }
+
+    private fun getAllYadnyaData() {
+        ApiService.endpoint.getYadnyaAllList()
+            .enqueue(object: Callback<ArrayList<AllYadnyaModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<AllYadnyaModel>>,
+                    response: Response<ArrayList<AllYadnyaModel>>
+                ) {
+                    val datalist = response.body()
+                    val setAdapter = datalist?.let { AllYadnyaAdapter(it,
+                        object : AllYadnyaAdapter.OnAdapterAllYadnyaListener{
+                            override fun onClick(result: AllYadnyaModel) {
+                                val bundle = Bundle()
+                                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                                bundle.putInt("id_yadnya", result.id_post)
+                                bundle.putInt("id_kategori", result.id_kategori)
+                                intent.putExtras(bundle)
+                                startActivity(intent)
+                            }
+                        }) }
+
+                    allYadnya1.adapter         = setAdapter
+                    noallyadnyadata.visibility = View.GONE
+                    setShimmerToStop()
+
+                    cariYadnya.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+                        androidx.appcompat.widget.SearchView.OnQueryTextListener {
+                        override fun onQueryTextSubmit(p0: String?): Boolean = false
+
+                        override fun onQueryTextChange(p0: String?): Boolean {
+                            if(p0 != null){
+                                if(p0.isEmpty()){
+                                    noallyadnyadata.visibility = View.GONE
+                                    allYadnya1.visibility      = View.VISIBLE
+                                    allYadnya2.visibility      = View.GONE
+                                }else if(p0.length > 2){
+                                    val filter = datalist?.filter { it.nama_post.contains("$p0", true) }
+                                    allyadnyaAdapter = AllYadnyaAdapter(filter as ArrayList<AllYadnyaModel>,
+                                        object : AllYadnyaAdapter.OnAdapterAllYadnyaListener{
+                                            override fun onClick(result: AllYadnyaModel) {
+                                                val bundle = Bundle()
+                                                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                                                bundle.putInt("id_yadnya", result.id_post)
+                                                bundle.putInt("id_kategori", result.id_kategori)
+                                                intent.putExtras(bundle)
+                                                startActivity(intent)
+                                            }
+                                        })
+                                    if(filter.isEmpty()){
+                                        noallyadnyadata.visibility = View.VISIBLE
+                                        allYadnya1.visibility      = View.GONE
+                                        allYadnya2.visibility      = View.GONE
+                                    }
+                                    if(p0.isNotEmpty()){
+                                        noallyadnyadata.visibility = View.GONE
+                                        allYadnya2.visibility      = View.VISIBLE
+                                        allYadnya2.adapter         = allyadnyaAdapter
+                                        allYadnya1.visibility      = View.INVISIBLE
+                                    }else{
+                                        allYadnya1.visibility      = View.VISIBLE
+                                        allYadnya2.visibility      = View.GONE
+                                        noallyadnyadata.visibility = View.GONE
+                                    }
+                                }
+                            }
+                            return false
+                        }
+
+                    })
                 }
-            }
+
+                override fun onFailure(call: Call<ArrayList<AllYadnyaModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+
+            })
+    }
+
+    private fun setShimmerToStop() {
+        shimmerSearch.stopShimmer()
+        shimmerSearch.visibility = View.GONE
     }
 }

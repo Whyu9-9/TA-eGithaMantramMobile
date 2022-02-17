@@ -12,6 +12,7 @@ import android.text.Html
 import android.view.MenuItem
 import android.widget.TextView
 import android.widget.Toast
+import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
@@ -29,7 +30,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding : ActivityMainBinding
     private lateinit var toggle  : ActionBarDrawerToggle
     private var doubleBackToExitPressedOnce = false
     private val homeFragment                = HomeFragment()
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar!!.setTitle("")
         replaceFragment(homeFragment, "Beranda")
 
-        val drawerLayout : DrawerLayout     = binding.appDrawer
+        val drawerLayout : DrawerLayout    = binding.appDrawer
         val navView : NavigationView       = binding.navView
         val botView : BottomNavigationView = binding.bottomnavView
 
@@ -58,6 +59,11 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
                 R.id.tari_bali -> Toast.makeText(applicationContext,"Menu Tari", Toast.LENGTH_SHORT).show()
+                R.id.tabuh -> Toast.makeText(applicationContext,"Menu Tabuh", Toast.LENGTH_SHORT).show()
+                R.id.gamelan_bali -> Toast.makeText(applicationContext,"Menu Gamelan Bali", Toast.LENGTH_SHORT).show()
+                R.id.kidung -> Toast.makeText(applicationContext,"Menu Kidung", Toast.LENGTH_SHORT).show()
+                R.id.mantram -> Toast.makeText(applicationContext,"Menu Mantram", Toast.LENGTH_SHORT).show()
+                R.id.prosesi_upacara -> Toast.makeText(applicationContext,"Menu Prosesi Upacara", Toast.LENGTH_SHORT).show()
                 R.id.login -> startActivity(Intent(this, LoginActivity::class.java))
                 R.id.about -> startActivity(Intent(this, AboutAppActivity::class.java))
             }

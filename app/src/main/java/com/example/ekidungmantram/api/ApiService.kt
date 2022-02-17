@@ -1,11 +1,11 @@
 package com.example.ekidungmantram.api
 
+import com.example.ekidungmantram.Constant.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.create
 
 object ApiService {
-    val BASE_URL: String = "https://api-wahyu.devmptr.com/public/api/"
     val endpoint: ApiEndpoint
     get() {
         val retrofit = Retrofit.Builder()

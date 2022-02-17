@@ -1,14 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".user.fragment.ListYadnyaFragment">
+    tools:context=".user.fragment.ListYadnyaFragment"
+    android:orientation="vertical"
+    android:padding="18dp">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:text="Tidak ada data"
+        android:textColor="@color/shimmer_secondary"
+        android:textStyle="bold"
+        android:textSize="17sp"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/allYadnyas"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:listitem="@layout/layout_list_all_yadnya"
+        android:layout_marginBottom="35dp"
+        android:layout_marginTop="15dp"/>
 
-</FrameLayout>
+</LinearLayout>

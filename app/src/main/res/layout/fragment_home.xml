@@ -51,6 +51,7 @@
                         android:textStyle="bold"
                         android:textColor="@color/grey_200"/>
                     <androidx.viewpager2.widget.ViewPager2
+                        android:layout_marginTop="-10dp"
                         android:id="@+id/view_pager"
                         android:layout_width="match_parent"
                         android:layout_height="260dp"/>
@@ -70,10 +71,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Terbaru"
+                            android:text="Yadnya Terbaru"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:textSize="17sp"/>
+                            android:textSize="15sp"/>
                         <TextView
                             android:id="@+id/lihatSemua"
                             android:gravity="end"
@@ -83,11 +84,102 @@
                             android:textColor="#4F88C7"
                             android:textSize="12sp"/>
                     </LinearLayout>
+                    <TextView
+                        android:id="@+id/nodatayadnya"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Tidak ada data"
+                        android:textColor="@color/shimmer_secondary"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"/>
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/yadnya_baru"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         tools:listitem="@layout/grid_layout_list_item"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"/>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Kidung"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp"/>
+                        <TextView
+                            android:id="@+id/lihatSemua2"
+                            android:gravity="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat Semua"
+                            android:textColor="#4F88C7"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/nodatakidung"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Tidak ada data"
+                        android:textColor="@color/shimmer_secondary"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/kidung_baru"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/grid_layout_list_item"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"/>
+                    <LinearLayout
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center_horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mantram"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="15sp"/>
+                        <TextView
+                            android:id="@+id/lihatSemua3"
+                            android:gravity="end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Lihat Semua"
+                            android:textColor="#4F88C7"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/nodatamantram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="Tidak ada data"
+                        android:textColor="@color/shimmer_secondary"
+                        android:textStyle="bold"
+                        android:textSize="17sp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_marginTop="15dp"/>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/mantram_baru"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/layout_list_mantram"
                         android:layout_marginBottom="15dp"
                         android:layout_marginTop="15dp"/>
                 </LinearLayout>
