@@ -16,12 +16,12 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewParent"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
                 tools:ignore="MissingConstraints">
                 <ImageView
                     android:id="@+id/imageDetailYadnya"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="match_parent"
                     android:scaleType="fitXY"
                     android:src="@drawable/sample_image_yadnya"/>
                 <ImageView
@@ -38,6 +38,7 @@
                     android:paddingBottom="50dp"
                     android:paddingLeft="10dp">
                     <TextView
+                        android:id="@+id/detailNamaYadnya"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Nama Yadnya"
@@ -45,6 +46,7 @@
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
                     <TextView
+                        android:id="@+id/detailJenisYadnya"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jenis Yadnya"
@@ -57,7 +59,7 @@
                 android:id="@+id/cardViewChild"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="30dp"
+                app:cardCornerRadius="20dp"
                 android:layout_marginBottom="-30dp"
                 android:layout_marginTop="-40dp">
                 <LinearLayout
@@ -66,25 +68,25 @@
                     android:orientation="vertical"
                     android:padding="10dp">
                     <LinearLayout
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="0dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <com.google.android.material.imageview.ShapeableImageView
-                            app:strokeColor="@color/black"
-                            app:strokeWidth="3dp"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                        android:orientation="vertical">
+                        <com.google.android.youtube.player.YouTubePlayerView
+                            android:id="@+id/youtubePlayer"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp"
                             android:layout_gravity="center"
-                            android:layout_marginRight="5dp"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/sample_image_yadnya" />
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"/>
                         <TextView
+                            android:id="@+id/deskription"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Atma Wedana adalah upacara yadnya yang bertujuan untuk menyucikan sang atma pitara setelah prosesi ngaben atau sawa wedana selesai yang dilaksanakan dengan upacara Nyekah atau Mamukur. Melalui upacara Atma Wedana ini yang diawali dengan dilaksanakannya upacara ngangget don bingin sebagai sarana ngawi sekah utawi puspa sarira sajeroning upacara mamukur sehingga nantinya roh atau atman leluhur kita itu menjadi Dewa Pitara untuk selanjutnya dapat menstanakannya di Kemulan."
                             android:textColor="@color/black"
-                            android:textSize="12sp" />
+                            android:justificationMode="inter_word"
+                            android:textSize="14sp" />
                     </LinearLayout>
                     <LinearLayout
                         android:layout_marginTop="10dp"

@@ -13,7 +13,9 @@
         android:theme="@style/Theme.EKidungMantram">
         <activity
             android:name=".user.DetailYadnyaActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"
+            />
         <activity
             android:name=".user.YadnyaActivity"
             android:exported="false" />

@@ -11,5 +11,6 @@ class AboutAppActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
         supportActionBar!!.setTitle("Tentang Aplikasi")
+
     }
 }

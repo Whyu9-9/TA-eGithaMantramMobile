@@ -50,7 +50,7 @@ class SearchFragment : Fragment() {
                     call: Call<ArrayList<AllYadnyaModel>>,
                     response: Response<ArrayList<AllYadnyaModel>>
                 ) {
-                    val datalist = response.body()
+                    val datalist   = response.body()
                     val setAdapter = datalist?.let { AllYadnyaAdapter(it,
                         object : AllYadnyaAdapter.OnAdapterAllYadnyaListener{
                             override fun onClick(result: AllYadnyaModel) {
