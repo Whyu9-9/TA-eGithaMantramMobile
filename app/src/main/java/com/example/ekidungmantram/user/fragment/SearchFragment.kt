@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.*
 import com.example.ekidungmantram.api.ApiService
@@ -58,6 +59,9 @@ class SearchFragment : Fragment() {
                                 val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
                                 bundle.putInt("id_yadnya", result.id_post)
                                 bundle.putInt("id_kategori", result.id_kategori)
+                                bundle.putString("nama_yadnya", result.nama_post)
+                                bundle.putString("kategori", result.kategori)
+                                bundle.putString("gambar", Constant.URL+result.gambar)
                                 intent.putExtras(bundle)
                                 startActivity(intent)
                             }

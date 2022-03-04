@@ -12,6 +12,6 @@
 
     <item
         android:id="@+id/list_yadnya"
-        android:icon="@drawable/list"
-        android:title="Daftar Yadnya"/>
+        android:icon="@drawable/bookmark_list"
+        android:title="Yadnya Ditandai"/>
 </menu>

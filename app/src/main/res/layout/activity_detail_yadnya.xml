@@ -5,7 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".user.DetailYadnyaActivity">
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:visibility="visible"
+        android:id="@+id/shimmerDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <include
+            layout="@layout/shimmer_detail"/>
+    </com.facebook.shimmer.ShimmerFrameLayout>
     <ScrollView
+        android:id="@+id/scrollDetail"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <LinearLayout
@@ -31,11 +42,57 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <CheckBox
+                            android:id="@+id/bookmarked"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginRight="15dp"
+                            app:useMaterialThemeColors= "false"
+                            android:button="@drawable/selector_bookmark"/>
+<!--                        <ImageView-->
+<!--                            android:id="@+id/shareURL"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_alignParentRight="true"-->
+<!--                            android:layout_marginStart="20dp"-->
+<!--                            android:layout_marginTop="20dp"-->
+<!--                            android:layout_marginEnd="20dp"-->
+<!--                            android:layout_marginBottom="20dp"-->
+<!--                            android:src="@drawable/share" />-->
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <ImageView
+                            android:id="@+id/backToHome"
+                            android:layout_marginTop="20dp"
+                            android:layout_marginBottom="20dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_alignParentLeft="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/back"/>
+                    </RelativeLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:layout_gravity="bottom"
                     android:paddingTop="20dp"
                     android:paddingRight="20dp"
-                    android:paddingBottom="50dp"
+                    android:paddingBottom="55dp"
                     android:paddingLeft="10dp">
                     <TextView
                         android:id="@+id/detailNamaYadnya"
@@ -59,7 +116,7 @@
                 android:id="@+id/cardViewChild"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="12dp"
                 android:layout_marginBottom="-30dp"
                 android:layout_marginTop="-40dp">
                 <LinearLayout
@@ -77,8 +134,17 @@
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
                             android:layout_gravity="center"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="20dp"
                             android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Deskripsi Yadnya"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:justificationMode="inter_word"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="5dp"/>
                         <TextView
                             android:id="@+id/deskription"
                             android:layout_width="wrap_content"
@@ -86,73 +152,144 @@
                             android:text="Atma Wedana adalah upacara yadnya yang bertujuan untuk menyucikan sang atma pitara setelah prosesi ngaben atau sawa wedana selesai yang dilaksanakan dengan upacara Nyekah atau Mamukur. Melalui upacara Atma Wedana ini yang diawali dengan dilaksanakannya upacara ngangget don bingin sebagai sarana ngawi sekah utawi puspa sarira sajeroning upacara mamukur sehingga nantinya roh atau atman leluhur kita itu menjadi Dewa Pitara untuk selanjutnya dapat menstanakannya di Kemulan."
                             android:textColor="@color/black"
                             android:justificationMode="inter_word"
-                            android:textSize="14sp" />
+                            android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
+                            android:layout_height="wrap_content"
+                            android:text="Prosesi Awal"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/awal"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_list_prosesi_awal"/>
+                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
+                            android:layout_height="wrap_content"
+                            android:text="Prosesi Puncak"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/puncak"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                tools:listitem="@layout/layout_list_prosesi_puncak"/>
+                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
+                            android:layout_height="wrap_content"
+                            android:text="Prosesi Akhir"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/akhir"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_list_prosesi_akhir"/>
+                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
+                            android:layout_height="wrap_content"
+                            android:text="Gamelan Bali"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <TextView
+                            android:id="@+id/nodatayadnyagamelan"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Tidak ada data"
+                            android:textColor="@color/shimmer_secondary"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/gamelanYadnyaList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_gamelan_detail_yadnya"/>
+                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                        <TextView
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:layout_marginTop="10dp"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:scaleType="fitXY"
+                            android:layout_height="wrap_content"
+                            android:text="Tari Bali"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <TextView
+                            android:id="@+id/nodatayadnyatari"
                             android:layout_width="match_parent"
-                            android:layout_height="150dp"
-                            android:src="@drawable/sample_image_yadnya"/>
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Tidak ada data"
+                            android:textColor="@color/shimmer_secondary"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/tariYadnyaList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_gamelan_detail_yadnya"/>
+                        </RelativeLayout>
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

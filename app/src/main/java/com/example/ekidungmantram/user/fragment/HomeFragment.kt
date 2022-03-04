@@ -17,6 +17,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
+import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.CardSliderAdapter
 import com.example.ekidungmantram.adapter.NewKidungAdapter
@@ -105,6 +106,9 @@ class HomeFragment : Fragment() {
                 val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
                 bundle.putInt("id_kategori", result.id_kategori)
+                bundle.putString("nama_yadnya", result.nama_post)
+                bundle.putString("kategori", result.kategori)
+                bundle.putString("gambar", Constant.URL+result.gambar)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -180,8 +184,13 @@ class HomeFragment : Fragment() {
                     call: Call<NewKidungModel>,
                     response: Response<NewKidungModel>
                 ) {
-                    showKidungData(response.body()!!)
-                    binding.nodatakidung.visibility  = View.GONE
+                    if(response.body()!!.data.toString() == "[]"){
+                        binding.nodatakidung.visibility  = View.VISIBLE
+                    }else{
+                        binding.nodatakidung.visibility  = View.GONE
+                        showKidungData(response.body()!!)
+                    }
+
                 }
 
                 override fun onFailure(call: Call<NewKidungModel>, t: Throwable) {
@@ -198,8 +207,12 @@ class HomeFragment : Fragment() {
                     call: Call<NewMantramModel>,
                     response: Response<NewMantramModel>
                 ) {
-                    showMantramData(response.body()!!)
-                    binding.nodatamantram.visibility  = View.GONE
+                    if(response.body()!!.data.toString() == "[]"){
+                        binding.nodatamantram.visibility  = View.VISIBLE
+                    }else{
+                        showMantramData(response.body()!!)
+                        binding.nodatamantram.visibility  = View.GONE
+                    }
                 }
 
                 override fun onFailure(call: Call<NewMantramModel>, t: Throwable) {
