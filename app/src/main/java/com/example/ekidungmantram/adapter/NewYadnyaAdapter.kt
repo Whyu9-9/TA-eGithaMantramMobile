@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
-import com.example.ekidungmantram.Constant.IMAGE_URL
 import com.example.ekidungmantram.LoginActivity
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.model.NewYadnyaModel
@@ -35,7 +34,7 @@ class NewYadnyaAdapter(val results: ArrayList<NewYadnyaModel.Data>, val listener
         val result = results[position]
         holder.title.setText(result.nama_post)
         holder.jenis.setText(result.kategori)
-        Glide.with(holder.view).load(IMAGE_URL+result.gambar).into(holder.gambar)
+        Glide.with(holder.view).load(Constant.IMAGE_URL+result.gambar).into(holder.gambar)
         holder.view.setOnClickListener{
             listener.onClick(result)
         }

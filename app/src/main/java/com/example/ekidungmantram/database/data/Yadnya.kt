@@ -9,9 +9,10 @@ data class Yadnya (
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     val id_yadnya: Int,
+    val id_kategori: Int,
     val kategori: String,
     val nama_post: String,
     val gambar: String
 ){
-    constructor() : this(0, 0, "", "", "")
+    constructor() : this(0, 0 , 0, "", "", "")
 }

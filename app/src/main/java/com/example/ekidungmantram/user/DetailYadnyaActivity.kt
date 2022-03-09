@@ -1,14 +1,13 @@
 package com.example.ekidungmantram.user
 
-import android.app.PendingIntent.getActivity
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.room.Room
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
@@ -34,7 +33,8 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailYadnyaActivity : YouTubeBaseActivity() {
-    private val db by lazy { YadnyaDb(this) }
+//    private val db by lazy { YadnyaDb(this) }
+    lateinit var db                     : YadnyaDb
     private var LayoutManagerAwal       : LinearLayoutManager? = null
     private lateinit var awalAdapter    : ProsesiAwalAdapter
     private var LayoutManagerPuncak     : LinearLayoutManager? = null
@@ -47,14 +47,14 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_yadnya)
-
+        db = Room.databaseBuilder(applicationContext, YadnyaDb::class.java, "yadnyabookmarked.db").build()
         val bundle :Bundle ?= intent.extras
         if (bundle!=null){
             val postID       = bundle.getInt("id_yadnya")
             val categoryID   = bundle.getInt("id_kategori")
             val namayadnya   = bundle.getString("nama_yadnya")
-            val kategoris   = bundle.getString("kategori")
-            val gambars   = bundle.getString("gambar")
+            val kategoris    = bundle.getString("kategori")
+            val gambars      = bundle.getString("gambar")
             val url : String = Constant.URL + "kategori_pengguna/detil/" + postID.toString() + "/" + categoryID.toString()
 //            shareURL.setOnClickListener {
 //                shareYadnya(url)
@@ -73,7 +73,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             }
             bookmarked.setOnCheckedChangeListener { checkBox, isChecked->
                 if (isChecked){
-                    addBookmark(postID, namayadnya, kategoris, gambars)
+                    addBookmark(postID, categoryID , namayadnya, kategoris, gambars)
                 }else{
                     deleteBookmark(postID)
                 }
@@ -100,10 +100,10 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     }
 
 
-    private fun addBookmark(postID: Int, namayadnya: String?, kategoris: String?, gambars: String?) {
+    private fun addBookmark(postID: Int, categoryID: Int , namayadnya: String?, kategoris: String?, gambars: String?) {
         CoroutineScope(Dispatchers.IO).launch {
             db.yadnyaDao().addBookmarkedYadnya(
-                Yadnya(0, postID, kategoris.toString() ,namayadnya.toString(), gambars.toString())
+                Yadnya(0, postID, categoryID , kategoris.toString() ,namayadnya.toString(), gambars.toString())
             )
             val test = db.yadnyaDao().fetch(postID)
             printLog(test.toString())

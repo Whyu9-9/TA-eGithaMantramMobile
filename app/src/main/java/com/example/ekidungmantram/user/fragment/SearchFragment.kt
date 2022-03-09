@@ -61,7 +61,7 @@ class SearchFragment : Fragment() {
                                 bundle.putInt("id_kategori", result.id_kategori)
                                 bundle.putString("nama_yadnya", result.nama_post)
                                 bundle.putString("kategori", result.kategori)
-                                bundle.putString("gambar", Constant.URL+result.gambar)
+                                bundle.putString("gambar", result.gambar)
                                 intent.putExtras(bundle)
                                 startActivity(intent)
                             }

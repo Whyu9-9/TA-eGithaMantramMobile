@@ -35,6 +35,7 @@
         android:layout_height="wrap_content"
         android:text="@string/app_desc"
         android:textSize="17sp"
+        android:justificationMode="inter_word"
         android:textColor="@color/grey_200"/>
     <TextView
         android:layout_marginTop="30dp"

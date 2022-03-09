@@ -108,7 +108,7 @@ class HomeFragment : Fragment() {
                 bundle.putInt("id_kategori", result.id_kategori)
                 bundle.putString("nama_yadnya", result.nama_post)
                 bundle.putString("kategori", result.kategori)
-                bundle.putString("gambar", Constant.URL+result.gambar)
+                bundle.putString("gambar", result.gambar)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -249,9 +249,9 @@ class HomeFragment : Fragment() {
                         printLog(result.toString())
                         fetchData(result!!)
 
-                        cardAdapter = CardSliderAdapter(list)
+                        cardAdapter               = CardSliderAdapter(list)
                         binding.viewPager.adapter = cardAdapter
-                        dots = ArrayList()
+                        dots                      = ArrayList()
                         setIndicator()
 
                         binding.viewPager.registerOnPageChangeCallback(object  : ViewPager2.OnPageChangeCallback(){
@@ -274,8 +274,8 @@ class HomeFragment : Fragment() {
 
     private fun setShimmerToStop() {
         binding.shimmerHome.stopShimmer()
-        binding.shimmerHome.visibility   = View.GONE
-        binding.swipe.visibility         = View.VISIBLE
+        binding.shimmerHome.visibility = View.GONE
+        binding.swipe.visibility       = View.VISIBLE
     }
 
     private fun printLog(message: String) {
