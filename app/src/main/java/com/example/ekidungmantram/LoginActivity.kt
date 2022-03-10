@@ -1,17 +1,27 @@
 package com.example.ekidungmantram
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import com.example.ekidungmantram.admin.HomeAdminActivity
+import com.example.ekidungmantram.api.ApiEndpoint
+import com.example.ekidungmantram.api.ApiService
+import com.example.ekidungmantram.model.AdminModel
 import com.example.ekidungmantram.user.MainActivity
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.android.synthetic.main.activity_login.*
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Callback
 
 class LoginActivity : AppCompatActivity() {
-
+    lateinit var sharedPreferences: SharedPreferences
     lateinit var back: TextView
     lateinit var submit: Button
     lateinit var username: TextInputEditText
@@ -28,18 +38,71 @@ class LoginActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
 
         back.setOnClickListener(View.OnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         })
 
         submit.setOnClickListener(View.OnClickListener {
             val inputusername = username.text.toString()
             val inputpassword = password.text.toString()
-            if(inputpassword=="123" && inputusername=="wahyu"){
-                Toast.makeText(this, "Login Berhasil" ,Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, "Login Gagal" ,Toast.LENGTH_SHORT).show()
+            if(validateInput()){
+                login(inputusername, inputpassword)
             }
         })
 
+    }
+
+    private fun login(inputusername: String, inputpassword: String) {
+        ApiService.endpoint.loginAdmin(inputusername, inputpassword)
+            .enqueue(object: Callback<AdminModel>{
+                override fun onResponse(
+                    call: Call<AdminModel>,
+                    response: Response<AdminModel>
+                ) {
+                    if(!response.body()?.error!!){
+                        saveData(response.body()?.id_admin)
+                    }else{
+                        Toast.makeText(this@LoginActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<AdminModel>, t: Throwable) {
+                    Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT).show()
+                }
+
+            })
+    }
+
+    private fun validateInput(): Boolean {
+        if(username.text.toString().isEmpty()){
+            usernameLayout.isErrorEnabled = true
+            usernameLayout.error = "Username tidak boleh kosong!"
+            return false
+        }
+
+        if(password.text.toString().isEmpty()){
+            passwordLayout.isErrorEnabled = true
+            passwordLayout.error = "Password tidak boleh kosong!"
+            return false
+        }
+
+        return true
+    }
+
+    private fun saveData(idAdmin: Int?) {
+        sharedPreferences = getSharedPreferences("is_logged", Context.MODE_PRIVATE)
+        val editor        = sharedPreferences.edit()
+        editor.apply{
+            putString("ID_ADMIN", idAdmin?.toString())
+        }.apply()
+        Toast.makeText(this, "Log In Sukses", Toast.LENGTH_SHORT).show()
+        goToAdmin()
+    }
+
+    private fun goToAdmin() {
+        val intent = Intent(this, HomeAdminActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

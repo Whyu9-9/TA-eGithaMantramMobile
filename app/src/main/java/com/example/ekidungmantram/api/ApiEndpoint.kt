@@ -2,8 +2,7 @@ package com.example.ekidungmantram.api
 
 import com.example.ekidungmantram.model.*
 import retrofit2.Call
-import retrofit2.http.GET
-import retrofit2.http.Path
+import retrofit2.http.*
 
 interface ApiEndpoint {
     @GET("listyadnya")
@@ -41,4 +40,11 @@ interface ApiEndpoint {
 
     @GET("detailkidung/{id_post}")
     fun getDetailKidungYadnya(@Path("id_post") id: Int) : Call<KidungYadnyaModel>
+
+    @FormUrlEncoded
+    @POST("login")
+    fun loginAdmin (
+        @Field("username") username:String,
+        @Field("password") password:String
+    ):Call<AdminModel>
 }

@@ -21,6 +21,7 @@ import com.example.ekidungmantram.AboutAppActivity
 import com.example.ekidungmantram.LoginActivity
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.CardSliderAdapter
+import com.example.ekidungmantram.admin.HomeAdminActivity
 import com.example.ekidungmantram.data.CardSliderData
 import com.example.ekidungmantram.databinding.ActivityMainBinding
 import com.example.ekidungmantram.user.fragment.HomeFragment
@@ -58,14 +59,14 @@ class MainActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
-                R.id.tari_bali -> Toast.makeText(applicationContext,"Menu Tari", Toast.LENGTH_SHORT).show()
-                R.id.tabuh -> Toast.makeText(applicationContext,"Menu Tabuh", Toast.LENGTH_SHORT).show()
-                R.id.gamelan_bali -> Toast.makeText(applicationContext,"Menu Gamelan Bali", Toast.LENGTH_SHORT).show()
-                R.id.kidung -> Toast.makeText(applicationContext,"Menu Kidung", Toast.LENGTH_SHORT).show()
-                R.id.mantram -> Toast.makeText(applicationContext,"Menu Mantram", Toast.LENGTH_SHORT).show()
-                R.id.prosesi_upacara -> Toast.makeText(applicationContext,"Menu Prosesi Upacara", Toast.LENGTH_SHORT).show()
-                R.id.login -> startActivity(Intent(this, LoginActivity::class.java))
-                R.id.about -> startActivity(Intent(this, AboutAppActivity::class.java))
+                R.id.tari_bali -> goToTari()
+                R.id.tabuh -> goToTabuh()
+                R.id.gamelan_bali -> goToGamelan()
+                R.id.kidung -> goToKidung()
+                R.id.mantram -> goToMantram()
+                R.id.prosesi_upacara -> goToProsesi()
+                R.id.login -> goToLogin()
+                R.id.about -> goToAbout()
             }
 
             true
@@ -80,6 +81,48 @@ class MainActivity : AppCompatActivity() {
             true
         }
 
+    }
+
+    private fun goToTari() {
+        val intent = Intent(this, AllTariActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToTabuh() {
+        val intent = Intent(this, AllTabuhActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToGamelan() {
+        val intent = Intent(this, AllGamelanActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToKidung() {
+        val intent = Intent(this, AllKidungActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToMantram() {
+        val intent = Intent(this, AllMantramActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToProsesi() {
+        val intent = Intent(this, AllProsesiActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToAbout() {
+        val intent = Intent(this, AboutAppActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun goToLogin() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun replaceFragment(fragment: Fragment, title: String) {

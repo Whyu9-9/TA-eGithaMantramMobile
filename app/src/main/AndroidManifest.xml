@@ -12,6 +12,27 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EKidungMantram">
         <activity
+            android:name=".user.AllProsesiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AllKidungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AllMantramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AllGamelanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AllTabuhActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.AllTariActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.HomeAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".user.DetailProsesiActivity"
             android:exported="false" />
         <activity
