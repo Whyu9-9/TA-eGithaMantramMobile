@@ -6,7 +6,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ekidungmantram.R
-import com.example.ekidungmantram.model.NewKidungModel
 import com.example.ekidungmantram.model.NewMantramModel
 
 class NewMantramAdapter(val results: ArrayList<NewMantramModel.DataM>, val listener: OnAdapterMantramListener)

@@ -2,7 +2,6 @@ package com.example.ekidungmantram.user.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,12 +10,10 @@ import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.*
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.AllYadnyaModel
-import com.example.ekidungmantram.model.NewMantramModel
 import com.example.ekidungmantram.user.DetailYadnyaActivity
 import kotlinx.android.synthetic.main.fragment_search.*
 import retrofit2.Call
@@ -25,7 +22,8 @@ import retrofit2.Response
 import kotlin.collections.ArrayList
 
 class SearchFragment : Fragment() {
-    private var allyadnyaAdapter: AllYadnyaAdapter? = null
+    private lateinit var allyadnyaAdapter: AllYadnyaAdapter
+    private lateinit var setAdapter      : AllYadnyaAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,9 +33,13 @@ class SearchFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        allYadnya1.layoutManager = GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false)
-        allYadnya2.layoutManager = GridLayoutManager(getActivity(), 2, LinearLayoutManager.VERTICAL, false)
+        allYadnya1.layoutManager = GridLayoutManager(activity, 2, LinearLayoutManager.VERTICAL, false)
+        allYadnya2.layoutManager = GridLayoutManager(activity, 2, LinearLayoutManager.VERTICAL, false)
         getAllYadnyaData()
+        swipeSearch.setOnRefreshListener {
+            getAllYadnyaData()
+            swipeSearch.isRefreshing = false
+        }
     }
 
     private fun printLog(message: String) {
@@ -52,11 +54,18 @@ class SearchFragment : Fragment() {
                     response: Response<ArrayList<AllYadnyaModel>>
                 ) {
                     val datalist   = response.body()
-                    val setAdapter = datalist?.let { AllYadnyaAdapter(it,
+                    if(datalist != null){
+                        swipeSearch.visibility = View.VISIBLE
+                        shimmerSearch.visibility = View.GONE
+                    }else{
+                        swipeSearch.visibility = View.GONE
+                        shimmerSearch.visibility = View.VISIBLE
+                    }
+                    setAdapter = datalist?.let { AllYadnyaAdapter(it,
                         object : AllYadnyaAdapter.OnAdapterAllYadnyaListener{
                             override fun onClick(result: AllYadnyaModel) {
                                 val bundle = Bundle()
-                                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                                val intent = Intent(activity, DetailYadnyaActivity::class.java)
                                 bundle.putInt("id_yadnya", result.id_post)
                                 bundle.putInt("id_kategori", result.id_kategori)
                                 bundle.putString("nama_yadnya", result.nama_post)
@@ -65,7 +74,7 @@ class SearchFragment : Fragment() {
                                 intent.putExtras(bundle)
                                 startActivity(intent)
                             }
-                        }) }
+                        }) }!!
 
                     allYadnya1.adapter         = setAdapter
                     noallyadnyadata.visibility = View.GONE
@@ -82,14 +91,17 @@ class SearchFragment : Fragment() {
                                     allYadnya1.visibility      = View.VISIBLE
                                     allYadnya2.visibility      = View.GONE
                                 }else if(p0.length > 2){
-                                    val filter = datalist?.filter { it.nama_post.contains("$p0", true) }
+                                    val filter = datalist.filter { it.nama_post.contains("$p0", true) }
                                     allyadnyaAdapter = AllYadnyaAdapter(filter as ArrayList<AllYadnyaModel>,
                                         object : AllYadnyaAdapter.OnAdapterAllYadnyaListener{
                                             override fun onClick(result: AllYadnyaModel) {
                                                 val bundle = Bundle()
-                                                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                                                val intent = Intent(activity, DetailYadnyaActivity::class.java)
                                                 bundle.putInt("id_yadnya", result.id_post)
                                                 bundle.putInt("id_kategori", result.id_kategori)
+                                                bundle.putString("nama_yadnya", result.nama_post)
+                                                bundle.putString("kategori", result.kategori)
+                                                bundle.putString("gambar", result.gambar)
                                                 intent.putExtras(bundle)
                                                 startActivity(intent)
                                             }

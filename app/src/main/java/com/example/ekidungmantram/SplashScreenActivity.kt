@@ -10,8 +10,8 @@ import com.example.ekidungmantram.admin.HomeAdminActivity
 import com.example.ekidungmantram.user.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
-    lateinit var handler: Handler
-    lateinit var sharedPreferences: SharedPreferences
+    private lateinit var handler: Handler
+    private lateinit var sharedPreferences: SharedPreferences
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

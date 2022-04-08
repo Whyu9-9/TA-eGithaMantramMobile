@@ -25,7 +25,6 @@ class BookmarkedAdapter(val results: ArrayList<Yadnya>, val listener: OnAdapterL
         val result = results[position]
         holder.title.setText(result.nama_post)
         holder.jenis.setText(result.kategori)
-//        val g = result.gambar.replace(" ", "%20")
         Glide.with(holder.view).load(Constant.IMAGE_URL + result.gambar).into(holder.gambar)
         holder.view.setOnClickListener{
             listener.onClick(result)

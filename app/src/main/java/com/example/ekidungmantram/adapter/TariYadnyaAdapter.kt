@@ -15,19 +15,25 @@ class TariYadnyaAdapter(val results:ArrayList<TariYadnyaModel.Data>, val listene
     : RecyclerView.Adapter<TariYadnyaAdapter.ViewHolder>(){
 
     class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val title: TextView = view.findViewById(R.id.title_gamelan_yadnya)
+        val title: TextView = view.findViewById(R.id.title_tari_yadnya)
+        val image: ImageView = view.findViewById(R.id.yadnyaTariDetail)
     }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ) = ViewHolder(
-        LayoutInflater.from(parent.context).inflate(R.layout.layout_gamelan_detail_yadnya, parent, false)
+        LayoutInflater.from(parent.context).inflate(R.layout.layout_tari_detail_yadnya, parent, false)
     )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
         holder.title.setText(result.nama_post)
+        if(result.gambar != null){
+            Glide.with(holder.view).load(Constant.IMAGE_URL +result.gambar).into(holder.image)
+        }else{
+            holder.image.setImageResource(R.drawable.music)
+        }
     }
 
     override fun getItemCount() = results.size

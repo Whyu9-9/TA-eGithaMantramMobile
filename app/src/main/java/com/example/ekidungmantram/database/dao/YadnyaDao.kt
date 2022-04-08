@@ -17,7 +17,7 @@ interface YadnyaDao {
     @Query("Select * from yadnyabookmarked where id_yadnya = :id")
     suspend fun fetch(id: Int) : Yadnya
 
-    @Query("Select * from yadnyabookmarked")
+    @Query("Select * from yadnyabookmarked order by id DESC")
     suspend fun getAllBookmarkedYadnya() : List<Yadnya>
 
 }

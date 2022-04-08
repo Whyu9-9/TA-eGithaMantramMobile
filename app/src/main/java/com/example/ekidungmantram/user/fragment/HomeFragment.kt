@@ -17,8 +17,6 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
-import com.example.ekidungmantram.Constant
-import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.CardSliderAdapter
 import com.example.ekidungmantram.adapter.NewKidungAdapter
 import com.example.ekidungmantram.adapter.NewMantramAdapter
@@ -30,7 +28,8 @@ import com.example.ekidungmantram.model.HomeModel
 import com.example.ekidungmantram.model.NewKidungModel
 import com.example.ekidungmantram.model.NewMantramModel
 import com.example.ekidungmantram.model.NewYadnyaModel
-import com.example.ekidungmantram.user.DetailYadnyaActivity
+import com.example.ekidungmantram.user.*
+import kotlinx.android.synthetic.main.fragment_home.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -56,8 +55,7 @@ class HomeFragment : Fragment() {
     ): View {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -70,6 +68,17 @@ class HomeFragment : Fragment() {
         getLatestKidungData()
         getLatestMantramData()
         runAutoSlideCard()
+
+        lihatSemua.visibility = View.GONE
+        lihatSemua2.setOnClickListener {
+            val intent = Intent(activity, AllKidungActivity::class.java)
+            startActivity(intent)
+        }
+
+        lihatSemua3.setOnClickListener {
+            val intent = Intent(activity, AllMantramActivity::class.java)
+            startActivity(intent)
+        }
 
         val swiped = binding.swipe
         swiped.setOnRefreshListener {
@@ -91,7 +100,7 @@ class HomeFragment : Fragment() {
                 if(index == list.size){
                     index = 0
                 }
-                binding.viewPager.setCurrentItem(index)
+                binding.viewPager.currentItem = index
                 index++
                 handler.postDelayed(this, 5000)
             }
@@ -103,7 +112,7 @@ class HomeFragment : Fragment() {
         yadnyaAdapter = NewYadnyaAdapter(arrayListOf(), object : NewYadnyaAdapter.OnAdapterListener{
             override fun onClick(result: NewYadnyaModel.Data) {
                 val bundle = Bundle()
-                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                val intent = Intent(activity, DetailYadnyaActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
                 bundle.putInt("id_kategori", result.id_kategori)
                 bundle.putString("nama_yadnya", result.nama_post)
@@ -114,7 +123,7 @@ class HomeFragment : Fragment() {
             }
         })
         binding.yadnyaBaru.apply {
-            gridLayoutManagerY = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            gridLayoutManagerY = GridLayoutManager(activity, 1, LinearLayoutManager.HORIZONTAL, false)
             layoutManager      = gridLayoutManagerY
             adapter            = yadnyaAdapter
             setHasFixedSize(true)
@@ -125,15 +134,14 @@ class HomeFragment : Fragment() {
         kidungAdapter = NewKidungAdapter(arrayListOf(), object : NewKidungAdapter.OnAdapterKidungListener{
             override fun onClick(result: NewKidungModel.DataK) {
                 val bundle = Bundle()
-                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
-                bundle.putInt("id_kategori", result.id_kategori)
+                val intent = Intent(activity, DetailKidungActivity::class.java)
+                bundle.putInt("id_kidung", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
         })
         binding.kidungBaru.apply {
-            gridLayoutManagerK = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            gridLayoutManagerK = GridLayoutManager(activity, 1, LinearLayoutManager.HORIZONTAL, false)
             layoutManager      = gridLayoutManagerK
             adapter            = kidungAdapter
             setHasFixedSize(true)
@@ -144,15 +152,14 @@ class HomeFragment : Fragment() {
         mantramAdapter = NewMantramAdapter(arrayListOf(), object : NewMantramAdapter.OnAdapterMantramListener{
             override fun onClick(result: NewMantramModel.DataM) {
                 val bundle = Bundle()
-                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
-                bundle.putInt("id_kategori", result.id_kategori)
+                val intent = Intent(activity, DetailMantramActivity::class.java)
+                bundle.putInt("id_mantram", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
         })
         binding.mantramBaru.apply {
-            gridLayoutManagerM = GridLayoutManager(getActivity(), 1, LinearLayoutManager.HORIZONTAL, false)
+            gridLayoutManagerM = GridLayoutManager(activity, 1, LinearLayoutManager.HORIZONTAL, false)
             layoutManager      = gridLayoutManagerM
             adapter            = mantramAdapter
             setHasFixedSize(true)
@@ -265,7 +272,7 @@ class HomeFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<List<HomeModel>>, t: Throwable) {
-                    Toast.makeText(getActivity(), "No Connection", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, "No Connection", Toast.LENGTH_SHORT).show()
                     setShimmerToStop()
                 }
 
@@ -303,15 +310,29 @@ class HomeFragment : Fragment() {
     }
 
     private fun setIndicator() {
-        for (i in 0 until list.size){
-            dots.add(TextView(context))
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                dots[i].text = Html.fromHtml("&#9679 ", Html.FROM_HTML_MODE_LEGACY).toString()
-            } else {
-                dots[i].text = Html.fromHtml("&#9679 ")
+        val size = list.size
+        if(size != null) {
+            for (i in 0 until size) {
+                dots.add(TextView(activity))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    dots[i].text = Html.fromHtml("&#9679 ", Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    dots[i].text = Html.fromHtml("&#9679 ")
+                }
+                dots[i].textSize = 8f
+                binding.dotsIndicator.addView(dots[i])
             }
-            dots[i].textSize = 8f
-            binding.dotsIndicator.addView(dots[i])
+        }else{
+            for (i in 0 until 5) {
+                dots.add(TextView(context))
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    dots[i].text = Html.fromHtml("&#9679 ", Html.FROM_HTML_MODE_LEGACY).toString()
+                } else {
+                    dots[i].text = Html.fromHtml("&#9679 ")
+                }
+                dots[i].textSize = 8f
+                binding.dotsIndicator.addView(dots[i])
+            }
         }
     }
 

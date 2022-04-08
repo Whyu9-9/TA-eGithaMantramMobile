@@ -5,12 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.example.ekidungmantram.admin.HomeAdminActivity
-import com.example.ekidungmantram.api.ApiEndpoint
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.AdminModel
 import com.example.ekidungmantram.user.MainActivity
@@ -21,11 +19,11 @@ import retrofit2.Response
 import retrofit2.Callback
 
 class LoginActivity : AppCompatActivity() {
-    lateinit var sharedPreferences: SharedPreferences
-    lateinit var back: TextView
-    lateinit var submit: Button
-    lateinit var username: TextInputEditText
-    lateinit var password: TextInputEditText
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var back: TextView
+    private lateinit var submit: Button
+    private lateinit var username: TextInputEditText
+    private lateinit var password: TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,19 +35,19 @@ class LoginActivity : AppCompatActivity() {
         username = findViewById(R.id.username)
         password = findViewById(R.id.password)
 
-        back.setOnClickListener(View.OnClickListener {
+        back.setOnClickListener{
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        })
+        }
 
-        submit.setOnClickListener(View.OnClickListener {
+        submit.setOnClickListener{
             val inputusername = username.text.toString()
             val inputpassword = password.text.toString()
             if(validateInput()){
                 login(inputusername, inputpassword)
             }
-        })
+        }
 
     }
 
@@ -105,4 +103,6 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+
 }

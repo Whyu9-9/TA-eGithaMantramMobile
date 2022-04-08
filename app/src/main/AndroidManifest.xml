@@ -10,25 +10,47 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EKidungMantram">
+        android:theme="@style/Theme.EKidungMantram"
+        android:dataExtractionRules="@xml/data_extraction_rules">
+        <activity
+            android:name=".user.DetailMantramActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.DetailTabuhActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.DetailKidungActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.DetailTariActivity"
+            android:exported="false" />
+        <activity
+            android:name=".user.DetailGamelanActivity"
+            android:exported="false" />
         <activity
             android:name=".user.AllProsesiActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".user.AllKidungActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".user.AllMantramActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".user.AllGamelanActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".user.AllTabuhActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".user.AllTariActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".user.MainActivity"/>
         <activity
             android:name=".admin.HomeAdminActivity"
             android:exported="false" />

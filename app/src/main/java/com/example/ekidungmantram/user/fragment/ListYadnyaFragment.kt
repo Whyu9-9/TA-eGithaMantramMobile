@@ -7,21 +7,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.BookmarkedAdapter
-import com.example.ekidungmantram.adapter.NewYadnyaAdapter
-import com.example.ekidungmantram.adapter.ProsesiAkhirAdapter
-import com.example.ekidungmantram.database.dao.YadnyaDao
 import com.example.ekidungmantram.database.data.Yadnya
 import com.example.ekidungmantram.database.setup.YadnyaDb
-import com.example.ekidungmantram.model.NewYadnyaModel
 import com.example.ekidungmantram.user.DetailYadnyaActivity
 import kotlinx.android.synthetic.main.fragment_list_yadnya.*
-import kotlinx.android.synthetic.main.fragment_search.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -40,29 +33,12 @@ class ListYadnyaFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         db = Room.databaseBuilder(requireActivity(), YadnyaDb::class.java, "yadnyabookmarked.db").build()
-        CoroutineScope(Dispatchers.IO).launch {
-            val check = db.yadnyaDao().getAllBookmarkedYadnya()
-            printLog(check.toString())
-            withContext(Dispatchers.Main){
-                if(!check.isEmpty()){
-                    nobookmark.visibility           = View.GONE
-                    allYadnyasBookmarked.visibility = View.VISIBLE
-                    getAllYadnyaBookmarkedData()
-                    setupRecyclerviewBookmark()
-                    swipeBook.setOnRefreshListener {
-                        getAllYadnyaBookmarkedData()
-                        setupRecyclerviewBookmark()
-                        swipeBook.isRefreshing = false
-                    }
-                }else{
-                    swipeBook.setOnRefreshListener {
-                        nobookmark.visibility           = View.VISIBLE
-                        allYadnyasBookmarked.visibility = View.GONE
-                        swipeBook.isRefreshing = false
-                    }
-
-                }
-            }
+        getAllYadnyaBookmarkedData()
+        setupRecyclerviewBookmark()
+        swipeBook.setOnRefreshListener {
+            getAllYadnyaBookmarkedData()
+            setupRecyclerviewBookmark()
+            swipeBook.isRefreshing = false
         }
     }
 
@@ -70,7 +46,7 @@ class ListYadnyaFragment : Fragment() {
         bookmarkedAdapter = BookmarkedAdapter(arrayListOf(), object : BookmarkedAdapter.OnAdapterListener{
             override fun onClick(result: Yadnya) {
                 val bundle = Bundle()
-                val intent = Intent(getActivity(), DetailYadnyaActivity::class.java)
+                val intent = Intent(activity, DetailYadnyaActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_yadnya)
                 bundle.putInt("id_kategori", result.id_kategori)
                 bundle.putString("nama_yadnya", result.nama_post)
@@ -91,6 +67,13 @@ class ListYadnyaFragment : Fragment() {
         CoroutineScope(Dispatchers.IO).launch {
             val yadnya = db.yadnyaDao().getAllBookmarkedYadnya()
             withContext(Dispatchers.Main){
+                if(yadnya.isNotEmpty()){
+                    nobookmark.visibility           = View.GONE
+                    allYadnyasBookmarked.visibility = View.VISIBLE
+                }else{
+                    nobookmark.visibility           = View.VISIBLE
+                    allYadnyasBookmarked.visibility = View.GONE
+                }
                 showData(yadnya)
             }
         }

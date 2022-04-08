@@ -7,8 +7,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.model.ProsesiAkhirModel
-import com.example.ekidungmantram.model.ProsesiAwalModel
-import com.example.ekidungmantram.model.ProsesiPuncakModel
 
 class ProsesiAkhirAdapter(val results:ArrayList<ProsesiAkhirModel.Data>, val listener: OnAdapterAkhirListener)
     : RecyclerView.Adapter<ProsesiAkhirAdapter.ViewHolder>(){
@@ -27,6 +25,9 @@ class ProsesiAkhirAdapter(val results:ArrayList<ProsesiAkhirModel.Data>, val lis
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val result = results[position]
         holder.title.setText(result.nama_post)
+        holder.view.setOnClickListener{
+            listener.onClick(result)
+        }
     }
 
     override fun getItemCount() = results.size

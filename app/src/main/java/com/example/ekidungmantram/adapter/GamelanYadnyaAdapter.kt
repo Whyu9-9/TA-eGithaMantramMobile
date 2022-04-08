@@ -10,9 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.model.GamelanYadnyaModel
-import com.example.ekidungmantram.model.ProsesiAkhirModel
-import com.example.ekidungmantram.model.ProsesiAwalModel
-import com.example.ekidungmantram.model.ProsesiPuncakModel
 
 class GamelanYadnyaAdapter(val results:ArrayList<GamelanYadnyaModel.Data>, val listener: OnAdapterGamelanYadnyaListener)
     : RecyclerView.Adapter<GamelanYadnyaAdapter.ViewHolder>(){

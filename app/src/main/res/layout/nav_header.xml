@@ -19,7 +19,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="E-GithaMantram"
+        android:text="@string/e_yadnya"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="18sp"/>

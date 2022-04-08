@@ -9,9 +9,9 @@
 
     <ImageView
         android:id="@+id/splash_me"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_centerInParent="true"
-        android:src="@drawable/splashscreen"/>
+        android:src="@drawable/splashscreen2"/>
 
 </RelativeLayout>

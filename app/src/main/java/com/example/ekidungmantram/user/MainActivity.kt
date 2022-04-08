@@ -1,34 +1,26 @@
 package com.example.ekidungmantram.user
 
 import android.content.Intent
-import android.graphics.Color
-import android.icu.text.CaseMap
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.text.Html
 import android.view.MenuItem
-import android.widget.TextView
 import android.widget.Toast
-import android.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
-import androidx.viewpager2.widget.ViewPager2
+import androidx.fragment.app.FragmentManager
 import com.example.ekidungmantram.AboutAppActivity
 import com.example.ekidungmantram.LoginActivity
 import com.example.ekidungmantram.R
-import com.example.ekidungmantram.adapter.CardSliderAdapter
-import com.example.ekidungmantram.admin.HomeAdminActivity
-import com.example.ekidungmantram.data.CardSliderData
 import com.example.ekidungmantram.databinding.ActivityMainBinding
 import com.example.ekidungmantram.user.fragment.HomeFragment
 import com.example.ekidungmantram.user.fragment.ListYadnyaFragment
 import com.example.ekidungmantram.user.fragment.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -37,13 +29,18 @@ class MainActivity : AppCompatActivity() {
     private val homeFragment                = HomeFragment()
     private val searchFragment              = SearchFragment()
     private val listYadnya                  = ListYadnyaFragment()
+    private val fm: FragmentManager         = supportFragmentManager
+    private var active : Fragment           = homeFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        supportActionBar!!.setTitle("")
-        replaceFragment(homeFragment, "Beranda")
+        setTitleActionBar("Beranda")
+
+        fm.beginTransaction().add(R.id.fragment_container, listYadnya).hide(listYadnya).commit()
+        fm.beginTransaction().add(R.id.fragment_container, searchFragment).hide(searchFragment).commit()
+        fm.beginTransaction().add(R.id.fragment_container,homeFragment).commit()
 
         val drawerLayout : DrawerLayout    = binding.appDrawer
         val navView : NavigationView       = binding.navView
@@ -73,14 +70,30 @@ class MainActivity : AppCompatActivity() {
         }
 
         botView.setOnNavigationItemSelectedListener{
-            when(it.itemId){
-                R.id.home -> replaceFragment(homeFragment, "Beranda")
-                R.id.cari -> replaceFragment(searchFragment, "Pencarian")
-                R.id.list_yadnya -> replaceFragment(listYadnya, "Daftar Yadnya")
+            when (it.itemId) {
+                R.id.home -> {
+                    fm.beginTransaction().hide(active).show(homeFragment).commit()
+                    active = homeFragment
+                    setTitleActionBar("Beranda")
+                }
+                R.id.cari -> {
+                    fm.beginTransaction().hide(active).show(searchFragment).commit()
+                    active = searchFragment
+                    setTitleActionBar("Cari Yadnya")
+                }
+                R.id.list_yadnya -> {
+                    fm.beginTransaction().hide(active).show(listYadnya).commit()
+                    active = listYadnya
+                    setTitleActionBar("Yadnya Ditandai")
+                }
             }
             true
         }
 
+    }
+
+    private fun setTitleActionBar(s: String) {
+        supportActionBar!!.title = s
     }
 
     private fun goToTari() {
@@ -116,20 +129,12 @@ class MainActivity : AppCompatActivity() {
     private fun goToAbout() {
         val intent = Intent(this, AboutAppActivity::class.java)
         startActivity(intent)
-        finish()
     }
 
     private fun goToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
         finish()
-    }
-
-    private fun replaceFragment(fragment: Fragment, title: String) {
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fragment_container, fragment)
-        transaction.commit()
-        supportActionBar!!.setTitle(title)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -148,6 +153,6 @@ class MainActivity : AppCompatActivity() {
         this.doubleBackToExitPressedOnce = true
         Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT).show()
 
-        Handler(Looper.getMainLooper()).postDelayed(Runnable { doubleBackToExitPressedOnce = false }, 2000)
+        Handler(Looper.getMainLooper()).postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
     }
 }

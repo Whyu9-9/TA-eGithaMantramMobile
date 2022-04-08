@@ -10,4 +10,7 @@
     <color name="shimmer_primary">#7F000000</color>
     <color name="shimmer_secondary">#BFBDBD</color>
     <color name="transparent">#00FF0000</color>
+    <color name="green_success">#5cb85c</color>
+    <color name="blue_primary">#42bbca</color>
+    <color name="red_danger">#d9534f</color>
 </resources>

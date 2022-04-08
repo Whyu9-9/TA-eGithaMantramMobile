@@ -8,14 +8,10 @@ import android.widget.Toast
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
-import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
-import com.example.ekidungmantram.adapter.GamelanYadnyaAdapter
-import com.example.ekidungmantram.adapter.ProsesiAkhirAdapter
-import com.example.ekidungmantram.adapter.ProsesiAwalAdapter
-import com.example.ekidungmantram.adapter.ProsesiPuncakAdapter
+import com.example.ekidungmantram.adapter.*
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.database.data.Yadnya
 import com.example.ekidungmantram.database.setup.YadnyaDb
@@ -24,7 +20,6 @@ import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.activity_detail_yadnya.*
-import kotlinx.android.synthetic.main.layout_list_prosesi_awal.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,8 +28,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailYadnyaActivity : YouTubeBaseActivity() {
-//    private val db by lazy { YadnyaDb(this) }
-    lateinit var db                     : YadnyaDb
+    private lateinit var db             : YadnyaDb
     private var LayoutManagerAwal       : LinearLayoutManager? = null
     private lateinit var awalAdapter    : ProsesiAwalAdapter
     private var LayoutManagerPuncak     : LinearLayoutManager? = null
@@ -43,6 +37,10 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     private lateinit var akhirAdapter   : ProsesiAkhirAdapter
     private var LayoutManagerGamelan    : LinearLayoutManager? = null
     private lateinit var gamelanAdapter : GamelanYadnyaAdapter
+    private var LayoutManagerTari       : LinearLayoutManager? = null
+    private lateinit var tariAdapter    : TariYadnyaAdapter
+    private var LayoutManagerKidung     : LinearLayoutManager? = null
+    private lateinit var kidungAdapter  : KidungYadnyaAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,7 +69,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                     Toast.makeText(this, "Bookmark Berhasil dihapus", Toast.LENGTH_SHORT).show()
                 }
             }
-            bookmarked.setOnCheckedChangeListener { checkBox, isChecked->
+            bookmarked.setOnCheckedChangeListener { _, isChecked->
                 if (isChecked){
                     addBookmark(postID, categoryID , namayadnya, kategoris, gambars)
                 }else{
@@ -81,21 +79,31 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             CoroutineScope(Dispatchers.IO).launch {
                 val test = db.yadnyaDao().fetch(postID)
                 if(test != null){
-                    bookmarked.setChecked(true)
+                    bookmarked.isChecked = true
                 }else{
-                    bookmarked.setChecked(false)
+                    bookmarked.isChecked = false
                 }
             }
 
             getDetailData(postID)
+
             setupRecyclerViewAwal()
             getProsesiAwalData(postID)
+
             setupRecyclerViewPuncak()
             getProsesiPuncakData(postID)
+
             setupRecyclerViewAkhir()
             getProsesiAkhirData(postID)
+
             setupRecyclerViewGamelan()
             getGamelanYadnyaData(postID)
+
+            setupRecyclerViewTari()
+            getTariYadnyaData(postID)
+
+            setupRecyclerViewKidung()
+            getKidungYadnyaData(postID)
         }
     }
 
@@ -115,7 +123,6 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             db.yadnyaDao().deleteById(postID)
         }
     }
-
 
 //    private fun shareYadnya(url: String) {
 //        val link    = url
@@ -155,6 +162,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     private fun setupRecyclerViewAwal() {
         awalAdapter = ProsesiAwalAdapter(arrayListOf(), object : ProsesiAwalAdapter.OnAdapterAwalListener{
             override fun onClick(result: ProsesiAwalModel.Data) {
+                Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
@@ -195,6 +203,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     private fun setupRecyclerViewPuncak() {
         puncakAdapter = ProsesiPuncakAdapter(arrayListOf(), object : ProsesiPuncakAdapter.OnAdapterPuncakListener{
             override fun onClick(result: ProsesiPuncakModel.Data) {
+                Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
@@ -235,6 +244,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     private fun setupRecyclerViewAkhir() {
         akhirAdapter = ProsesiAkhirAdapter(arrayListOf(), object : ProsesiAkhirAdapter.OnAdapterAkhirListener{
             override fun onClick(result: ProsesiAkhirModel.Data) {
+                Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
@@ -281,7 +291,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
         gamelanAdapter = GamelanYadnyaAdapter(arrayListOf(), object : GamelanYadnyaAdapter.OnAdapterGamelanYadnyaListener{
             override fun onClick(result: GamelanYadnyaModel.Data) {
                 val bundle = Bundle()
-                val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
+                val intent = Intent(this@DetailYadnyaActivity, DetailGamelanActivity::class.java)
                 bundle.putInt("id_yadnya", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
@@ -296,6 +306,96 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
         }
     }
 
+    private fun getTariYadnyaData(id: Int) {
+        ApiService.endpoint.getDetailTariYadnya(id).enqueue(object : Callback<TariYadnyaModel>{
+            override fun onResponse(
+                call: Call<TariYadnyaModel>,
+                response: Response<TariYadnyaModel>
+            ) {
+                if(response.body()!!.data.toString() == "[]") {
+                    nodatayadnyatari.visibility = View.VISIBLE
+                }else{
+                    nodatayadnyatari.visibility = View.GONE
+                    showTariYadnyaData(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<TariYadnyaModel>, t: Throwable) {
+                printLog("on failure: $t")
+            }
+
+        })
+    }
+
+    private fun showTariYadnyaData(data: TariYadnyaModel) {
+        val results = data.data
+        tariAdapter.setData(results)
+    }
+
+    private fun setupRecyclerViewTari() {
+        tariAdapter = TariYadnyaAdapter(arrayListOf(), object : TariYadnyaAdapter.OnAdapterTariYadnyaListener{
+            override fun onClick(result: TariYadnyaModel.Data) {
+                val bundle = Bundle()
+                val intent = Intent(this@DetailYadnyaActivity, DetailTariActivity::class.java)
+                bundle.putInt("id_yadnya", result.id_post)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+
+        tariYadnyaList.apply {
+            LayoutManagerTari = GridLayoutManager(this@DetailYadnyaActivity, 3, LinearLayoutManager.VERTICAL, false)
+            layoutManager        = LayoutManagerTari
+            adapter              = tariAdapter
+            setHasFixedSize(true)
+        }
+    }
+
+    private fun getKidungYadnyaData(id: Int) {
+        ApiService.endpoint.getDetailKidungYadnya(id).enqueue(object : Callback<KidungYadnyaModel>{
+            override fun onResponse(
+                call: Call<KidungYadnyaModel>,
+                response: Response<KidungYadnyaModel>
+            ) {
+                if(response.body()!!.data.toString() == "[]") {
+                    nodatayadnyakidung.visibility = View.VISIBLE
+                }else{
+                    nodatayadnyakidung.visibility = View.GONE
+                    showKidungYadnyaData(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<KidungYadnyaModel>, t: Throwable) {
+                printLog("on failure: $t")
+            }
+
+        })
+    }
+
+    private fun showKidungYadnyaData(data: KidungYadnyaModel) {
+        val results = data.data
+        kidungAdapter.setData(results)
+    }
+
+    private fun setupRecyclerViewKidung() {
+        kidungAdapter = KidungYadnyaAdapter(arrayListOf(), object : KidungYadnyaAdapter.OnAdapterKidungYadnyaListener{
+            override fun onClick(result: KidungYadnyaModel.Data) {
+                val bundle = Bundle()
+                val intent = Intent(this@DetailYadnyaActivity, DetailKidungActivity::class.java)
+                bundle.putInt("id_yadnya", result.id_post)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+
+        kidungYadnyaList.apply {
+            LayoutManagerKidung  = GridLayoutManager(this@DetailYadnyaActivity, 3, LinearLayoutManager.VERTICAL, false)
+            layoutManager        = LayoutManagerKidung
+            adapter              = kidungAdapter
+            setHasFixedSize(true)
+        }
+    }
+
     private fun getDetailData(id: Int) {
         ApiService.endpoint.getDetailYadnya(id).enqueue(object: Callback<DetailYadnyaModel>{
             override fun onResponse(
@@ -304,9 +404,9 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             ) {
                 val result = response.body()!!
                 result.let {
-                    deskription.setText(result.deskripsi)
-                    detailNamaYadnya.setText(result.nama_post)
-                    detailJenisYadnya.setText(result.nama_kategori)
+                    deskription.text = result.deskripsi
+                    detailNamaYadnya.text = result.nama_post
+                    detailJenisYadnya.text = result.nama_kategori
                     Glide.with(this@DetailYadnyaActivity).load(Constant.IMAGE_URL +result.gambar).into(imageDetailYadnya)
                     playYoutubeVideo(result.video)
                 }

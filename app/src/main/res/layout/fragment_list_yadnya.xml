@@ -5,33 +5,53 @@
     android:layout_height="match_parent"
     tools:context=".user.fragment.ListYadnyaFragment"
     android:orientation="vertical"
-    android:padding="18dp">
+    android:paddingLeft="18dp"
+    android:paddingRight="18dp"
+    android:paddingTop="18dp">
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeBook"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:ignore="MissingConstraints">
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:id="@+id/nobookmark"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="Tidak ada data"
-                android:textColor="@color/shimmer_secondary"
-                android:textStyle="bold"
-                android:textSize="17sp"/>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allYadnyasBookmarked"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/layout_list_bookmarked"
-                android:layout_marginBottom="35dp"
-                android:layout_marginTop="5dp"/>
-        </LinearLayout>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar Yadnya"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/nobookmark"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Tidak ada data"
+                    android:textColor="@color/shimmer_secondary"
+                    android:textStyle="bold"
+                    android:textSize="17sp"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:visibility="gone"
+                        android:id="@+id/allYadnyasBookmarked"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/layout_list_bookmarked"
+                        android:layout_marginBottom="55dp"
+                        android:layout_marginTop="5dp"/>
+                </RelativeLayout>
+            </LinearLayout>
+        </ScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>
