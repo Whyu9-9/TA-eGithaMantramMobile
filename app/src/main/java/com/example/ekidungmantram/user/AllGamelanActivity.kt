@@ -39,7 +39,7 @@ class AllGamelanActivity : AppCompatActivity() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("AllGamelanActivity", message)
     }
 
     private fun getAllGamelan() {

@@ -118,7 +118,7 @@
                     android:orientation="vertical"
                     android:padding="10dp">
                     <LinearLayout
-                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -148,11 +148,12 @@
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:id="@+id/layoutBaitMantram"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:layout_marginBottom="30dp">
+                        android:visibility="visible"
+                        android:layout_marginBottom="20dp">
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -163,6 +164,30 @@
                             android:layout_marginBottom="5dp"/>
                         <TextView
                             android:id="@+id/baitMantram"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Atma Wedana adalah upacara yadnya yang bertujuan untuk menyucikan sang atma pitara setelah prosesi ngaben atau sawa wedana selesai yang dilaksanakan dengan upacara Nyekah atau Mamukur. Melalui upacara Atma Wedana ini yang diawali dengan dilaksanakannya upacara ngangget don bingin sebagai sarana ngawi sekah utawi puspa sarira sajeroning upacara mamukur sehingga nantinya roh atau atman leluhur kita itu menjadi Dewa Pitara untuk selanjutnya dapat menstanakannya di Kemulan."
+                            android:textColor="@color/black"
+                            android:justificationMode="inter_word"
+                            android:textSize="15sp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layoutArtiMantram"
+                        android:visibility="visible"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginBottom="30dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Arti Mantram"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="5dp"/>
+                        <TextView
+                            android:id="@+id/artiMantram"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Atma Wedana adalah upacara yadnya yang bertujuan untuk menyucikan sang atma pitara setelah prosesi ngaben atau sawa wedana selesai yang dilaksanakan dengan upacara Nyekah atau Mamukur. Melalui upacara Atma Wedana ini yang diawali dengan dilaksanakannya upacara ngangget don bingin sebagai sarana ngawi sekah utawi puspa sarira sajeroning upacara mamukur sehingga nantinya roh atau atman leluhur kita itu menjadi Dewa Pitara untuk selanjutnya dapat menstanakannya di Kemulan."

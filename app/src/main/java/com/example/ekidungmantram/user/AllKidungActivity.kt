@@ -36,7 +36,7 @@ class AllKidungActivity : AppCompatActivity() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("AllKidungActivity", message)
     }
 
     private fun getAllKidung() {

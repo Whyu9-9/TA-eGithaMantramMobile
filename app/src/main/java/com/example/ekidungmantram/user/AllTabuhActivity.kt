@@ -41,7 +41,7 @@ class AllTabuhActivity : AppCompatActivity() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("AllTabuhActivity", message)
     }
 
     private fun getAllTabuh() {

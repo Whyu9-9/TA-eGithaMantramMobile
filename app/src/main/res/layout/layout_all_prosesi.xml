@@ -25,7 +25,7 @@
             <ImageView
                 android:id="@+id/prosesi_imgs"
                 android:layout_width="110dp"
-                android:layout_height="100dp"
+                android:layout_height="match_parent"
                 android:scaleType="fitXY"
                 android:src="@drawable/sample_image_yadnya" />
             <LinearLayout

@@ -35,8 +35,15 @@ class AllMantramAdapter(private var results: ArrayList<AllMantramModel>, val lis
         private var jenis : TextView = view.findViewById(R.id.jenis_mantram)
         private var gambar : ImageView = view.findViewById(R.id.mantram_img)
         fun bindItem(data: AllMantramModel) {
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             title.text = data.nama_post
-            jenis.text = "Mantram "+data.kategori
+            if(data.kategori != null){
+                jenis.text = "Mantram "+data.kategori
+            }else{
+                jenis.text = "Mantram Hindu"
+            }
             if(data.gambar != null){
                 Glide.with(itemView).load(Constant.IMAGE_URL + data.gambar).into(gambar)
             }else{

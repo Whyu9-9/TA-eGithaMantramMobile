@@ -8,94 +8,98 @@
     android:padding="18dp"
     android:orientation="vertical">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingLeft="30dp"
-        android:paddingRight="30dp">
-
-        <ImageView
-            android:layout_marginTop="60dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon2"/>
-
-        <TextView
-            android:layout_marginTop="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="30sp"/>
-
-        <TextView
-            android:id="@+id/login_desc"
-            android:layout_marginTop="8dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/login_desc"
-            android:textColor="#787474"
-            android:textSize="15sp"/>
-
-        <com.google.android.material.textfield.TextInputLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/usernameLayout"
-            android:layout_marginTop="80dp"
+        android:layout_height="wrap_content">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:background="@android:color/transparent"
-            android:paddingLeft="-15dp">
+            android:orientation="vertical"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/username"
+            <ImageView
+                android:layout_marginTop="60dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icon2"/>
+
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="30sp"/>
+
+            <TextView
+                android:id="@+id/login_desc"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/login_desc"
+                android:textColor="#787474"
+                android:textSize="15sp"/>
+
+            <com.google.android.material.textfield.TextInputLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/usernameLayout"
+                android:layout_marginTop="80dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:hint="Username"
-                android:drawableEnd="@drawable/user"/>
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:paddingLeft="-15dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:hint="Email"
+                    android:drawableEnd="@drawable/user"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/passwordLayout"
-            android:layout_marginTop="30dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:boxBackgroundColor="@android:color/transparent"
-            android:background="@android:color/transparent"
-            android:paddingLeft="-15dp">
+            </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/password"
+            <com.google.android.material.textfield.TextInputLayout
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/passwordLayout"
+                android:layout_marginTop="30dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
-                android:hint="Password"/>
+                app:passwordToggleEnabled="true"
+                app:boxBackgroundColor="@android:color/transparent"
+                android:background="@android:color/transparent"
+                android:paddingLeft="-15dp">
 
-        </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:hint="Password"/>
 
-        <Button
-            android:id="@+id/login_button"
-            android:layout_marginTop="50dp"
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:text="Login"
-            android:backgroundTint="#EC3F40"/>
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/back"
-            android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Kembali"
-            android:textSize="15sp"/>
+            <Button
+                android:id="@+id/login_button"
+                android:layout_marginTop="50dp"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Login"
+                android:backgroundTint="#EC3F40"/>
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/back"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Kembali"
+                android:textSize="15sp"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

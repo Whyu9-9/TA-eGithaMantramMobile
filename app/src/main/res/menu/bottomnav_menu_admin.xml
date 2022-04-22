@@ -5,7 +5,7 @@
 
     <item
         android:id="@+id/adminHome"
-        android:icon="@drawable/search"
+        android:icon="@drawable/home"
         android:title="Home Admin"/>
 
     <item

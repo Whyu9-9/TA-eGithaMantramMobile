@@ -3,11 +3,13 @@
     <string name="open">Open</string>
     <string name="close">Close</string>
     <string name="login_desc">Untuk menuju ke halaman Admin</string>
-    <string name="app_desc">E-Yadnya Mobile merupakan sebuah pengembangan lanjutan versi mobile Android dari website E-Yadnya dimana aplikasi ini memiliki tujuan untuk edukasi mengenai Upacara Yadnya beserta prosesi serta pernak-perniknya. Pengembang aplikasi mobile ini merupakan seorang mahasiswa Teknolog Informasi Universitas Udayana angkatan 2018 dimana aplikasi ini dikembangkan di platform Android dengan bahasa pemrograman Kotlin. Semoga aplikasi ini dapat dikembangkan lagi lebih jauh dan bisa menyasar lebih banyak platform lagi.</string>
+    <string name="app_desc">E-Yadnya Mobile merupakan sebuah pengembangan lanjutan versi <i>mobile</i> Android dari <i>Website</i> Sistem Informasi E-Yadnya dimana aplikasi ini memiliki tujuan untuk memberi edukasi mengenai upacara <i>yadnya</i> beserta prosesi serta pernak-perniknya. Pengembang aplikasi mobile ini adalah mahasiswa Program Studi Teknologi Informasi, Fakultas Teknik, Universitas Udayana. Aplikasi ini dikembangkan di platform Android dengan bahasa pemrograman Kotlin. Semoga aplikasi ini dapat dikembangkan lagi lebih jauh dan bisa menyasar lebih banyak platform lagi.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="e_yadnya">E-Yadnya</string>
+    <string name="e_yadnya_admin">Beranda Admin</string>
     <string name="e_yadnya_mobile">E-Yadnya Mobile</string>
     <string name="version_app">v1.0.0</string>
     <string name="copyright">© 2021</string>
+    <string name="e_yadnya_mobile_app">E-Yadnya Mobile App</string>
 </resources>

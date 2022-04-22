@@ -38,7 +38,7 @@ class AllTariActivity : AppCompatActivity() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("AllTariActivity", message)
     }
 
     private fun getAllTari() {

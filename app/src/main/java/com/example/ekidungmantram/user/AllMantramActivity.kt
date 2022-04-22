@@ -37,7 +37,7 @@ class AllMantramActivity : AppCompatActivity() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("AllMantramActivity", message)
     }
 
     private fun getAllMantram() {

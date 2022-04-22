@@ -37,9 +37,9 @@ class DetailMantramActivity : YouTubeBaseActivity() {
         }
     }
 
-//    private fun printLog(message: String) {
-//        Log.d("DetailMantramActivity", message)
-//    }
+    private fun printLog(message: String) {
+        Log.d("DetailMantramActivity", message)
+    }
 
     private fun getDetailData(postID: Int) {
         ApiService.endpoint.getDetailMantram(postID).enqueue(object: Callback<DetailMantramModel> {
@@ -51,9 +51,26 @@ class DetailMantramActivity : YouTubeBaseActivity() {
                 result.let {
                     deskripsiMantram.text   = result.deskripsi
                     detailNamaMantram.text  = result.nama_post
-                    detailJenisMantram.text = result.nama_kategori
+
+                    if(result.nama_kategori != null){
+                        detailJenisMantram.text = "Mantram "+ result.nama_kategori
+                    }else{
+                        detailJenisMantram.text = "Mantram Hindu"
+                    }
                     keteranganMantram.text  = result.jenis_mantram
-                    baitMantram.text        = result.bait_mantra
+
+                    if(result.bait_mantra != null) {
+                        baitMantram.text = result.bait_mantra
+                    }else{
+                        layoutBaitMantram.visibility = View.GONE
+                    }
+
+                    if(result.arti_mantra != null){
+                        artiMantram.text = result.arti_mantra
+                    }else{
+                        layoutArtiMantram.visibility = View.GONE
+                    }
+
                     if(result.jenis_mantram != "Umum"){
                         keteranganMantram.setBackgroundResource(R.color.red_danger)
                     }

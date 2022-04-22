@@ -35,6 +35,9 @@ class AllTabuhAdapter(private var results: ArrayList<AllTabuhModel>, val listene
         private var jenis  : TextView = view.findViewById(R.id.jenis_tabuh)
         private var gambar : ImageView = view.findViewById(R.id.tabuh_imgs)
         fun bindItem(data: AllTabuhModel) {
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             title.text = data.nama_post
             jenis.text = "Tabuh Bali"
             if(data.gambar != null){

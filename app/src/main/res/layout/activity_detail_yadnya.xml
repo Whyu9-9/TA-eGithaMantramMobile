@@ -125,7 +125,7 @@
                     android:orientation="vertical"
                     android:padding="10dp">
                     <LinearLayout
-                        android:layout_marginTop="0dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -155,7 +155,7 @@
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -178,7 +178,7 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -201,7 +201,7 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -224,7 +224,9 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:id="@+id/layoutGamelan"
+                        android:visibility="visible"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -258,7 +260,9 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:id="@+id/layoutTari"
+                        android:visibility="visible"
+                        android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
@@ -292,7 +296,9 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:layout_marginTop="20dp"
+                        android:id="@+id/layoutKidung"
+                        android:visibility="visible"
+                        android:layout_marginTop="0dp"
                         android:layout_marginBottom="30dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

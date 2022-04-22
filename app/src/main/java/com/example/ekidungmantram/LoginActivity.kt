@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<AdminModel>
                 ) {
                     if(!response.body()?.error!!){
-                        saveData(response.body()?.id_admin)
+                        saveData(response.body()?.id_admin, response.body()?.nama)
                     }else{
                         Toast.makeText(this@LoginActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
                     }
@@ -75,7 +75,7 @@ class LoginActivity : AppCompatActivity() {
     private fun validateInput(): Boolean {
         if(username.text.toString().isEmpty()){
             usernameLayout.isErrorEnabled = true
-            usernameLayout.error = "Username tidak boleh kosong!"
+            usernameLayout.error = "Email tidak boleh kosong!"
             return false
         }
 
@@ -88,11 +88,12 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-    private fun saveData(idAdmin: Int?) {
+    private fun saveData(idAdmin: Int?, nama: String?) {
         sharedPreferences = getSharedPreferences("is_logged", Context.MODE_PRIVATE)
         val editor        = sharedPreferences.edit()
         editor.apply{
             putString("ID_ADMIN", idAdmin?.toString())
+            putString("NAMA", nama)
         }.apply()
         Toast.makeText(this, "Log In Sukses", Toast.LENGTH_SHORT).show()
         goToAdmin()
@@ -103,6 +104,4 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
-
-
 }

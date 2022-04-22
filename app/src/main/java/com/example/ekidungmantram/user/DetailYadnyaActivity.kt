@@ -41,6 +41,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
     private lateinit var tariAdapter    : TariYadnyaAdapter
     private var LayoutManagerKidung     : LinearLayoutManager? = null
     private lateinit var kidungAdapter  : KidungYadnyaAdapter
+    private var yadID                   : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
         db = Room.databaseBuilder(applicationContext, YadnyaDb::class.java, "yadnyabookmarked.db").build()
         val bundle :Bundle ?= intent.extras
         if (bundle!=null){
+            yadID            = bundle.getInt("id_yadnya")
             val postID       = bundle.getInt("id_yadnya")
             val categoryID   = bundle.getInt("id_kategori")
             val namayadnya   = bundle.getString("nama_yadnya")
@@ -165,7 +167,8 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_yadnya", yadID!!)
+                bundle.putInt("id_prosesi", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -206,7 +209,8 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_yadnya", yadID!!)
+                bundle.putInt("id_prosesi", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -247,7 +251,8 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 Toast.makeText(this@DetailYadnyaActivity, result.nama_post+" dipilih", Toast.LENGTH_SHORT).show()
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailProsesiActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_yadnya", yadID!!)
+                bundle.putInt("id_prosesi", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -268,8 +273,9 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 response: Response<GamelanYadnyaModel>
             ) {
                 if(response.body()!!.data.toString() == "[]") {
-                    nodatayadnyagamelan.visibility = View.VISIBLE
+                    layoutGamelan.visibility = View.GONE
                 }else{
+                    layoutGamelan.visibility = View.VISIBLE
                     nodatayadnyagamelan.visibility = View.GONE
                     showGamelanYadnyaData(response.body()!!)
                 }
@@ -292,7 +298,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             override fun onClick(result: GamelanYadnyaModel.Data) {
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailGamelanActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_gamelan", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -313,8 +319,9 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 response: Response<TariYadnyaModel>
             ) {
                 if(response.body()!!.data.toString() == "[]") {
-                    nodatayadnyatari.visibility = View.VISIBLE
+                    layoutTari.visibility = View.GONE
                 }else{
+                    layoutTari.visibility = View.VISIBLE
                     nodatayadnyatari.visibility = View.GONE
                     showTariYadnyaData(response.body()!!)
                 }
@@ -337,7 +344,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             override fun onClick(result: TariYadnyaModel.Data) {
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailTariActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_tari", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }
@@ -358,8 +365,9 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 response: Response<KidungYadnyaModel>
             ) {
                 if(response.body()!!.data.toString() == "[]") {
-                    nodatayadnyakidung.visibility = View.VISIBLE
+                    layoutKidung.visibility = View.GONE
                 }else{
+                    layoutKidung.visibility = View.VISIBLE
                     nodatayadnyakidung.visibility = View.GONE
                     showKidungYadnyaData(response.body()!!)
                 }
@@ -382,7 +390,7 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
             override fun onClick(result: KidungYadnyaModel.Data) {
                 val bundle = Bundle()
                 val intent = Intent(this@DetailYadnyaActivity, DetailKidungActivity::class.java)
-                bundle.putInt("id_yadnya", result.id_post)
+                bundle.putInt("id_kidung", result.id_post)
                 intent.putExtras(bundle)
                 startActivity(intent)
             }

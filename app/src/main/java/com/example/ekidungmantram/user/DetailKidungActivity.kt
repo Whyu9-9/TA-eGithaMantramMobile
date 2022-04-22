@@ -59,7 +59,7 @@ class DetailKidungActivity : YouTubeBaseActivity() {
                 result.let {
                     deskripsiKidung.text   = result.deskripsi
                     detailNamaKidung.text  = result.nama_post
-                    detailJenisKidung.text = result.nama_kategori
+                    detailJenisKidung.text = "Kidung " + result.nama_kategori
                     if(result.gambar != null) {
                         Glide.with(this@DetailKidungActivity)
                             .load(Constant.IMAGE_URL + result.gambar).into(imageDetailKidung)

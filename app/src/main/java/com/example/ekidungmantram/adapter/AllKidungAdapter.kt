@@ -36,6 +36,9 @@ class AllKidungAdapter(private var results: ArrayList<AllKidungModel>, val liste
         private var jenis : TextView = view.findViewById(R.id.jenis_kidung)
         private var gambar : ImageView = view.findViewById(R.id.kidung_imgs)
         fun bindItem(data: AllKidungModel) {
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             title.text = data.nama_post
             jenis.text = "Kidung "+data.kategori
             if(data.gambar != null){

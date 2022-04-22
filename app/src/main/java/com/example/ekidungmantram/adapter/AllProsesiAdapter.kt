@@ -5,12 +5,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.model.AllProsesiModel
-import com.example.ekidungmantram.model.AllTariModel
 
 class AllProsesiAdapter(private var results: ArrayList<AllProsesiModel>, val listener: OnAdapterAllProsesiListener)
     : RecyclerView.Adapter<AllProsesiAdapter.ViewHolder>() {
@@ -38,6 +38,9 @@ class AllProsesiAdapter(private var results: ArrayList<AllProsesiModel>, val lis
         fun bindItem(data: AllProsesiModel) {
             title.text = data.nama_post
             jenis.text = "Prosesi Upacara"
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             if(data.gambar != null){
                 Glide.with(itemView).load(Constant.IMAGE_URL + data.gambar).into(gambar)
             }else{

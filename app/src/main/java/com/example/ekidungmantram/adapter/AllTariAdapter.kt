@@ -35,6 +35,9 @@ class AllTariAdapter(private var results: ArrayList<AllTariModel>, val listener:
         private var jenis : TextView = view.findViewById(R.id.jenis_tari)
         private var gambar : ImageView = view.findViewById(R.id.tari_imgs)
         fun bindItem(data: AllTariModel) {
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             title.text = data.nama_post
             jenis.text = "Tari Bali"
             if(data.gambar != null){

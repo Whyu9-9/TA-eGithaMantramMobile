@@ -43,7 +43,7 @@ class SearchFragment : Fragment() {
     }
 
     private fun printLog(message: String) {
-        Log.d("HomeFragment", message)
+        Log.d("SearchFragment", message)
     }
 
     private fun getAllYadnyaData() {

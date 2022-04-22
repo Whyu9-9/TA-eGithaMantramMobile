@@ -34,9 +34,11 @@ class AllGamelanAdapter(private var results: ArrayList<AllGamelanModel>, val lis
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         private var title : TextView = view.findViewById(R.id.title_gamelan)
-        private var jenis : TextView = view.findViewById(R.id.jenis_gamelan)
         private var gambar : ImageView = view.findViewById(R.id.gamelan_imgs)
         fun bindItem(data: AllGamelanModel) {
+            if(data.nama_post.length > 30){
+                title.textSize = 15F
+            }
             title.text = data.nama_post
             if(data.gambar != null){
                 Glide.with(itemView).load(Constant.IMAGE_URL + data.gambar).into(gambar)
