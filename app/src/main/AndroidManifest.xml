@@ -14,8 +14,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EKidungMantram"
-        tools:targetApi="s"
-        tools:ignore="DataExtractionRules">
+        tools:ignore="DataExtractionRules"
+        tools:targetApi="s">
+        <activity
+            android:name=".admin.prosesiupacara.EditProsesiAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity"/>
+        <activity
+            android:name=".admin.prosesiupacara.AddProsesiAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity"/>
+        <activity
+            android:name=".admin.prosesiupacara.DetailProsesiAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.prosesiupacara.AllProsesiAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity"/>
         <activity
             android:name=".admin.tari.AddTabuhToTariAdminActivity"
             android:exported="false" />
@@ -25,18 +40,18 @@
         <activity
             android:name=".admin.tari.EditTariAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.tari.AllTariAdminActivity"/>
+            android:parentActivityName=".admin.tari.AllTariAdminActivity" />
         <activity
             android:name=".admin.tari.AddTariAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.tari.AllTariAdminActivity"/>
+            android:parentActivityName=".admin.tari.AllTariAdminActivity" />
         <activity
             android:name=".admin.tari.DetailTariAdminActivity"
             android:exported="false" />
         <activity
             android:name=".admin.tari.AllTariAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.HomeAdminActivity"/>
+            android:parentActivityName=".admin.HomeAdminActivity" />
         <activity
             android:name=".admin.gamelan.AddTabuhToGamelanAdminActivity"
             android:exported="false" />

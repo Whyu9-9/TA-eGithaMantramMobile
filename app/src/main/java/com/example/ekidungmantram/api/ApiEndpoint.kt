@@ -305,9 +305,128 @@ interface ApiEndpoint {
     ):Call<CrudModel>
 
     //Prosesi
+    @GET("admin/listallprosesiadmin")
+    fun getAllListProsesiAdmin() : Call<ArrayList<AllProsesiAdminModel>>
 
+    @GET("admin/detailprosesiadmin/{id_post}")
+    fun getDetailProsesiAdmin(@Path("id_post") id:Int) : Call<DetailProsesiAdminModel>
 
+//    @GET("admin/listgamelanonprosesi/{id_post}")
+//    fun getDetailAllGamelanOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>
 
+//    @GET("admin/listtarionprosesi/{id_post}")
+//    fun getDetailAllTariOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnProsesiAdminModel>>
+//
+//    @GET("admin/listkidungonprosesi/{id_post}")
+//    fun getDetailAllKidungOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>
+//
+//    @GET("admin/listtabuhonprosesi/{id_post}")
+//    fun getDetailAllTabuhOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
+//
+//    @GET("admin/listmantramonprosesi/{id_post}")
+//    fun getDetailAllMantramOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/createprosesi")
+    fun createDataProsesiAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showprosesi/{id_post}")
+    fun getShowProsesiAdmin(@Path("id_post") id:Int) : Call<DetailProsesiAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/editprosesi/{id_post}")
+    fun updateDataProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deleteprosesi/{id_post}")
+    fun deleteDataProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+//    @GET("admin/listgamelannotonprosesi/{id_post}")
+//    fun getDetailAllGamelanNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
+
+//    @FormUrlEncoded
+//    @POST("admin/addgamelanonprosesi/{id_post}")
+//    fun addDataGamelanToProsesiAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_gamelan") idGamelan:Int,
+//    ):Call<CrudModel>
+
+//    @POST("admin/deletegamelanonprosesi/{id_post}")
+//    fun deleteDataGamelanOnProsesiAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+
+//    @GET("admin/listtarinotonprosesi/{id_post}")
+//    fun getDetailAllTariNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>
+
+//    @FormUrlEncoded
+//    @POST("admin/addtarionprosesi/{id_post}")
+//    fun addDataTariToProsesiAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_tari") idTari:Int,
+//    ):Call<CrudModel>
+
+//    @POST("admin/deletetarionprosesi/{id_post}")
+//    fun deleteDataTariOnProsesiAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+
+//    @GET("admin/listkidungnotonprosesi/{id_post}")
+//    fun getDetailAllKidungNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllKidungAdminModel>>
+
+//    @FormUrlEncoded
+//    @POST("admin/addkidungonprosesi/{id_post}")
+//    fun addDataKidungToProsesiAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_kidung") idKidung:Int,
+//    ):Call<CrudModel>
+
+//    @POST("admin/deletekidungonprosesi/{id_post}")
+//    fun deleteDataKidungOnProsesiAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+
+//    @GET("admin/listtabuhnotonprosesi/{id_post}")
+//    fun getDetailAllTabuhNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
+
+//    @FormUrlEncoded
+//    @POST("admin/addtabuhonprosesi/{id_post}")
+//    fun addDataTabuhToProsesiAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_tabuh") idTabuh:Int,
+//    ):Call<CrudModel>
+
+//    @POST("admin/deletetabuhonprosesi/{id_post}")
+//    fun deleteDataTabuhOnProsesiAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+
+//    @GET("admin/listmantramnotonprosesi/{id_post}")
+//    fun getDetailAllMantramNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllMantramAdminModel>>
+
+//    @FormUrlEncoded
+//    @POST("admin/addmantramonprosesi/{id_post}")
+//    fun addDataMantramToProsesiAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_mantram") idMantram:Int,
+//    ):Call<CrudModel>
+
+//    @POST("admin/deletemantramonprosesi/{id_post}")
+//    fun deleteDataMantramOnProsesiAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
 
     //User
     //Yadnya

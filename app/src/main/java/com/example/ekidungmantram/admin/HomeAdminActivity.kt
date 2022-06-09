@@ -23,6 +23,7 @@ import com.example.ekidungmantram.admin.fragment.HomeAdminFragment
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
 import com.example.ekidungmantram.admin.kidung.AllKidungAdminActivity
 import com.example.ekidungmantram.admin.mantram.AllMantramAdminActivity
+import com.example.ekidungmantram.admin.prosesiupacara.AllProsesiAdminActivity
 import com.example.ekidungmantram.admin.tabuh.AllTabuhAdminActivity
 import com.example.ekidungmantram.admin.tari.AllTariAdminActivity
 import com.example.ekidungmantram.user.MainActivity
@@ -76,7 +77,7 @@ class HomeAdminActivity : AppCompatActivity() {
                 R.id.kidung_admin -> goToKidung()
                 R.id.mantram_admin -> goToMantram()
 //                R.id.approval -> goToKajiMantram()
-//                R.id.prosesi_upacara_admin -> goToProsesi()
+                R.id.prosesi_upacara_admin -> goToProsesi()
                 R.id.kelola_admin -> goToAdmin()
                 R.id.logout -> goToLogout()
                 R.id.about_admin -> goToAbout()
@@ -95,6 +96,11 @@ class HomeAdminActivity : AppCompatActivity() {
             }
             true
         }
+    }
+
+    private fun goToProsesi() {
+        val intent = Intent(this, AllProsesiAdminActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToTari() {
