@@ -17,20 +17,26 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".admin.prosesiupacara.AddGamelanToProsesiAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.prosesiupacara.AllGamelanOnProsesiAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.prosesiupacara.EditProsesiAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity"/>
+            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity" />
         <activity
             android:name=".admin.prosesiupacara.AddProsesiAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity"/>
+            android:parentActivityName=".admin.prosesiupacara.AllProsesiAdminActivity" />
         <activity
             android:name=".admin.prosesiupacara.DetailProsesiAdminActivity"
             android:exported="false" />
         <activity
             android:name=".admin.prosesiupacara.AllProsesiAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.HomeAdminActivity"/>
+            android:parentActivityName=".admin.HomeAdminActivity" />
         <activity
             android:name=".admin.tari.AddTabuhToTariAdminActivity"
             android:exported="false" />

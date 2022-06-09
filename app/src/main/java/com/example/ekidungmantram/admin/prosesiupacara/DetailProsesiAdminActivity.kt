@@ -2,20 +2,23 @@ package com.example.ekidungmantram.admin.prosesiupacara
 
 import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
+import com.example.ekidungmantram.adapter.admin.GamelanProsesiAdminAdapter
+import com.example.ekidungmantram.adapter.admin.TabuhGamelanAdminAdapter
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
-import com.example.ekidungmantram.admin.gamelan.EditGamelanAdminActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.CrudModel
-import com.example.ekidungmantram.model.adminmodel.DetailGamelanAdminModel
+import com.example.ekidungmantram.model.adminmodel.DetailAllGamelanOnProsesiAdminModel
+import com.example.ekidungmantram.model.adminmodel.DetailAllTabuhOnGamelanAdminModel
 import com.example.ekidungmantram.model.adminmodel.DetailProsesiAdminModel
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -28,6 +31,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailProsesiAdminActivity : YouTubeBaseActivity() {
+    private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -37,6 +41,22 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             val namaPost = bundle.getString("nama_prosesi")
 
             getDetailData(postID)
+            gamelanProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getGamelanData(postID)
+            editGamelanProsesi.setOnClickListener {
+                val intent = Intent(this, AllGamelanOnProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            tambahGamelanProsesi.setOnClickListener {
+                val intent = Intent(this, AddGamelanToProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
             goToEditProsesi.setOnClickListener {
                 val intent = Intent(this, EditProsesiAdminActivity::class.java)
@@ -57,6 +77,37 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
                     }.show()
             }
         }
+
+        backToHomeProsesiAdmin.setOnClickListener {
+            val intent = Intent(this, AllProsesiAdminActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    private fun getGamelanData(postID: Int) {
+        ApiService.endpoint.getDetailAllGamelanOnProsesiAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllGamelanOnProsesiAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>,
+                    response: Response<ArrayList<DetailAllGamelanOnProsesiAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editGamelanProsesi.visibility = View.VISIBLE
+                        tambahGamelanProsesi.visibility = View.GONE
+                    }else{
+                        tambahGamelanProsesi.visibility = View.VISIBLE
+                        editGamelanProsesi.visibility = View.GONE
+                    }
+                    gamelanAdapter = GamelanProsesiAdminAdapter(datalist!!)
+                    gamelanProsesiListAdmin.adapter = gamelanAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun printLog(message: String) {

@@ -311,8 +311,8 @@ interface ApiEndpoint {
     @GET("admin/detailprosesiadmin/{id_post}")
     fun getDetailProsesiAdmin(@Path("id_post") id:Int) : Call<DetailProsesiAdminModel>
 
-//    @GET("admin/listgamelanonprosesi/{id_post}")
-//    fun getDetailAllGamelanOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>
+    @GET("admin/listgamelanonprosesi/{id_post}")
+    fun getDetailAllGamelanOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>
 
 //    @GET("admin/listtarionprosesi/{id_post}")
 //    fun getDetailAllTariOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnProsesiAdminModel>>
@@ -353,20 +353,20 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
-//    @GET("admin/listgamelannotonprosesi/{id_post}")
-//    fun getDetailAllGamelanNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
+    @GET("admin/listgamelannotonprosesi/{id_post}")
+    fun getDetailAllGamelanNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
 
-//    @FormUrlEncoded
-//    @POST("admin/addgamelanonprosesi/{id_post}")
-//    fun addDataGamelanToProsesiAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_gamelan") idGamelan:Int,
-//    ):Call<CrudModel>
+    @FormUrlEncoded
+    @POST("admin/addgamelanonprosesi/{id_post}")
+    fun addDataGamelanToProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_gamelan") idGamelan:Int,
+    ):Call<CrudModel>
 
-//    @POST("admin/deletegamelanonprosesi/{id_post}")
-//    fun deleteDataGamelanOnProsesiAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @POST("admin/deletegamelanonprosesi/{id_post}")
+    fun deleteDataGamelanOnProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 
 //    @GET("admin/listtarinotonprosesi/{id_post}")
 //    fun getDetailAllTariNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>
