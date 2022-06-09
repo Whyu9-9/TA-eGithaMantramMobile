@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.ekidungmantram">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -12,19 +13,134 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EKidungMantram">
+        android:theme="@style/Theme.EKidungMantram"
+        tools:targetApi="s"
+        tools:ignore="DataExtractionRules">
         <activity
-            android:name=".admin.DetailMantramAdminActivity"
+            android:name=".admin.tari.AddTabuhToTariAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AddMantramAdminActivity"
+            android:name=".admin.tari.AllTabuhOnTariAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.tari.EditTariAdminActivity"
             android:exported="false"
-            android:parentActivityName=".admin.AllMantramAdminActivity" />
+            android:parentActivityName=".admin.tari.AllTariAdminActivity"/>
+        <activity
+            android:name=".admin.tari.AddTariAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.tari.AllTariAdminActivity"/>
+        <activity
+            android:name=".admin.tari.DetailTariAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.tari.AllTariAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity"/>
+        <activity
+            android:name=".admin.gamelan.AddTabuhToGamelanAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.gamelan.AllTabuhOnGamelanAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.gamelan.EditGamelanAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.gamelan.AllGamelanAdminActivity" />
+        <activity
+            android:name=".admin.gamelan.DetailGamelanAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.gamelan.AddGamelanAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.gamelan.AllGamelanAdminActivity" />
+        <activity
+            android:name=".admin.gamelan.AllGamelanAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.kidung.EditLirikKidungAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.kidung.AddLirikKidungAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.kidung.AllLirikKidungAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.kidung.EditKidungAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.kidung.AllKidungAdminActivity" />
+        <activity
+            android:name=".admin.kidung.DetailKidungAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.kidung.AddKidungAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.kidung.AllKidungAdminActivity" />
+        <activity
+            android:name=".admin.kidung.AllKidungAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.tabuh.EditTabuhAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.tabuh.AllTabuhAdminActivity" />
+        <activity
+            android:name=".admin.tabuh.AddTabuhAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.tabuh.AllTabuhAdminActivity" />
+        <activity
+            android:name=".admin.tabuh.DetailTabuhAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.tabuh.AllTabuhAdminActivity" />
+        <activity
+            android:name=".admin.tabuh.AllTabuhAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.adminmanager.EditAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.adminmanager.AllAdminActivity" />
+        <activity
+            android:name=".admin.adminmanager.DetailAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.adminmanager.AllAdminActivity" />
+        <activity
+            android:name=".admin.adminmanager.AddAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.adminmanager.AllAdminActivity" />
+        <activity
+            android:name=".admin.adminmanager.AllAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.mantram.EditArtiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.EditBaitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.AddArtiActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.AddBaitActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.EditMantramAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.DetailMantramAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.mantram.AddMantramAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.mantram.AllMantramAdminActivity" />
         <activity
             android:name=".admin.ListYadnyaAdminActivity"
             android:exported="false" />
         <activity
-            android:name=".admin.AllMantramAdminActivity"
+            android:name=".admin.mantram.AllMantramAdminActivity"
             android:exported="false"
             android:parentActivityName=".admin.HomeAdminActivity" />
         <activity
@@ -79,7 +195,7 @@
         <activity
             android:name=".user.YadnyaActivity"
             android:exported="false"
-            android:parentActivityName=".user.MainActivity"/>
+            android:parentActivityName=".user.MainActivity" />
         <activity
             android:name=".AboutAppActivity"
             android:exported="false"
@@ -100,7 +216,8 @@
         <activity
             android:name=".user.MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
     </application>
 
 </manifest>

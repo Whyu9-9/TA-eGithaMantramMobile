@@ -1,5 +1,6 @@
 package com.example.ekidungmantram
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -52,6 +53,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login(inputusername: String, inputpassword: String) {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Mencoba Login")
+        progressDialog.show()
         ApiService.endpoint.loginAdmin(inputusername, inputpassword)
             .enqueue(object: Callback<AdminModel>{
                 override fun onResponse(
@@ -59,14 +63,17 @@ class LoginActivity : AppCompatActivity() {
                     response: Response<AdminModel>
                 ) {
                     if(!response.body()?.error!!){
-                        saveData(response.body()?.id_admin, response.body()?.nama)
+                        saveData(response.body()?.id_admin, response.body()?.nama, response.body()?.role)
+                        progressDialog.dismiss()
                     }else{
                         Toast.makeText(this@LoginActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
                     }
                 }
 
                 override fun onFailure(call: Call<AdminModel>, t: Throwable) {
                     Toast.makeText(this@LoginActivity, t.message, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
                 }
 
             })
@@ -88,12 +95,13 @@ class LoginActivity : AppCompatActivity() {
         return true
     }
 
-    private fun saveData(idAdmin: Int?, nama: String?) {
+    private fun saveData(idAdmin: Int?, nama: String?, roleAdmin: Int?) {
         sharedPreferences = getSharedPreferences("is_logged", Context.MODE_PRIVATE)
         val editor        = sharedPreferences.edit()
         editor.apply{
             putString("ID_ADMIN", idAdmin?.toString())
             putString("NAMA", nama)
+            putString("ROLE", roleAdmin?.toString())
         }.apply()
         Toast.makeText(this, "Log In Sukses", Toast.LENGTH_SHORT).show()
         goToAdmin()

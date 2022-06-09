@@ -8,32 +8,40 @@
             <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/yadnya_admin"
-                    android:title="Master Data Yadnya"
+                    android:title="Data Upacara Yadnya"
                     android:icon="@drawable/ic_baseline_home_work_24" />
                 <item
                     android:id="@+id/tari_bali_admin"
-                    android:title="Master Data Tari Bali"
+                    android:title="Data Tari Bali"
                     android:icon="@drawable/tari" />
                 <item
                     android:id="@+id/tabuh_admin"
-                    android:title="Master Data Tabuh"
+                    android:title="Data Tabuh"
                     android:icon="@drawable/tabuh" />
                 <item
                     android:id="@+id/gamelan_bali_admin"
-                    android:title="Master Gamelan Bali"
+                    android:title="Data Gamelan Bali"
                     android:icon="@drawable/gamelan" />
                 <item
                     android:id="@+id/mantram_admin"
-                    android:title="Master Data Mantram"
+                    android:title="Data Mantram"
                     android:icon="@drawable/mantram" />
                 <item
+                    android:id="@+id/approval"
+                    android:title="Kaji Mantram"
+                    android:icon="@drawable/approve" />
+                <item
                     android:id="@+id/kidung_admin"
-                    android:title="Master Data Kidung"
+                    android:title="Data Kidung"
                     android:icon="@drawable/kidung" />
                 <item
                     android:id="@+id/prosesi_upacara_admin"
-                    android:title="Master Data Prosesi Upacara"
+                    android:title="Data Prosesi Upacara"
                     android:icon="@drawable/list" />
+                <item
+                    android:id="@+id/kelola_admin"
+                    android:title="Kelola Admin"
+                    android:icon="@drawable/admin" />
             </group>
         </menu>
     </item>

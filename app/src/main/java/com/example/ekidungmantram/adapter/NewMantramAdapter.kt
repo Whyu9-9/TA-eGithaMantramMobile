@@ -19,7 +19,7 @@ class NewMantramAdapter(val results: ArrayList<NewMantramModel.DataM>, val liste
         val result = results[position]
         holder.title.setText(result.nama_post)
         holder.jenis.setText("Mantram "+result.kategori)
-        if(result.nama_post.length > 30){
+        if(result.nama_post.length > 20){
             holder.title.textSize = 15F
         }
         holder.view.setOnClickListener{

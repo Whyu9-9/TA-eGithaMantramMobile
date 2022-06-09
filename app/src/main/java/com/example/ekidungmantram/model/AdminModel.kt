@@ -4,5 +4,6 @@ data class AdminModel(
     val error : Boolean,
     val message: String,
     val id_admin: Int,
-    val nama : String
+    val nama : String,
+    val role : Int
 )

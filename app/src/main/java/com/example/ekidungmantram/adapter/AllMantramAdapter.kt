@@ -35,7 +35,7 @@ class AllMantramAdapter(private var results: ArrayList<AllMantramModel>, val lis
         private var jenis : TextView = view.findViewById(R.id.jenis_mantram)
         private var gambar : ImageView = view.findViewById(R.id.mantram_img)
         fun bindItem(data: AllMantramModel) {
-            if(data.nama_post.length > 30){
+            if(data.nama_post.length > 20){
                 title.textSize = 15F
             }
             title.text = data.nama_post

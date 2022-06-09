@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.tari.AllTariAdminActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
+        android:paddingTop="18dp">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="visible"
+            android:id="@+id/shimmerTariAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include
+                layout="@layout/shimmer_all_tari"/>
+        </com.facebook.shimmer.ShimmerFrameLayout>
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:visibility="gone"
+            android:id="@+id/swipeTariAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="MissingConstraints">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Daftar Tari"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    android:layout_marginBottom="20dp"/>
+                <TextView
+                    android:visibility="visible"
+                    android:id="@+id/noTariAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="Tidak ada data"
+                    android:textColor="@color/shimmer_secondary"
+                    android:textStyle="bold"
+                    android:textSize="17sp"/>
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/cariTariAdmin"
+                    app:iconifiedByDefault="false"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/searchview_background"
+                    app:queryHint="Masukan nama tari"
+                    android:layout_marginBottom="15dp"/>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/allTariAdmin1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/layout_all_tari_admin" />
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/allTariAdmin2"
+                        android:visibility="gone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        tools:listitem="@layout/layout_all_tari_admin" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabTari"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:src="@drawable/ic_baseline_add_24"
+        android:layout_margin="16dp"
+        app:tint="@color/white"
+        android:backgroundTint="@color/green_success"
+        android:contentDescription="Add" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -1,14 +1,12 @@
 package com.example.ekidungmantram.api
 
 import com.example.ekidungmantram.model.*
-import com.example.ekidungmantram.model.adminmodel.AllMantramAdminModel
-import com.example.ekidungmantram.model.adminmodel.AllYadnyaHomeAdminModel
-import com.example.ekidungmantram.model.adminmodel.CrudModel
+import com.example.ekidungmantram.model.adminmodel.*
 import retrofit2.Call
 import retrofit2.http.*
 
 interface ApiEndpoint {
-    //auth
+    //Auth
     @FormUrlEncoded
     @POST("login")
     fun loginAdmin (
@@ -17,15 +15,16 @@ interface ApiEndpoint {
     ):Call<AdminModel>
 
     //Admin
-    //Yadnya
+    //Home
     @GET("admin/listyadnya")
     fun getYadnyaAdminHomeList(): Call<ArrayList<AllYadnyaHomeAdminModel>>
 
-    //mantram
+    //Mantram
     @GET("admin/listallmantram")
     fun getAllMantramListAdmin() : Call<ArrayList<AllMantramAdminModel>>
+
     @GET("admin/detailmantram/{id_post}")
-    fun getDetailMantramAdmin(@Path("id_post") id:Int) : Call<DetailMantramModel>
+    fun getDetailMantramAdmin(@Path("id_post") id:Int) : Call<DetailMantramAdminModel>
 
     @FormUrlEncoded
     @POST("admin/createmantram")
@@ -38,10 +37,274 @@ interface ApiEndpoint {
         @Field("gambar") gambar:String,
     ):Call<CrudModel>
 
+    @GET("admin/showmantram/{id_post}")
+    fun getShowMantramAdmin(@Path("id_post") id:Int) : Call<DetailMantramAdminModel>
 
+    @FormUrlEncoded
+    @POST("admin/updatemantram/{id_post}")
+    fun updateMantramAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("jenis_mantram") jenisMantram:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("kategori") kategori:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
 
+    @POST("admin/deletemantram/{id_post}")
+    fun deleteMantramAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 
+    @FormUrlEncoded
+    @POST("admin/editbaitmantram/{id_post}")
+    fun editBaitMantram (
+        @Path("id_post") id:Int,
+        @Field("bait_mantra") baitMantra:String,
+    ):Call<CrudModel>
 
+    @FormUrlEncoded
+    @POST("admin/editartimantram/{id_post}")
+    fun editArtiMantram (
+        @Path("id_post") id:Int,
+        @Field("arti_mantra") artiMantra:String,
+    ):Call<CrudModel>
+
+    //Admin Management
+    @GET("admin/listadmin")
+    fun getAllListAdmin() : Call<ArrayList<AllDataAdminModel>>
+
+    @GET("admin/detailadmin/{id_user}")
+    fun getDetailAdmin(@Path("id_user") id:Int) : Call<DetailDataAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/createadmin")
+    fun createDataAdmin (
+        @Field("name") namaAdmin:String,
+        @Field("email") emailAdmin:String,
+        @Field("password") passwordAdmin:String,
+    ):Call<CrudModel>
+
+    @FormUrlEncoded
+    @POST("admin/editadmin/{id_user}")
+    fun updateDataAdmin (
+        @Path("id_user") id:Int,
+        @Field("name") namaAdmin:String,
+        @Field("email") emailAdmin:String,
+        @Field("password") passwordAdmin:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deleteadmin/{id_user}")
+    fun deleteDataAdmin (
+        @Path("id_user") id:Int
+    ):Call<CrudModel>
+
+    //Tabuh
+    @GET("admin/listalltabuhadmin")
+    fun getAllListTabuhAdmin() : Call<ArrayList<AllTabuhAdminModel>>
+
+    @GET("admin/detailtabuhadmin/{id_post}")
+    fun getDetailTabuhAdmin(@Path("id_post") id:Int) : Call<DetailTabuhAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/createtabuh")
+    fun createDataTabuhAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showtabuh/{id_post}")
+    fun getShowTabuhAdmin(@Path("id_post") id:Int) : Call<DetailTabuhAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/edittabuh/{id_post}")
+    fun updateDataTabuhAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deletetabuh/{id_post}")
+    fun deleteDataTabuhAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    //Kidung
+    @GET("admin/listallkidungadmin")
+    fun getAllListKidungAdmin() : Call<ArrayList<AllKidungAdminModel>>
+
+    @GET("admin/detailkidungadmin/{id_post}")
+    fun getDetailKidungAdmin(@Path("id_post") id:Int) : Call<DetailKidungAdminModel>
+
+    @GET("admin/listlirikkidungadmin/{id_post}")
+    fun getDetailAllLirikKidungAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllLirikKidungAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/createkidung")
+    fun createDataKidungAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("kategori") kategori:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showkidung/{id_post}")
+    fun getShowKidungAdmin(@Path("id_post") id:Int) : Call<DetailKidungAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/editkidung/{id_post}")
+    fun updateDataKidungAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("kategori") kategori:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deletekidung/{id_post}")
+    fun deleteDataKidungAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    @GET("admin/lirikkidungadmin/{id_post}")
+    fun getAllLirikKidungAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllLirikKidungAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addlirikkidung/{id_post}")
+    fun createDataLirikKidungAdmin (
+        @Path("id_post") id:Int,
+        @Field("bait_kidung") baitKidung:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showlirikkidung/{id_det_post}")
+    fun getShowLirikKidungAdmin(@Path("id_det_post") id:Int) : Call<DetailLirikKidungAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/editlirikkidung/{id_det_post}")
+    fun updateDataLirikKidungAdmin (
+        @Path("id_det_post") id:Int,
+        @Field("bait_kidung") lirikKidung:String,
+    ):Call<CrudModel>
+
+    @FormUrlEncoded
+    @POST("admin/deletelirikkidung/{id_det_post}")
+    fun deleteDataLirikKidungAdmin (
+        @Path("id_det_post") id:Int,
+        @Field("kidung_id") idKidung:Int,
+    ):Call<CrudModel>
+
+    //Gamelan
+    @GET("admin/listallgamelanadmin")
+    fun getAllListGamelanAdmin() : Call<ArrayList<AllGamelanAdminModel>>
+
+    @GET("admin/detailgamelanadmin/{id_post}")
+    fun getDetailGamelanAdmin(@Path("id_post") id:Int) : Call<DetailGamelanAdminModel>
+
+    @GET("admin/listtabuhongamelan/{id_post}")
+    fun getDetailAllTabuhOnGamelanAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnGamelanAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/creategamelan")
+    fun createDataGamelanAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showgamelan/{id_post}")
+    fun getShowGamelanAdmin(@Path("id_post") id:Int) : Call<DetailGamelanAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/editgamelan/{id_post}")
+    fun updateDataGamelanAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deletegamelan/{id_post}")
+    fun deleteDataGamelanAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    @GET("admin/listtabuhnotongamelan/{id_post}")
+    fun getDetailAllTabuhNotOnGamelanAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addtabuhongamelan/{id_post}")
+    fun addDataTabuhToGamelanAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_tabuh") idTabuh:Int,
+    ):Call<CrudModel>
+
+    @POST("admin/deletetabuhongamelan/{id_post}")
+    fun deleteDataTabuhOnGamelanAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    //Tari
+    @GET("admin/listalltariadmin")
+    fun getAllListTariAdmin() : Call<ArrayList<AllTariAdminModel>>
+
+    @GET("admin/detailtariadmin/{id_post}")
+    fun getDetailTariAdmin(@Path("id_post") id:Int) : Call<DetailTariAdminModel>
+
+    @GET("admin/listtabuhontari/{id_post}")
+    fun getDetailAllTabuhOnTariAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnTariAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/createtari")
+    fun createDataTariAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showtari/{id_post}")
+    fun getShowTariAdmin(@Path("id_post") id:Int) : Call<DetailTariAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/edittari/{id_post}")
+    fun updateDataTariAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deletetari/{id_post}")
+    fun deleteDataTariAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    @GET("admin/listtabuhnotontari/{id_post}")
+    fun getDetailAllTabuhNotOnTariAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addtabuhontari/{id_post}")
+    fun addDataTabuhToTariAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_tabuh") idTabuh:Int,
+    ):Call<CrudModel>
+
+    @POST("admin/deletetabuhontari/{id_post}")
+    fun deleteDataTabuhOnTariAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    //Prosesi
 
 
 
@@ -75,7 +338,7 @@ interface ApiEndpoint {
     @GET("detailkidungyadnya/{id_post}")
     fun getDetailKidungYadnya(@Path("id_post") id: Int) : Call<KidungYadnyaModel>
 
-    //kidung
+    //Kidung
     @GET("listallkidung")
     fun getKidungMasterList() : Call<ArrayList<AllKidungModel>>
     @GET("detailkidung/{id_post}")
@@ -83,13 +346,13 @@ interface ApiEndpoint {
     @GET("detailbaitkidung/{id_post}")
     fun getDetailBaitKidung(@Path("id_post") id:Int) : Call<DetailBaitKidungModel>
 
-    //mantram
+    //Mantram
     @GET("listallmantram")
     fun getMantramMasterList() : Call<ArrayList<AllMantramModel>>
     @GET("detailmantram/{id_post}")
     fun getDetailMantram(@Path("id_post") id:Int) : Call<DetailMantramModel>
 
-    //tari
+    //Tari
     @GET("listalltari")
     fun getTariMasterList() : Call<ArrayList<AllTariModel>>
     @GET("detailtari/{id_post}")
@@ -97,13 +360,13 @@ interface ApiEndpoint {
     @GET("detailtabuhtari/{id_post}")
     fun getDetailTabuhTari(@Path("id_post") id:Int) : Call<DetailTabuhTariModel>
 
-    //tabuh
+    //Tabuh
     @GET("listalltabuh")
     fun getTabuhMasterList() : Call<ArrayList<AllTabuhModel>>
     @GET("detailtabuh/{id_post}")
     fun getDetailTabuh(@Path("id_post") id:Int) : Call<DetailTabuhModel>
 
-    //gamelan
+    //Gamelan
     @GET("listallgamelan")
     fun getGamelanMasterList() : Call<ArrayList<AllGamelanModel>>
     @GET("detailgamelan/{id_post}")
@@ -111,7 +374,7 @@ interface ApiEndpoint {
     @GET("detailtabuhgamelan/{id_post}")
     fun getDetailTabuhGamelan(@Path("id_post") id:Int) : Call<DetailTabuhGamelanModel>
 
-    //prosesi
+    //Prosesi
     @GET("listallprosesi")
     fun getProsesiMasterList() : Call<ArrayList<AllProsesiModel>>
     @GET("detailprosesi/{id_post}")

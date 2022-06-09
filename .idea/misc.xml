@@ -13,31 +13,67 @@
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/ic_launcher_background.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/kidung.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/list.xml" value="0.15" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/login.xml" value="0.152" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/mantram.xml" value="0.105" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/menu.xml" value="0.1395" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/menu_dark.xml" value="0.1395" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/overlayimage.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/pencil.xml" value="0.152" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/searchview_background.xml" value="0.105" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/selector_bookmark.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/tabuh.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/tari.xml" value="0.15" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/trash.xml" value="0.152" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/drawable/user.xml" value="0.105" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_about_app.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_admin.xml" value="0.21" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_arti.xml" value="0.15" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_bait.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_gamelan_admin.xml" value="0.18" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_kidung_admin.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_lirik_kidung_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_mantram_admin.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_tabuh_admin.xml" value="0.18" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_tabuh_to_gamelan_admin.xml" value="0.16" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_tabuh_to_tari_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_add_tari_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_gamelan.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_gamelan_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_kidung.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_kidung_admin.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_lirik_kidung_admin.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_mantram.xml" value="0.18" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_mantram_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_prosesi.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tabuh.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tabuh_admin.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tabuh_on_gamelan_admin.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tabuh_on_tari_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tari.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_all_tari_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_admin.xml" value="0.21" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_gamelan.xml" value="0.17044424297370808" />
-        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_kidung.xml" value="0.11300919842312747" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_gamelan_admin.xml" value="0.16437098255280075" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_kidung.xml" value="0.15" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_kidung_admin.xml" value="0.12914188615123195" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_mantram.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_mantram_admin.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_prosesi.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_tabuh.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_tabuh_admin.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_tari.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_tari_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_detail_yadnya.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_arti.xml" value="0.18" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_bait.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_gamelan_admin.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_kidung_admin.xml" value="0.21" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_lirik_kidung_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_mantram_admin.xml" value="0.2" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_tabuh_admin.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_edit_tari_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_home_admin.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_list_yadnya_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/activity_login.xml" value="0.22" />
@@ -52,13 +88,22 @@
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/fragment_search.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/grid_layout_list_item.xml" value="0.33" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/item_slide.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_gamelan.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_gamelan_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_kidung.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_kidung_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_mantram.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_mantram_admin.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_prosesi.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh.xml" value="0.22" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh_admin.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh_not_on_gamelan_admin.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh_not_on_tari_admin.xml" value="0.17225747960108795" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh_on_gamelan_admin.xml" value="0.25" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tabuh_on_tari_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tari.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_all_tari_admin.xml" value="0.11695376246600181" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_gamelan_detail_prosesi.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_gamelan_detail_yadnya.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_kidung_detail_prosesi.xml" value="0.1" />
@@ -67,20 +112,25 @@
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_all_yadnya_admin_home.xml" value="0.18" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_bookmarked.xml" value="0.33" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_detail_kidung.xml" value="0.3842662632375189" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_detail_kidung_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_kidung.xml" value="0.33" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_lirik_kidung.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_mantram.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_prosesi_akhir.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_prosesi_awal.xml" value="0.25" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_list_prosesi_puncak.xml" value="0.15" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_mantram_detail_prosesi.xml" value="0.1" />
-        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_gamelan.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_gamelan.xml" value="0.15" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_gamelan_admin.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_prosesi.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_tari.xml" value="0.1" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tabuh_detail_tari_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tari_detail_prosesi.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_tari_detail_yadnya.xml" value="0.16" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/layout_yadnya_card_clicked.xml" value="0.1" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/nav_header.xml" value="0.2" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/rv_prosesi_awal.xml" value="0.17044424297370808" />
+        <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/shimmer_all_admin.xml" value="0.17225747960108795" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/shimmer_all_gamelan.xml" value="0.17044424297370808" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/shimmer_all_kidung.xml" value="0.22" />
         <entry key="..\:/Users/ASUS/Downloads/TA Stuff/EKidungMantram/app/src/main/res/layout/shimmer_all_mantram.xml" value="0.17044424297370808" />

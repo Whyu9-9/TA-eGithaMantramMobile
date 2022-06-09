@@ -1,4 +1,4 @@
-package com.example.ekidungmantram.admin
+package com.example.ekidungmantram.admin.mantram
 
 import android.app.Activity
 import android.app.ProgressDialog
@@ -23,7 +23,6 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.util.*
 import android.content.Intent
-import kotlinx.android.synthetic.main.activity_login.*
 
 @Suppress("DEPRECATION")
 class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
@@ -57,6 +56,10 @@ class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickList
             if(validateInput()){
                 postMantram(nama_post, jenis_mantram!!, kategori!!, video, deskripsi, gambar)
             }
+        }
+
+        cancelSubmitAddMantram.setOnClickListener {
+            goBack()
         }
     }
 

@@ -1,4 +1,4 @@
-package com.example.ekidungmantram.admin
+package com.example.ekidungmantram.admin.mantram
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +11,6 @@ import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.AllMantramAdminAdapter
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.AllMantramAdminModel
-import com.example.ekidungmantram.user.DetailMantramActivity
 import kotlinx.android.synthetic.main.activity_all_mantram_admin.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -65,7 +64,7 @@ class AllMantramAdminActivity : AppCompatActivity() {
                         object : AllMantramAdminAdapter.OnAdapterAllMantramAdminListener{
                             override fun onClick(result: AllMantramAdminModel) {
                                 val bundle = Bundle()
-                                val intent = Intent(this@AllMantramAdminActivity, DetailMantramActivity::class.java)
+                                val intent = Intent(this@AllMantramAdminActivity, DetailMantramAdminActivity::class.java)
                                 bundle.putInt("id_mantram", result.id_post)
                                 intent.putExtras(bundle)
                                 startActivity(intent)
@@ -92,7 +91,7 @@ class AllMantramAdminActivity : AppCompatActivity() {
                                         object : AllMantramAdminAdapter.OnAdapterAllMantramAdminListener{
                                             override fun onClick(result: AllMantramAdminModel) {
                                                 val bundle = Bundle()
-                                                val intent = Intent(this@AllMantramAdminActivity, DetailMantramActivity::class.java)
+                                                val intent = Intent(this@AllMantramAdminActivity, DetailMantramAdminActivity::class.java)
                                                 bundle.putInt("id_mantram", result.id_post)
                                                 intent.putExtras(bundle)
                                                 startActivity(intent)

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.gamelan.AddGamelanAdminActivity"
+    android:orientation="vertical"
+    android:padding="18dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tambah Gamelan Bali Baru"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+            <TextView
+                android:layout_marginTop="-14dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Isi form dibawah dengan data yang sesuai"
+                android:textColor="@color/grey_200"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:alpha="0.5"
+                android:layout_marginBottom="25dp"/>
+            <ImageView
+                android:id="@+id/submitImgGamelan"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/rectangle"
+                android:scaleType="fitXY"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+                <Button
+                    android:id="@+id/selectImageGamelan"
+                    android:backgroundTint="@color/grey_200"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:textSize="12sp"
+                    android:text="Pilih Gambar"/>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutNamaGamelan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan nama gamelan">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/namaGamelan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutLinkGamelan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan link Youtube gamelan">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/linkGamelan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutDeskripsiGamelan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan deskripsi gamelan">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/deskripsiGamelanAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="text|textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/submitGamelan"
+                android:backgroundTint="@color/green_success"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Tambah Gamelan"/>
+            <TextView
+                android:id="@+id/cancelSubmitAddGamelan"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Batal"
+                android:textSize="15sp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

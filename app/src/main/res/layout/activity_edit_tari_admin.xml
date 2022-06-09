@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.tari.EditTariAdminActivity"
+    android:orientation="vertical"
+    android:padding="18dp">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Tari Bali"
+                android:textColor="@color/black"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"/>
+            <TextView
+                android:layout_marginTop="-14dp"
+                android:paddingBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ubah data tari dengan data yang sesuai"
+                android:textColor="@color/grey_200"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:alpha="0.5"
+                android:layout_marginBottom="25dp"/>
+            <ImageView
+                android:id="@+id/submitEditedImgTari"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginBottom="7dp"
+                android:src="@drawable/rectangle"
+                android:scaleType="fitXY"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+                <Button
+                    android:id="@+id/selectEditedImageTari"
+                    android:backgroundTint="@color/grey_200"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:textSize="12sp"
+                    android:text="Pilih Gambar"/>
+            </LinearLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutEditedNamaTari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan nama tari">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/namaEditedTari"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutEditedLinkTari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="35dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan link Youtube tari">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/linkEditedTari"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutEditedDeskripsiTari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:hint="Masukan deskripsi tari">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/deskripsiEditedTariAdmin"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:inputType="text|textMultiLine"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:layout_marginTop="30dp"
+                android:id="@+id/submitEditedTari"
+                android:backgroundTint="@color/blue_strap"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:text="Simpan Perubahan"/>
+            <TextView
+                android:id="@+id/cancelSubmitEditedTari"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Batal"
+                android:textSize="15sp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
