@@ -55,12 +55,14 @@ class AddTariToProsesiAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllTariAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeProsesiAddTariAdmin.visibility   = View.VISIBLE
                         shimmerProsesiAddTariAdmin.visibility = View.GONE
+                        noProsesiAddTariAdmin.visibility      = View.GONE
                     }else{
                         swipeProsesiAddTariAdmin.visibility   = View.GONE
                         shimmerProsesiAddTariAdmin.visibility = View.VISIBLE
+                        noProsesiAddTariAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = AllTariNotOnProsesiAdminAdapter(datalist!!)
                     setAdapter.setOnClickAdd {
@@ -76,7 +78,6 @@ class AddTariToProsesiAdminActivity : AppCompatActivity() {
                     }
 
                     allAddProsesiTariAdmin1.adapter  = setAdapter
-                    noProsesiAddTariAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesiAddTariAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

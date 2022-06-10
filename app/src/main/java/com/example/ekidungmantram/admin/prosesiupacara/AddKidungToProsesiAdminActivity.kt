@@ -52,12 +52,14 @@ class AddKidungToProsesiAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllKidungAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeProsesiAddKidungAdmin.visibility   = View.VISIBLE
                         shimmerProsesiAddKidungAdmin.visibility = View.GONE
+                        noProsesiAddKidungAdmin.visibility      = View.GONE
                     }else{
                         swipeProsesiAddKidungAdmin.visibility   = View.GONE
                         shimmerProsesiAddKidungAdmin.visibility = View.VISIBLE
+                        noProsesiAddKidungAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = AllKidungNotOnProsesiAdminAdapter(datalist!!)
                     setAdapter.setOnClickAdd {
@@ -73,7 +75,6 @@ class AddKidungToProsesiAdminActivity : AppCompatActivity() {
                     }
 
                     allAddProsesiKidungAdmin1.adapter  = setAdapter
-                    noProsesiAddKidungAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesiAddKidungAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

@@ -56,12 +56,14 @@ class AddGamelanToProsesiAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllGamelanAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeProsesiAddGamelanAdmin.visibility   = View.VISIBLE
                         shimmerProsesiAddGamelanAdmin.visibility = View.GONE
+                        noProsesiAddGamelanAdmin.visibility      = View.GONE
                     }else{
                         swipeProsesiAddGamelanAdmin.visibility   = View.GONE
                         shimmerProsesiAddGamelanAdmin.visibility = View.VISIBLE
+                        noProsesiAddGamelanAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = AllGamelanNotOnProsesiAdminAdapter(datalist!!)
                     setAdapter.setOnClickAdd {
@@ -77,7 +79,6 @@ class AddGamelanToProsesiAdminActivity : AppCompatActivity() {
                     }
 
                     allAddProsesiGamelanAdmin1.adapter  = setAdapter
-                    noProsesiAddGamelanAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesiAddGamelanAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

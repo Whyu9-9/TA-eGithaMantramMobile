@@ -17,6 +17,12 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".admin.prosesiupacara.AddMantramToProsesiAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.prosesiupacara.AllMantramOnProsesiAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.prosesiupacara.AddTabuhToProsesiAdminActivity"
             android:exported="false" />
         <activity

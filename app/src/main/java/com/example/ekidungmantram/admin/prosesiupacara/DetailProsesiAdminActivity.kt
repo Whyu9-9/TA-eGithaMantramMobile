@@ -31,6 +31,7 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
     private lateinit var tariAdapter    : TariProsesiAdminAdapter
     private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
     private lateinit var tabuhAdapter   : TabuhProsesiAdminAdapter
+    private lateinit var mantramAdapter : MantramProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -108,9 +109,22 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
-
-
-
+            mantramProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getMantramData(postID)
+            editMantramProsesi.setOnClickListener {
+                val intent = Intent(this, AllMantramOnProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            tambahMantramProsesi.setOnClickListener {
+                val intent = Intent(this, AddMantramToProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
             goToEditProsesi.setOnClickListener {
                 val intent = Intent(this, EditProsesiAdminActivity::class.java)
@@ -137,6 +151,31 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getMantramData(postID: Int) {
+        ApiService.endpoint.getDetailAllMantramOnProsesiAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllMantramOnProsesiAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>,
+                    response: Response<ArrayList<DetailAllMantramOnProsesiAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editMantramProsesi.visibility = View.VISIBLE
+                        tambahMantramProsesi.visibility = View.GONE
+                    }else{
+                        tambahMantramProsesi.visibility = View.VISIBLE
+                        editMantramProsesi.visibility = View.GONE
+                    }
+                    mantramAdapter = MantramProsesiAdminAdapter(datalist!!)
+                    mantramProsesiListAdmin.adapter = mantramAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getTabuhData(postID: Int) {

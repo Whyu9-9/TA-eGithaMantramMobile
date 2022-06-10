@@ -55,12 +55,14 @@ class AddTabuhToProsesiAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllTabuhAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeProsesiAddTabuhAdmin.visibility   = View.VISIBLE
                         shimmerProsesiAddTabuhAdmin.visibility = View.GONE
+                        noProsesiAddTabuhAdmin.visibility      = View.GONE
                     }else{
                         swipeProsesiAddTabuhAdmin.visibility   = View.GONE
                         shimmerProsesiAddTabuhAdmin.visibility = View.VISIBLE
+                        noProsesiAddTabuhAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = AllTabuhNotOnProsesiAdminAdapter(datalist!!)
                     setAdapter.setOnClickAdd {
@@ -76,7 +78,6 @@ class AddTabuhToProsesiAdminActivity : AppCompatActivity() {
                     }
 
                     allAddProsesiTabuhAdmin1.adapter  = setAdapter
-                    noProsesiAddTabuhAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesiAddTabuhAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

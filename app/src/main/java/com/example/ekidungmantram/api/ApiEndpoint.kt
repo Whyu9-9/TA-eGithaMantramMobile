@@ -323,8 +323,8 @@ interface ApiEndpoint {
     @GET("admin/listtabuhonprosesi/{id_post}")
     fun getDetailAllTabuhOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
 
-//    @GET("admin/listmantramonprosesi/{id_post}")
-//    fun getDetailAllMantramOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>
+    @GET("admin/listmantramonprosesi/{id_post}")
+    fun getDetailAllMantramOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>
 
     @FormUrlEncoded
     @POST("admin/createprosesi")
@@ -413,20 +413,22 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
-//    @GET("admin/listmantramnotonprosesi/{id_post}")
-//    fun getDetailAllMantramNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllMantramAdminModel>>
+    @GET("admin/listmantramnotonprosesi/{id_post}")
+    fun getDetailAllMantramNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllMantramAdminModel>>
 
-//    @FormUrlEncoded
-//    @POST("admin/addmantramonprosesi/{id_post}")
-//    fun addDataMantramToProsesiAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_mantram") idMantram:Int,
-//    ):Call<CrudModel>
+    @FormUrlEncoded
+    @POST("admin/addmantramonprosesi/{id_post}")
+    fun addDataMantramToProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_mantram") idMantram:Int,
+    ):Call<CrudModel>
 
-//    @POST("admin/deletemantramonprosesi/{id_post}")
-//    fun deleteDataMantramOnProsesiAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @POST("admin/deletemantramonprosesi/{id_post}")
+    fun deleteDataMantramOnProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+
 
     //User
     //Yadnya
