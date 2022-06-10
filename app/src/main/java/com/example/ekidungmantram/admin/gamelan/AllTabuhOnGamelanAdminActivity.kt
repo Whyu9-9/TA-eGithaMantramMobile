@@ -22,7 +22,7 @@ import retrofit2.Response
 
 class AllTabuhOnGamelanAdminActivity : AppCompatActivity() {
     private lateinit var tabuhAdapter : AllTabuhOnGamelanAdminAdapter
-    private lateinit var setAdapter     : AllTabuhOnGamelanAdminAdapter
+    private lateinit var setAdapter   : AllTabuhOnGamelanAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tabuh_on_gamelan_admin)

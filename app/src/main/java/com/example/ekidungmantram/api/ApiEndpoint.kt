@@ -314,8 +314,8 @@ interface ApiEndpoint {
     @GET("admin/listgamelanonprosesi/{id_post}")
     fun getDetailAllGamelanOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnProsesiAdminModel>>
 
-//    @GET("admin/listtarionprosesi/{id_post}")
-//    fun getDetailAllTariOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnProsesiAdminModel>>
+    @GET("admin/listtarionprosesi/{id_post}")
+    fun getDetailAllTariOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnProsesiAdminModel>>
 //
 //    @GET("admin/listkidungonprosesi/{id_post}")
 //    fun getDetailAllKidungOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>
@@ -368,20 +368,20 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
-//    @GET("admin/listtarinotonprosesi/{id_post}")
-//    fun getDetailAllTariNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>
+    @GET("admin/listtarinotonprosesi/{id_post}")
+    fun getDetailAllTariNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>
 
-//    @FormUrlEncoded
-//    @POST("admin/addtarionprosesi/{id_post}")
-//    fun addDataTariToProsesiAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_tari") idTari:Int,
-//    ):Call<CrudModel>
+    @FormUrlEncoded
+    @POST("admin/addtarionprosesi/{id_post}")
+    fun addDataTariToProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_tari") idTari:Int,
+    ):Call<CrudModel>
 
-//    @POST("admin/deletetarionprosesi/{id_post}")
-//    fun deleteDataTariOnProsesiAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @POST("admin/deletetarionprosesi/{id_post}")
+    fun deleteDataTariOnProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 
 //    @GET("admin/listkidungnotonprosesi/{id_post}")
 //    fun getDetailAllKidungNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllKidungAdminModel>>

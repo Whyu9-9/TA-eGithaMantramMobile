@@ -33,7 +33,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daftar Semua Gamelan"
+                    android:text="Daftar Semua Gamelan Bali"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="30sp"

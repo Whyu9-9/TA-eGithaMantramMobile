@@ -14,12 +14,10 @@ import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.GamelanProsesiAdminAdapter
 import com.example.ekidungmantram.adapter.admin.TabuhGamelanAdminAdapter
+import com.example.ekidungmantram.adapter.admin.TariProsesiAdminAdapter
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
 import com.example.ekidungmantram.api.ApiService
-import com.example.ekidungmantram.model.adminmodel.CrudModel
-import com.example.ekidungmantram.model.adminmodel.DetailAllGamelanOnProsesiAdminModel
-import com.example.ekidungmantram.model.adminmodel.DetailAllTabuhOnGamelanAdminModel
-import com.example.ekidungmantram.model.adminmodel.DetailProsesiAdminModel
+import com.example.ekidungmantram.model.adminmodel.*
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -32,6 +30,7 @@ import retrofit2.Response
 
 class DetailProsesiAdminActivity : YouTubeBaseActivity() {
     private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
+    private lateinit var tariAdapter    : TariProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -58,6 +57,24 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            tariProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getTariData(postID)
+            editTariProsesi.setOnClickListener {
+                val intent = Intent(this, AllTariOnProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            tambahTariProsesi.setOnClickListener {
+                val intent = Intent(this, AddTariToProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+
             goToEditProsesi.setOnClickListener {
                 val intent = Intent(this, EditProsesiAdminActivity::class.java)
                 bundle.putInt("id_prosesi", postID)
@@ -83,6 +100,31 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getTariData(postID: Int) {
+        ApiService.endpoint.getDetailAllTariOnProsesiAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllTariOnProsesiAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllTariOnProsesiAdminModel>>,
+                    response: Response<ArrayList<DetailAllTariOnProsesiAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editTariProsesi.visibility = View.VISIBLE
+                        tambahTariProsesi.visibility = View.GONE
+                    }else{
+                        tambahTariProsesi.visibility = View.VISIBLE
+                        editTariProsesi.visibility = View.GONE
+                    }
+                    tariAdapter = TariProsesiAdminAdapter(datalist!!)
+                    tariProsesiListAdmin.adapter = tariAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllTariOnProsesiAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getGamelanData(postID: Int) {

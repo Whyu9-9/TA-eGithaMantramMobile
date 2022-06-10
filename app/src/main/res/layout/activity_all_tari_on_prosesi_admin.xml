@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".admin.prosesiupacara.AllGamelanOnProsesiAdminActivity">
+    tools:context=".admin.prosesiupacara.AllTariOnProsesiAdminActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,15 +14,15 @@
         android:paddingTop="18dp">
         <com.facebook.shimmer.ShimmerFrameLayout
             android:visibility="visible"
-            android:id="@+id/shimmerProsesiGamelanAdmin"
+            android:id="@+id/shimmerProsesiTariAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <include
-                layout="@layout/shimmer_all_gamelan"/>
+                layout="@layout/shimmer_all_tari"/>
         </com.facebook.shimmer.ShimmerFrameLayout>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:visibility="gone"
-            android:id="@+id/swipeProsesiGamelanAdmin"
+            android:id="@+id/swipeProsesiTariAdmin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:ignore="MissingConstraints">
@@ -33,18 +33,18 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Daftar Gamelan Bali"
+                    android:text="Daftar Tari Bali"
                     android:textStyle="bold"
                     android:textColor="@color/black"
                     android:textSize="30sp"
                     android:layout_marginBottom="20dp"/>
                 <TextView
-                    android:id="@+id/namaProsesiGamelan"
+                    android:id="@+id/namaProsesiTari"
                     android:layout_marginTop="-14dp"
                     android:paddingBottom="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Gamelan Bla"
+                    android:text="Tari Bla"
                     android:textColor="@color/grey_200"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -52,7 +52,7 @@
                     android:layout_marginBottom="10dp"/>
                 <TextView
                     android:visibility="visible"
-                    android:id="@+id/noProsesiGamelanAdmin"
+                    android:id="@+id/noProsesiTariAdmin"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center"
@@ -61,33 +61,33 @@
                     android:textStyle="bold"
                     android:textSize="17sp"/>
                 <androidx.appcompat.widget.SearchView
-                    android:id="@+id/cariProsesiGamelanAdmin"
+                    android:id="@+id/cariProsesiTariAdmin"
                     app:iconifiedByDefault="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@drawable/searchview_background"
-                    app:queryHint="Masukan nama gamelan"
+                    app:queryHint="Masukan nama tari"
                     android:layout_marginBottom="15dp"/>
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/allProsesiGamelanAdmin1"
+                        android:id="@+id/allProsesiTariAdmin1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/layout_all_tabuh_on_gamelan_admin" />
+                        tools:listitem="@layout/layout_all_tari_on_prosesi_admin" />
                     <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/allProsesiGamelanAdmin2"
+                        android:id="@+id/allProsesiTariAdmin2"
                         android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        tools:listitem="@layout/layout_all_tabuh_on_gamelan_admin" />
+                        tools:listitem="@layout/layout_all_tari_on_prosesi_admin" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabProsesiAddGamelan"
+        android:id="@+id/fabProsesiAddTari"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="start|bottom"
