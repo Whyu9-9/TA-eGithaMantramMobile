@@ -13,6 +13,7 @@ import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.GamelanProsesiAdminAdapter
+import com.example.ekidungmantram.adapter.admin.KidungProsesiAdminAdapter
 import com.example.ekidungmantram.adapter.admin.TabuhGamelanAdminAdapter
 import com.example.ekidungmantram.adapter.admin.TariProsesiAdminAdapter
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
@@ -31,6 +32,7 @@ import retrofit2.Response
 class DetailProsesiAdminActivity : YouTubeBaseActivity() {
     private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
     private lateinit var tariAdapter    : TariProsesiAdminAdapter
+    private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -74,6 +76,28 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            kidungProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getKidungData(postID)
+            editKidungProsesi.setOnClickListener {
+                val intent = Intent(this, AllKidungOnProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            tambahKidungProsesi.setOnClickListener {
+                val intent = Intent(this, AddKidungToProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+
+
+
+
+
 
             goToEditProsesi.setOnClickListener {
                 val intent = Intent(this, EditProsesiAdminActivity::class.java)
@@ -100,6 +124,31 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getKidungData(postID: Int) {
+        ApiService.endpoint.getDetailAllKidungOnProsesiAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllKidungOnProsesiAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>,
+                    response: Response<ArrayList<DetailAllKidungOnProsesiAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editKidungProsesi.visibility = View.VISIBLE
+                        tambahKidungProsesi.visibility = View.GONE
+                    }else{
+                        tambahKidungProsesi.visibility = View.VISIBLE
+                        editKidungProsesi.visibility = View.GONE
+                    }
+                    kidungAdapter = KidungProsesiAdminAdapter(datalist!!)
+                    kidungProsesiListAdmin.adapter = kidungAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getTariData(postID: Int) {

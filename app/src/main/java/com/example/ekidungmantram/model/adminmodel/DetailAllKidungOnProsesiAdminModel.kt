@@ -4,5 +4,6 @@ data class DetailAllKidungOnProsesiAdminModel (
     val id: Int,
     val id_post: Int,
     val nama_post: String,
-    val gambar: String
+    val gambar: String,
+    val nama_kategori: String
     )

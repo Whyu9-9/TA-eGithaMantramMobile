@@ -316,9 +316,9 @@ interface ApiEndpoint {
 
     @GET("admin/listtarionprosesi/{id_post}")
     fun getDetailAllTariOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnProsesiAdminModel>>
-//
-//    @GET("admin/listkidungonprosesi/{id_post}")
-//    fun getDetailAllKidungOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>
+
+    @GET("admin/listkidungonprosesi/{id_post}")
+    fun getDetailAllKidungOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>
 //
 //    @GET("admin/listtabuhonprosesi/{id_post}")
 //    fun getDetailAllTabuhOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
@@ -383,20 +383,20 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
-//    @GET("admin/listkidungnotonprosesi/{id_post}")
-//    fun getDetailAllKidungNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllKidungAdminModel>>
+    @GET("admin/listkidungnotonprosesi/{id_post}")
+    fun getDetailAllKidungNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllKidungAdminModel>>
 
-//    @FormUrlEncoded
-//    @POST("admin/addkidungonprosesi/{id_post}")
-//    fun addDataKidungToProsesiAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_kidung") idKidung:Int,
-//    ):Call<CrudModel>
+    @FormUrlEncoded
+    @POST("admin/addkidungonprosesi/{id_post}")
+    fun addDataKidungToProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_kidung") idKidung:Int,
+    ):Call<CrudModel>
 
-//    @POST("admin/deletekidungonprosesi/{id_post}")
-//    fun deleteDataKidungOnProsesiAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @POST("admin/deletekidungonprosesi/{id_post}")
+    fun deleteDataKidungOnProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 
 //    @GET("admin/listtabuhnotonprosesi/{id_post}")
 //    fun getDetailAllTabuhNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
