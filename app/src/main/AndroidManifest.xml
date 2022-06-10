@@ -17,6 +17,12 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".admin.prosesiupacara.AddTabuhToProsesiAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.prosesiupacara.AllTabuhOnProsesiAdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".admin.prosesiupacara.AddKidungToProsesiAdminActivity"
             android:exported="false" />
         <activity

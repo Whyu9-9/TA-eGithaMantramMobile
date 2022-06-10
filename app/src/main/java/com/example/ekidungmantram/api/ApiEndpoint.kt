@@ -319,10 +319,10 @@ interface ApiEndpoint {
 
     @GET("admin/listkidungonprosesi/{id_post}")
     fun getDetailAllKidungOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnProsesiAdminModel>>
-//
-//    @GET("admin/listtabuhonprosesi/{id_post}")
-//    fun getDetailAllTabuhOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
-//
+
+    @GET("admin/listtabuhonprosesi/{id_post}")
+    fun getDetailAllTabuhOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
+
 //    @GET("admin/listmantramonprosesi/{id_post}")
 //    fun getDetailAllMantramOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>
 
@@ -398,20 +398,20 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
-//    @GET("admin/listtabuhnotonprosesi/{id_post}")
-//    fun getDetailAllTabuhNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
+    @GET("admin/listtabuhnotonprosesi/{id_post}")
+    fun getDetailAllTabuhNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTabuhAdminModel>>
 
-//    @FormUrlEncoded
-//    @POST("admin/addtabuhonprosesi/{id_post}")
-//    fun addDataTabuhToProsesiAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_tabuh") idTabuh:Int,
-//    ):Call<CrudModel>
+    @FormUrlEncoded
+    @POST("admin/addtabuhonprosesi/{id_post}")
+    fun addDataTabuhToProsesiAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_tabuh") idTabuh:Int,
+    ):Call<CrudModel>
 
-//    @POST("admin/deletetabuhonprosesi/{id_post}")
-//    fun deleteDataTabuhOnProsesiAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @POST("admin/deletetabuhonprosesi/{id_post}")
+    fun deleteDataTabuhOnProsesiAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 
 //    @GET("admin/listmantramnotonprosesi/{id_post}")
 //    fun getDetailAllMantramNotOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllMantramAdminModel>>

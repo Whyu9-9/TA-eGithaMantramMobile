@@ -12,10 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
-import com.example.ekidungmantram.adapter.admin.GamelanProsesiAdminAdapter
-import com.example.ekidungmantram.adapter.admin.KidungProsesiAdminAdapter
-import com.example.ekidungmantram.adapter.admin.TabuhGamelanAdminAdapter
-import com.example.ekidungmantram.adapter.admin.TariProsesiAdminAdapter
+import com.example.ekidungmantram.adapter.admin.*
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.*
@@ -33,6 +30,7 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
     private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
     private lateinit var tariAdapter    : TariProsesiAdminAdapter
     private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
+    private lateinit var tabuhAdapter   : TabuhProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -93,7 +91,22 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
-
+            tabuhProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getTabuhData(postID)
+            editTabuhProsesi.setOnClickListener {
+                val intent = Intent(this, AllTabuhOnProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+            tambahTabuhProsesi.setOnClickListener {
+                val intent = Intent(this, AddTabuhToProsesiAdminActivity::class.java)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
 
 
@@ -124,6 +137,31 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getTabuhData(postID: Int) {
+        ApiService.endpoint.getDetailAllTabuhOnProsesiAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllTabuhOnProsesiAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>,
+                    response: Response<ArrayList<DetailAllTabuhOnProsesiAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editTabuhProsesi.visibility = View.VISIBLE
+                        tambahTabuhProsesi.visibility = View.GONE
+                    }else{
+                        tambahTabuhProsesi.visibility = View.VISIBLE
+                        editTabuhProsesi.visibility = View.GONE
+                    }
+                    tabuhAdapter = TabuhProsesiAdminAdapter(datalist!!)
+                    tabuhProsesiListAdmin.adapter = tabuhAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllTabuhOnProsesiAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getKidungData(postID: Int) {
