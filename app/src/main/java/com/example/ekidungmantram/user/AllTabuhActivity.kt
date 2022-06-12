@@ -52,12 +52,14 @@ class AllTabuhActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllTabuhModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeTabuh.visibility   = View.VISIBLE
                         shimmerTabuh.visibility = View.GONE
+                        noTabuh.visibility      = View.GONE
                     }else{
                         swipeTabuh.visibility   = View.GONE
                         shimmerTabuh.visibility = View.VISIBLE
+                        noTabuh.visibility        = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllTabuhAdapter(it,
                         object : AllTabuhAdapter.OnAdapterAllTabuhListener{
@@ -71,7 +73,6 @@ class AllTabuhActivity : AppCompatActivity() {
                         }) }!!
 
                     allTabuh1.adapter  = setAdapter
-                    noTabuh.visibility = View.GONE
                     setShimmerToStop()
 
                     cariTabuh.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

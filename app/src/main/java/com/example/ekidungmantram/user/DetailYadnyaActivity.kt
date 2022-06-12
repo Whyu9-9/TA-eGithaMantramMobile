@@ -146,7 +146,12 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 call: Call<ProsesiAwalModel>,
                 response: Response<ProsesiAwalModel>
             ) {
-                showAwalData(response.body()!!)
+                if(response.body()!!.data.toString() == "[]") {
+                    layoutAwal.visibility = View.GONE
+                }else {
+                    layoutAwal.visibility = View.VISIBLE
+                    showAwalData(response.body()!!)
+                }
             }
 
             override fun onFailure(call: Call<ProsesiAwalModel>, t: Throwable) {
@@ -188,7 +193,12 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 call: Call<ProsesiPuncakModel>,
                 response: Response<ProsesiPuncakModel>
             ) {
-                showPuncakData(response.body()!!)
+                if(response.body()!!.data.toString() == "[]") {
+                    layoutPuncak.visibility = View.GONE
+                }else {
+                    layoutPuncak.visibility = View.VISIBLE
+                    showPuncakData(response.body()!!)
+                }
             }
 
             override fun onFailure(call: Call<ProsesiPuncakModel>, t: Throwable) {
@@ -230,7 +240,12 @@ class DetailYadnyaActivity : YouTubeBaseActivity() {
                 call: Call<ProsesiAkhirModel>,
                 response: Response<ProsesiAkhirModel>
             ) {
-                showAkhirData(response.body()!!)
+                if(response.body()!!.data.toString() == "[]") {
+                    layoutAkhir.visibility = View.GONE
+                }else {
+                    layoutAkhir.visibility = View.VISIBLE
+                    showAkhirData(response.body()!!)
+                }
             }
 
             override fun onFailure(call: Call<ProsesiAkhirModel>, t: Throwable) {

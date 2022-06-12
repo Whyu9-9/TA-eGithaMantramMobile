@@ -52,12 +52,14 @@ class AllProsesiActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllProsesiModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeProsesi.visibility   = View.VISIBLE
                         shimmerProsesi.visibility = View.GONE
+                        noProsesi.visibility      = View.GONE
                     }else{
                         swipeProsesi.visibility   = View.GONE
                         shimmerProsesi.visibility = View.VISIBLE
+                        noProsesi.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllProsesiAdapter(it,
                         object : AllProsesiAdapter.OnAdapterAllProsesiListener{
@@ -71,7 +73,6 @@ class AllProsesiActivity : AppCompatActivity() {
                         }) }!!
 
                     allProsesi1.adapter  = setAdapter
-                    noProsesi.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesi.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

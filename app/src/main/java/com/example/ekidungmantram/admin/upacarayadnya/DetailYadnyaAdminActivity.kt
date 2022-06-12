@@ -3,14 +3,20 @@ package com.example.ekidungmantram.admin.upacarayadnya
 import android.app.ProgressDialog
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
+import com.example.ekidungmantram.adapter.admin.*
+import com.example.ekidungmantram.admin.prosesiupacara.DetailProsesiAdminActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.CrudModel
+import com.example.ekidungmantram.model.adminmodel.DetailAllProsesiAwalOnYadnyaAdminModel
 import com.example.ekidungmantram.model.adminmodel.DetailYadnyaAdminModel
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -21,6 +27,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
+    private lateinit var prosesiAwalAdapter   : ProsesiAwalYadnyaAdminAdapter
+    private lateinit var prosesiPuncakAdapter : ProsesiAkhirYadnyaAdminAdapter
+    private lateinit var prosesiAkhirAdapter  : ProsesiAkhirYadnyaAdminAdapter
+//    private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
+//    private lateinit var tariAdapter    : TariProsesiAdminAdapter
+//    private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_yadnya_admin)
@@ -31,6 +43,26 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
             val namaPost = bundle.getString("nama_yadnya")
 
             getDetailData(postID)
+
+            awalAdmin.layoutManager = LinearLayoutManager(applicationContext)
+            getProsesiAwalData(postID)
+            editProsesiAwal.setOnClickListener {
+                val intent = Intent(this, AllProsesiAwalYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahProsesiAwal.setOnClickListener {
+                val intent = Intent(this, AddProsesiAwalToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
             goToEditYadnya.setOnClickListener {
                 val intent = Intent(this, EditYadnyaAdminActivity::class.java)
@@ -63,6 +95,46 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 finish()
             }
         }
+    }
+
+    private fun getProsesiAwalData(postID: Int) {
+        ApiService.endpoint.getDetailAllProsesiAwalOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editProsesiAwal.visibility   = View.VISIBLE
+                        tambahProsesiAwal.visibility = View.GONE
+                    }else{
+                        tambahProsesiAwal.visibility = View.VISIBLE
+                        editProsesiAwal.visibility   = View.GONE
+                    }
+
+                    prosesiAwalAdapter = datalist?.let { ProsesiAwalYadnyaAdminAdapter(it,
+                        object :ProsesiAwalYadnyaAdminAdapter.OnAdapterProsesiAwalYadnyaAdminListener {
+                            override fun onClick(result: DetailAllProsesiAwalOnYadnyaAdminModel) {
+                                val bundle = Bundle()
+                                val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_prosesi", result.id_post)
+                                bundle.putString("nama_prosesi", result.nama_post)
+                                intent.putExtras(bundle)
+                                startActivity(intent)
+                            }
+                        }) }!!
+                    awalAdmin.adapter = prosesiAwalAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
+    }
+
+    private fun printLog(message: String) {
+        Log.d("HomeFragment", message)
     }
 
     private fun getDetailData(postID: Int) {

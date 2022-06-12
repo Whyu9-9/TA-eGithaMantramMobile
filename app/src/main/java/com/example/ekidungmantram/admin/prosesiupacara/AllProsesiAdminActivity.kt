@@ -51,9 +51,11 @@ class AllProsesiAdminActivity : AppCompatActivity() {
                     if(datalist != null){
                         swipeProsesiAdmin.visibility   = View.VISIBLE
                         shimmerProsesiAdmin.visibility = View.GONE
+                        noProsesiAdmin.visibility      = View.GONE
                     }else{
                         swipeProsesiAdmin.visibility   = View.GONE
                         shimmerProsesiAdmin.visibility = View.VISIBLE
+                        noProsesiAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllProsesiAdminAdapter(it,
                         object : AllProsesiAdminAdapter.OnAdapterAllProsesiAdminListener{
@@ -68,7 +70,6 @@ class AllProsesiAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allProsesiAdmin1.adapter  = setAdapter
-                    noProsesiAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariProsesiAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

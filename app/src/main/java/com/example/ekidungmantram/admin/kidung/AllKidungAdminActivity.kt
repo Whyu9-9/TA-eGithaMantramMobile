@@ -59,12 +59,14 @@ class AllKidungAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllKidungAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeKidungAdmin.visibility   = View.VISIBLE
                         shimmerKidungAdmin.visibility = View.GONE
+                        noKidungAdmin.visibility      = View.GONE
                     }else{
                         swipeKidungAdmin.visibility   = View.GONE
                         shimmerKidungAdmin.visibility = View.VISIBLE
+                        noKidungAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllKidungAdminAdapter(it,
                         object : AllKidungAdminAdapter.OnAdapterAllKidungAdminListener{
@@ -79,7 +81,6 @@ class AllKidungAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allKidungAdmin1.adapter  = setAdapter
-                    noKidungAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariKidungAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

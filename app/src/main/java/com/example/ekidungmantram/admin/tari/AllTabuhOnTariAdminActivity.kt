@@ -27,7 +27,7 @@ class AllTabuhOnTariAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tabuh_on_tari_admin)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "List Tabuh Tari"
+        supportActionBar!!.title = "Daftar Tabuh Tari"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_tari")

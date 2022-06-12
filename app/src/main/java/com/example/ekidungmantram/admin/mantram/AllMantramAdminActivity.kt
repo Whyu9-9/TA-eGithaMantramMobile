@@ -53,12 +53,14 @@ class AllMantramAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllMantramAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeMantramAdmin.visibility   = View.VISIBLE
                         shimmerMantramAdmin.visibility = View.GONE
+                        noMantramAdmin.visibility      = View.GONE
                     }else{
                         swipeMantramAdmin.visibility   = View.GONE
                         shimmerMantramAdmin.visibility = View.VISIBLE
+                        noMantramAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllMantramAdminAdapter(it,
                         object : AllMantramAdminAdapter.OnAdapterAllMantramAdminListener{
@@ -72,7 +74,6 @@ class AllMantramAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allMantramAdmin1.adapter  = setAdapter
-                    noMantramAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariMantramAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

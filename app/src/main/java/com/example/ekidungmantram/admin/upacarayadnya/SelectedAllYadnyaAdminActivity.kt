@@ -69,12 +69,14 @@ class SelectedAllYadnyaAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllYadnyaAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeYadnyaAdmin.visibility   = View.VISIBLE
                         shimmerYadnyaAdmin.visibility = View.GONE
+                        noYadnyaAdmin.visibility      = View.GONE
                     }else{
                         swipeYadnyaAdmin.visibility   = View.GONE
                         shimmerYadnyaAdmin.visibility = View.VISIBLE
+                        noYadnyaAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { SelectedAllYadnyaAdminAdapter(it,
                         object : SelectedAllYadnyaAdminAdapter.OnAdapterAllYadnyaAdminListener{
@@ -90,7 +92,6 @@ class SelectedAllYadnyaAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allYadnyaAdmin1.adapter  = setAdapter
-                    noYadnyaAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariYadnyaAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

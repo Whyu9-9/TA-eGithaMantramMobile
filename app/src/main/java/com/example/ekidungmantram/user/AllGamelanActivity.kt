@@ -50,12 +50,14 @@ class AllGamelanActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllGamelanModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeGamelan.visibility   = View.VISIBLE
                         shimmerGamelan.visibility = View.GONE
+                        noGamelan.visibility      = View.GONE
                     }else{
                         swipeGamelan.visibility   = View.GONE
                         shimmerGamelan.visibility = View.VISIBLE
+                        noGamelan.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllGamelanAdapter(it,
                         object : AllGamelanAdapter.OnAdapterAllGamelanListener{
@@ -69,7 +71,6 @@ class AllGamelanActivity : AppCompatActivity() {
                         }) }!!
 
                     allGamelan1.adapter  = setAdapter
-                    noGamelan.visibility = View.GONE
                     setShimmerToStop()
 
                     cariGamelan.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

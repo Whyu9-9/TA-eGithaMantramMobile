@@ -27,7 +27,7 @@ class AllMantramOnProsesiAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_mantram_on_prosesi_admin)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "List Mantram Prosesi"
+        supportActionBar!!.title = "Daftar Mantram Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")

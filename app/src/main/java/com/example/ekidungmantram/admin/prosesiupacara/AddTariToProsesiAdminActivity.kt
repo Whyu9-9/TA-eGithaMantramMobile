@@ -30,7 +30,7 @@ class AddTariToProsesiAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_tari_to_prosesi_admin)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "List Semua Tari Bali"
+        supportActionBar!!.title = "Daftar Semua Tari Bali"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")

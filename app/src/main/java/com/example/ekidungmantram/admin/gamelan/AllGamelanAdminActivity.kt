@@ -58,9 +58,11 @@ class AllGamelanAdminActivity : AppCompatActivity() {
                     if(datalist != null){
                         swipeGamelanAdmin.visibility   = View.VISIBLE
                         shimmerGamelanAdmin.visibility = View.GONE
+                        noGamelanAdmin.visibility      = View.GONE
                     }else{
                         swipeGamelanAdmin.visibility   = View.GONE
                         shimmerGamelanAdmin.visibility = View.VISIBLE
+                        noGamelanAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllGamelanAdminAdapter(it,
                         object : AllGamelanAdminAdapter.OnAdapterAllGamelanAdminListener{
@@ -75,7 +77,6 @@ class AllGamelanAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allGamelanAdmin1.adapter  = setAdapter
-                    noGamelanAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariGamelanAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

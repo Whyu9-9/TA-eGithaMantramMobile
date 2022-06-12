@@ -14,7 +14,7 @@ import com.example.ekidungmantram.model.AllMantramModel
 import com.example.ekidungmantram.model.adminmodel.AllDataAdminModel
 import com.example.ekidungmantram.model.adminmodel.AllMantramAdminModel
 
-class AllDataAdminAdapter(private var results: ArrayList<AllDataAdminModel>, val listener: OnAdapterAllDataAdminListener, )
+class AllDataAdminAdapter(private var results: ArrayList<AllDataAdminModel>, val listener: OnAdapterAllDataAdminListener)
     : RecyclerView.Adapter<AllDataAdminAdapter.ViewHolder>() {
     private var onclickName: ((AllDataAdminModel)->Unit)? = null
 

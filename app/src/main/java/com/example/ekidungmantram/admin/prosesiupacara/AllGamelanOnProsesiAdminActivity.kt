@@ -32,7 +32,7 @@ class AllGamelanOnProsesiAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_gamelan_on_prosesi_admin)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "List Gamelan Prosesi"
+        supportActionBar!!.title = "Daftar Gamelan Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")

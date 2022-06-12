@@ -4,6 +4,6 @@ data class DetailAllProsesiAkhirOnYadnyaAdminModel (
     val id: Int,
     val id_post: Int,
     val nama_post: String,
-    val gambar: String,
-    val posisi: Int
+    val posisi: Int,
+    val index: String
     )

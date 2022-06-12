@@ -49,12 +49,14 @@ class AllTabuhAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllTabuhAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeTabuhAdmin.visibility   = View.VISIBLE
                         shimmerTabuhAdmin.visibility = View.GONE
+                        noTabuhAdmin.visibility      = View.GONE
                     }else{
                         swipeTabuhAdmin.visibility   = View.GONE
                         shimmerTabuhAdmin.visibility = View.VISIBLE
+                        noTabuhAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllTabuhAdminAdapter(it,
                         object : AllTabuhAdminAdapter.OnAdapterAllTabuhAdminListener{
@@ -68,7 +70,6 @@ class AllTabuhAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allTabuhAdmin1.adapter  = setAdapter
-                    noTabuhAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariTabuhAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,

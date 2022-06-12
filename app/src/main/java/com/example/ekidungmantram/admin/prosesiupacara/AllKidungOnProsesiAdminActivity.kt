@@ -30,7 +30,7 @@ class AllKidungOnProsesiAdminActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_kidung_on_prosesi_admin)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar!!.title = "List Kidung Prosesi"
+        supportActionBar!!.title = "Daftar Kidung Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")

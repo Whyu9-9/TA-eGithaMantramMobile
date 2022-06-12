@@ -155,6 +155,8 @@
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layoutAwal"
+                        android:visibility="visible"
                         android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -178,6 +180,8 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layoutPuncak"
+                        android:visibility="visible"
                         android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -201,6 +205,8 @@
                         </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layoutAkhir"
+                        android:visibility="visible"
                         android:layout_marginBottom="20dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"

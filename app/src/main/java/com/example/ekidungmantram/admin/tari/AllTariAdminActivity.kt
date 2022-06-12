@@ -53,12 +53,14 @@ class AllTariAdminActivity : AppCompatActivity() {
                     response: Response<ArrayList<AllTariAdminModel>>
                 ) {
                     val datalist   = response.body()
-                    if(datalist != null){
+                    if(datalist != null && datalist.isNotEmpty()){
                         swipeTariAdmin.visibility   = View.VISIBLE
                         shimmerTariAdmin.visibility = View.GONE
+                        noTariAdmin.visibility      = View.GONE
                     }else{
                         swipeTariAdmin.visibility   = View.GONE
                         shimmerTariAdmin.visibility = View.VISIBLE
+                        noTariAdmin.visibility      = View.VISIBLE
                     }
                     setAdapter = datalist?.let { AllTariAdminAdapter(it,
                         object : AllTariAdminAdapter.OnAdapterAllTariAdminListener{
@@ -73,7 +75,6 @@ class AllTariAdminActivity : AppCompatActivity() {
                         }) }!!
 
                     allTariAdmin1.adapter  = setAdapter
-                    noTariAdmin.visibility = View.GONE
                     setShimmerToStop()
 
                     cariTariAdmin.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
