@@ -15,10 +15,7 @@ import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.*
 import com.example.ekidungmantram.admin.prosesiupacara.DetailProsesiAdminActivity
 import com.example.ekidungmantram.api.ApiService
-import com.example.ekidungmantram.model.adminmodel.CrudModel
-import com.example.ekidungmantram.model.adminmodel.DetailAllProsesiAwalOnYadnyaAdminModel
-import com.example.ekidungmantram.model.adminmodel.DetailAllProsesiPuncakOnYadnyaAdminModel
-import com.example.ekidungmantram.model.adminmodel.DetailYadnyaAdminModel
+import com.example.ekidungmantram.model.adminmodel.*
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -85,6 +82,25 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            akhirAdmin.layoutManager = LinearLayoutManager(applicationContext)
+            getProsesiAkhirData(postID)
+            editProsesiAkhir.setOnClickListener {
+                val intent = Intent(this, AllProsesiAkhirYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahProsesiAkhir.setOnClickListener {
+                val intent = Intent(this, AddProsesiAkhirToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
             goToEditYadnya.setOnClickListener {
                 val intent = Intent(this, EditYadnyaAdminActivity::class.java)
@@ -117,6 +133,42 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 finish()
             }
         }
+    }
+
+    private fun getProsesiAkhirData(postID: Int) {
+        ApiService.endpoint.getDetailAllProsesiAkhirOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editProsesiAkhir.visibility   = View.VISIBLE
+                        tambahProsesiAkhir.visibility = View.GONE
+                    }else{
+                        tambahProsesiAkhir.visibility = View.VISIBLE
+                        editProsesiAkhir.visibility   = View.GONE
+                    }
+
+                    prosesiAkhirAdapter = datalist?.let { ProsesiAkhirYadnyaAdminAdapter(it,
+                        object :ProsesiAkhirYadnyaAdminAdapter.OnAdapterProsesiAkhirYadnyaAdminListener {
+                            override fun onClick(result: DetailAllProsesiAkhirOnYadnyaAdminModel) {
+                                val bundle = Bundle()
+                                val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_prosesi", result.id_post)
+                                bundle.putString("nama_prosesi", result.nama_post)
+                                intent.putExtras(bundle)
+                                startActivity(intent)
+                            }
+                        }) }!!
+                    akhirAdmin.adapter = prosesiAkhirAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getProsesiPuncakData(postID: Int) {
