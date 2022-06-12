@@ -17,6 +17,7 @@ import com.example.ekidungmantram.admin.prosesiupacara.DetailProsesiAdminActivit
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.CrudModel
 import com.example.ekidungmantram.model.adminmodel.DetailAllProsesiAwalOnYadnyaAdminModel
+import com.example.ekidungmantram.model.adminmodel.DetailAllProsesiPuncakOnYadnyaAdminModel
 import com.example.ekidungmantram.model.adminmodel.DetailYadnyaAdminModel
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -28,7 +29,7 @@ import retrofit2.Response
 
 class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
     private lateinit var prosesiAwalAdapter   : ProsesiAwalYadnyaAdminAdapter
-    private lateinit var prosesiPuncakAdapter : ProsesiAkhirYadnyaAdminAdapter
+    private lateinit var prosesiPuncakAdapter : ProsesiPuncakYadnyaAdminAdapter
     private lateinit var prosesiAkhirAdapter  : ProsesiAkhirYadnyaAdminAdapter
 //    private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
 //    private lateinit var tariAdapter    : TariProsesiAdminAdapter
@@ -64,6 +65,27 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            puncakAdmin.layoutManager = LinearLayoutManager(applicationContext)
+            getProsesiPuncakData(postID)
+            editProsesiPuncak.setOnClickListener {
+                val intent = Intent(this, AllProsesiPuncakYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahProsesiPuncak.setOnClickListener {
+                val intent = Intent(this, AddProsesiPuncakToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+
             goToEditYadnya.setOnClickListener {
                 val intent = Intent(this, EditYadnyaAdminActivity::class.java)
                 bundle.putInt("id_yadnya", postID)
@@ -95,6 +117,42 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 finish()
             }
         }
+    }
+
+    private fun getProsesiPuncakData(postID: Int) {
+        ApiService.endpoint.getDetailAllProsesiPuncakOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editProsesiPuncak.visibility   = View.VISIBLE
+                        tambahProsesiPuncak.visibility = View.GONE
+                    }else{
+                        tambahProsesiPuncak.visibility = View.VISIBLE
+                        editProsesiPuncak.visibility   = View.GONE
+                    }
+
+                    prosesiPuncakAdapter = datalist?.let { ProsesiPuncakYadnyaAdminAdapter(it,
+                        object :ProsesiPuncakYadnyaAdminAdapter.OnAdapterProsesiPuncakYadnyaAdminListener {
+                            override fun onClick(result: DetailAllProsesiPuncakOnYadnyaAdminModel) {
+                                val bundle = Bundle()
+                                val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_prosesi", result.id_post)
+                                bundle.putString("nama_prosesi", result.nama_post)
+                                intent.putExtras(bundle)
+                                startActivity(intent)
+                            }
+                        }) }!!
+                    puncakAdmin.adapter = prosesiPuncakAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getProsesiAwalData(postID: Int) {

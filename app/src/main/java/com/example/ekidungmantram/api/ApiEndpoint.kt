@@ -439,10 +439,10 @@ interface ApiEndpoint {
 
     @GET("admin/listprosesiawalonyadnya/{id_post}")
     fun getDetailAllProsesiAwalOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>>
-//
-//    @GET("admin/listprosesipuncakonyadnya/{id_post}")
-//    fun getDetailAllProsesiPuncakOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>
-//
+
+    @GET("admin/listprosesipuncakonyadnya/{id_post}")
+    fun getDetailAllProsesiPuncakOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>
+
 //    @GET("admin/listprosesiakhironyadnya/{id_post}")
 //    fun getDetailAllProsesiAkhirOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>
 //
@@ -513,24 +513,38 @@ interface ApiEndpoint {
         @Path("id_post") id:Int,
         @Field("yadnya_id") idYadnya:Int,
     ):Call<CrudModel>
-//
-//    @GET("admin/listprosesipuncaknotonyadnya/{id_post}")
-//    fun getDetailAllProsesiPuncakNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
-//
-//    @FormUrlEncoded
-//    @POST("admin/addprosesipuncakonyadnya/{id_post}")
-//    fun addDataProsesiPuncakToYadnyaAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_prosesi") idProsesi:Int,
-//    ):Call<CrudModel>
-//
-//    @FormUrlEncoded
-//    @POST("admin/deleteprosesipuncakonyadnya/{id_post}")
-//    fun deleteDataProsesiPuncakOnYadnyaAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("yadnya_id") idYadnya:Int,
-//    ):Call<CrudModel>
-//
+
+    @GET("admin/listprosesipuncaknotonyadnya/{id_post}")
+    fun getDetailAllProsesiPuncakNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addprosesipuncakonyadnya/{id_post}")
+    fun addDataProsesiPuncakToYadnyaAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_prosesi") idProsesi:Int,
+    ):Call<CrudModel>
+
+    @FormUrlEncoded
+    @POST("admin/upprosesipuncakonyadnya/{id_post}")
+    fun upDataProsesiPuncakAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_prosesi") idProsesi:Int,
+    ):Call<CrudModel>
+
+    @FormUrlEncoded
+    @POST("admin/downprosesipuncakonyadnya/{id_post}")
+    fun downDataProsesiPuncakAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_prosesi") idProsesi:Int,
+    ):Call<CrudModel>
+
+    @FormUrlEncoded
+    @POST("admin/deleteprosesipuncakonyadnya/{id_post}")
+    fun deleteDataProsesiPuncakOnYadnyaAdmin (
+        @Path("id_post") id:Int,
+        @Field("yadnya_id") idYadnya:Int,
+    ):Call<CrudModel>
+
 //    @GET("admin/listprosesiakhirnotonyadnya/{id_post}")
 //    fun getDetailAllProsesiAkhirNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
 //
