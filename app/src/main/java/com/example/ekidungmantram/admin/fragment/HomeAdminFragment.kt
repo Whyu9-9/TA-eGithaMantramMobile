@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.AllYadnyaHomeAdminAdapter
 import com.example.ekidungmantram.admin.ListYadnyaAdminActivity
+import com.example.ekidungmantram.admin.upacarayadnya.SelectedAllYadnyaAdminActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.AllYadnyaHomeAdminModel
 import com.google.android.material.navigation.NavigationView
@@ -26,8 +27,8 @@ import retrofit2.Response
 
 
 class HomeAdminFragment : Fragment() {
-    private lateinit var yadnyaAdapter  : AllYadnyaHomeAdminAdapter
-    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var yadnyaAdapter     : AllYadnyaHomeAdminAdapter
+    private lateinit var sharedPreferences : SharedPreferences
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,8 +71,9 @@ class HomeAdminFragment : Fragment() {
                         object : AllYadnyaHomeAdminAdapter.OnAdapterAllYadnyaHomeAdminListener{
                             override fun onClick(result: AllYadnyaHomeAdminModel) {
                                 val bundle = Bundle()
-                                val intent = Intent(activity, ListYadnyaAdminActivity::class.java)
+                                val intent = Intent(activity, SelectedAllYadnyaAdminActivity::class.java)
                                 bundle.putInt("id_yadnya", result.id_kategori)
+                                bundle.putString("nama_yadnya", result.nama_kategori)
                                 intent.putExtras(bundle)
                                 startActivity(intent)
                             }

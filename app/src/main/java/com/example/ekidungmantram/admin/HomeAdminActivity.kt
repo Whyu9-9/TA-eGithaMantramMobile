@@ -26,6 +26,7 @@ import com.example.ekidungmantram.admin.mantram.AllMantramAdminActivity
 import com.example.ekidungmantram.admin.prosesiupacara.AllProsesiAdminActivity
 import com.example.ekidungmantram.admin.tabuh.AllTabuhAdminActivity
 import com.example.ekidungmantram.admin.tari.AllTariAdminActivity
+import com.example.ekidungmantram.admin.upacarayadnya.AllYadnyaAdminActivity
 import com.example.ekidungmantram.user.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
@@ -70,7 +71,7 @@ class HomeAdminActivity : AppCompatActivity() {
 
         navView.setNavigationItemSelectedListener {
             when(it.itemId){
-//                R.id.yadnya_admin
+                R.id.yadnya_admin -> goToYadnya()
                 R.id.tari_bali_admin -> goToTari()
                 R.id.tabuh_admin -> goToTabuh()
                 R.id.gamelan_bali_admin -> goToGamelan()
@@ -96,6 +97,10 @@ class HomeAdminActivity : AppCompatActivity() {
             }
             true
         }
+    }
+    private fun goToYadnya() {
+        val intent = Intent(this, AllYadnyaAdminActivity::class.java)
+        startActivity(intent)
     }
 
     private fun goToProsesi() {

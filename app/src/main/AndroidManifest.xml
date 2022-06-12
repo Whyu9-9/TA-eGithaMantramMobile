@@ -17,6 +17,23 @@
         tools:ignore="DataExtractionRules"
         tools:targetApi="s">
         <activity
+            android:name=".admin.upacarayadnya.DetailYadnyaAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.upacarayadnya.EditYadnyaAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.upacarayadnya.AddYadnyaAdminActivity"
+            android:exported="false" />
+        <activity
+            android:name=".admin.upacarayadnya.SelectedAllYadnyaAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.upacarayadnya.AllYadnyaAdminActivity" />
+        <activity
+            android:name=".admin.upacarayadnya.AllYadnyaAdminActivity"
+            android:exported="false"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
             android:name=".admin.prosesiupacara.AddMantramToProsesiAdminActivity"
             android:exported="false" />
         <activity

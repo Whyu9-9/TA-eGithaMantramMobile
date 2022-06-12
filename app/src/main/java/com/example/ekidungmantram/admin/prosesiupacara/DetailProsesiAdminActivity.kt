@@ -41,6 +41,7 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             val namaPost = bundle.getString("nama_prosesi")
 
             getDetailData(postID)
+
             gamelanProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
             getGamelanData(postID)
             editGamelanProsesi.setOnClickListener {

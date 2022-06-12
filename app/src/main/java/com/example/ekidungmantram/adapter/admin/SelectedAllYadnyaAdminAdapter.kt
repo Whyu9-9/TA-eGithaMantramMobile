@@ -13,13 +13,14 @@ import com.example.ekidungmantram.model.AllMantramModel
 import com.example.ekidungmantram.model.adminmodel.AllKidungAdminModel
 import com.example.ekidungmantram.model.adminmodel.AllMantramAdminModel
 import com.example.ekidungmantram.model.adminmodel.AllTabuhAdminModel
+import com.example.ekidungmantram.model.adminmodel.AllYadnyaAdminModel
 
-class AllKidungAdminAdapter(private var results: ArrayList<AllKidungAdminModel>, val listener: OnAdapterAllKidungAdminListener)
-    : RecyclerView.Adapter<AllKidungAdminAdapter.ViewHolder>() {
+class SelectedAllYadnyaAdminAdapter(private var results: ArrayList<AllYadnyaAdminModel>, val listener: OnAdapterAllYadnyaAdminListener)
+    : RecyclerView.Adapter<SelectedAllYadnyaAdminAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val inflatedView = layoutInflater.inflate(R.layout.layout_all_kidung_admin, parent, false)
+        val inflatedView = layoutInflater.inflate(R.layout.layout_all_selected_yadnya_admin, parent, false)
         return ViewHolder(inflatedView)
     }
 
@@ -34,15 +35,15 @@ class AllKidungAdminAdapter(private var results: ArrayList<AllKidungAdminModel>,
     override fun getItemCount(): Int = results.size
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        private var title : TextView = view.findViewById(R.id.title_kidung_admin)
-        private var jenis : TextView = view.findViewById(R.id.jenis_kidung_admin)
-        private var gambar : ImageView = view.findViewById(R.id.kidung_imgs_admin)
-        fun bindItem(data: AllKidungAdminModel) {
+        private var title : TextView = view.findViewById(R.id.title_yadnya_admin)
+        private var jenis : TextView = view.findViewById(R.id.jenis_yadnya_admin)
+        private var gambar : ImageView = view.findViewById(R.id.yadnya_admin_imgs)
+        fun bindItem(data: AllYadnyaAdminModel) {
             if(data.nama_post.length > 20){
                 title.textSize = 15F
             }
             title.text = data.nama_post
-            jenis.text = "Kidung "+data.kategori
+            jenis.text = data.kategori
             if(data.gambar != null){
                 Glide.with(itemView).load(Constant.IMAGE_URL + data.gambar).into(gambar)
             }else{
@@ -51,7 +52,7 @@ class AllKidungAdminAdapter(private var results: ArrayList<AllKidungAdminModel>,
         }
     }
 
-    interface OnAdapterAllKidungAdminListener {
-        fun onClick(result: AllKidungAdminModel)
+    interface OnAdapterAllYadnyaAdminListener {
+        fun onClick(result: AllYadnyaAdminModel)
     }
 }

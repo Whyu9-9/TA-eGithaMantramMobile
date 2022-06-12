@@ -1,14 +1,10 @@
 package com.example.ekidungmantram.database.setup
 
-import android.content.Context
 import androidx.room.Database
-import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.database.dao.YadnyaDao
 import com.example.ekidungmantram.database.data.Yadnya
-import com.example.ekidungmantram.user.DetailYadnyaActivity
-import com.example.ekidungmantram.user.fragment.ListYadnyaFragment
 
 @Database(
     entities     = [Yadnya::class],

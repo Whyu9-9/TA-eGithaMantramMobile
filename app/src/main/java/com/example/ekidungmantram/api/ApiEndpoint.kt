@@ -428,7 +428,150 @@ interface ApiEndpoint {
         @Path("id_post") id:Int
     ):Call<CrudModel>
 
+    //Yadnya
+    @GET("admin/listallyadnyaadmin/{id_yadnya}")
+    fun getAllListYadnyaAdmin(
+        @Path("id_yadnya") id:Int
+    ) : Call<ArrayList<AllYadnyaAdminModel>>
 
+    @GET("admin/detailyadnyaadmin/{id_post}")
+    fun getDetailYadnyaAdmin(@Path("id_post") id:Int) : Call<DetailYadnyaAdminModel>
+
+//    @GET("admin/listprosesiawalonyadnya/{id_post}")
+//    fun getDetailAllProsesiAwalOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiAwalOnYadnyaAdminModel>>
+//
+//    @GET("admin/listprosesipuncakonyadnya/{id_post}")
+//    fun getDetailAllProsesiPuncakOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiPuncakOnYadnyaAdminModel>>
+//
+//    @GET("admin/listprosesiakhironyadnya/{id_post}")
+//    fun getDetailAllProsesiAkhirOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>
+
+//    @GET("admin/listgamelanonyadnya{id_post}")
+//    fun getDetailAllGamelanOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>
+//
+//    @GET("admin/listtarionyadnya/{id_post}")
+//    fun getDetailAllTariOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnYadnyaAdminModel>>
+//
+//    @GET("admin/listkidungonyadnya/{id_post}")
+//    fun getDetailAllKidungOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllKidungOnYadnyaAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/createyadnya")
+    fun createDataYadnyaAdmin (
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+        @Field("kategori") kategori:String,
+    ):Call<CrudModel>
+
+    @GET("admin/showyadnya/{id_post}")
+    fun getShowYadnyaAdmin(@Path("id_post") id:Int) : Call<DetailYadnyaAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/edityadnya/{id_post}")
+    fun updateDataYadnyaAdmin (
+        @Path("id_post") id:Int,
+        @Field("nama_post") namaPost:String,
+        @Field("video") video:String,
+        @Field("deskripsi") deskripsi:String,
+        @Field("gambar") gambar:String,
+    ):Call<CrudModel>
+
+    @POST("admin/deleteyadnya/{id_post}")
+    fun deleteDataYadnyaAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+//    @GET("admin/listprosesiawalnotonyadnya/{id_post}")
+//    fun getDetailAllProsesiAwalNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addprosesiawalonyadnya/{id_post}")
+//    fun addDataProsesiAwalToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_prosesi") idProsesi:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deleteprosesiawalonyadnya/{id_post}")
+//    fun deleteDataProsesiAwalOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+//
+//    @GET("admin/listprosesipuncaknotonyadnya/{id_post}")
+//    fun getDetailAllProsesiPuncakNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addprosesipuncakonyadnya/{id_post}")
+//    fun addDataProsesiPuncakToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_prosesi") idProsesi:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deleteprosesipuncakonyadnya/{id_post}")
+//    fun deleteDataProsesiPuncakOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+//
+//    @GET("admin/listprosesiakhirnotonyadnya/{id_post}")
+//    fun getDetailAllProsesiAkhirNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllProsesiAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addprosesiakhironyadnya/{id_post}")
+//    fun addDataProsesiAkhirToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_prosesi") idProsesi:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deleteprosesiakhironyadnya/{id_post}")
+//    fun deleteDataProsesiAkhirOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+
+//    @GET("admin/listgamelannotonyadnya/{id_post}")
+//    fun getDetailAllGamelanNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addgamelanonyadnya/{id_post}")
+//    fun addDataGamelanToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_gamelan") idGamelan:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deletegamelanonyadnya/{id_post}")
+//    fun deleteDataGamelanOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+//
+//    @GET("admin/listtarinotonyadnya/{id_post}")
+//    fun getDetailAllTariNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addtarionyadnya/{id_post}")
+//    fun addDataTariToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_tari") idTari:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deletetarionyadnya/{id_post}")
+//    fun deleteDataTariOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
+//
+//    @GET("admin/listkidungnotonyadnyan/{id_post}")
+//    fun getDetailAllKidungNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllKidungAdminModel>>
+//
+//    @FormUrlEncoded
+//    @POST("admin/addkidungonyadnya/{id_post}")
+//    fun addDataKidungToYadnyaAdmin (
+//        @Path("id_post") id:Int,
+//        @Field("id_kidung") idKidung:Int,
+//    ):Call<CrudModel>
+//
+//    @POST("admin/deletekidungonyadnya/{id_post}")
+//    fun deleteDataKidungOnYadnyaAdmin (
+//        @Path("id_post") id:Int
+//    ):Call<CrudModel>
 
     //User
     //Yadnya
