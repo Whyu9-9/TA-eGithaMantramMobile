@@ -28,7 +28,7 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
     private lateinit var prosesiAwalAdapter   : ProsesiAwalYadnyaAdminAdapter
     private lateinit var prosesiPuncakAdapter : ProsesiPuncakYadnyaAdminAdapter
     private lateinit var prosesiAkhirAdapter  : ProsesiAkhirYadnyaAdminAdapter
-//    private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
+    private lateinit var gamelansAdapter      : GamelanYadnyaAdminAdapter
 //    private lateinit var tariAdapter    : TariProsesiAdminAdapter
 //    private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -102,6 +102,26 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            gamelanYadnyaListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getGamelanData(postID)
+            editGamelanYadnya.setOnClickListener {
+                val intent = Intent(this, AllGamelanOnYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahGamelanYadnya.setOnClickListener {
+                val intent = Intent(this, AddGamelanToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
             goToEditYadnya.setOnClickListener {
                 val intent = Intent(this, EditYadnyaAdminActivity::class.java)
                 bundle.putInt("id_yadnya", postID)
@@ -133,6 +153,32 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 finish()
             }
         }
+    }
+
+    private fun getGamelanData(postID: Int) {
+        ApiService.endpoint.getDetailAllGamelansOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllGamelanOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editGamelanYadnya.visibility   = View.VISIBLE
+                        tambahGamelanYadnya.visibility = View.GONE
+                    }else{
+                        tambahGamelanYadnya.visibility = View.VISIBLE
+                        editGamelanYadnya.visibility   = View.GONE
+                    }
+
+                    gamelansAdapter = GamelanYadnyaAdminAdapter(datalist!!)
+                    gamelanYadnyaListAdmin.adapter = gamelansAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getProsesiAkhirData(postID: Int) {

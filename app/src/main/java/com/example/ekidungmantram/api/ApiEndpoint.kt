@@ -446,9 +446,9 @@ interface ApiEndpoint {
     @GET("admin/listprosesiakhironyadnya/{id_post}")
     fun getDetailAllProsesiAkhirOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllProsesiAkhirOnYadnyaAdminModel>>
 
-//    @GET("admin/listgamelanonyadnya{id_post}")
-//    fun getDetailAllGamelanOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>
-//
+    @GET("admin/listgamelanonyadnya/{id_post}")
+    fun getDetailAllGamelansOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllGamelanOnYadnyaAdminModel>>
+
 //    @GET("admin/listtarionyadnya/{id_post}")
 //    fun getDetailAllTariOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllTariOnYadnyaAdminModel>>
 //
@@ -576,20 +576,20 @@ interface ApiEndpoint {
         @Field("yadnya_id") idYadnya:Int,
     ):Call<CrudModel>
 
-//    @GET("admin/listgamelannotonyadnya/{id_post}")
-//    fun getDetailAllGamelanNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
-//
-//    @FormUrlEncoded
-//    @POST("admin/addgamelanonyadnya/{id_post}")
-//    fun addDataGamelanToYadnyaAdmin (
-//        @Path("id_post") id:Int,
-//        @Field("id_gamelan") idGamelan:Int,
-//    ):Call<CrudModel>
-//
-//    @POST("admin/deletegamelanonyadnya/{id_post}")
-//    fun deleteDataGamelanOnYadnyaAdmin (
-//        @Path("id_post") id:Int
-//    ):Call<CrudModel>
+    @GET("admin/listgamelannotonyadnya/{id_post}")
+    fun getDetailAllGamelanNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllGamelanAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addgamelanonyadnya/{id_post}")
+    fun addDataGamelanToYadnyaAdmin (
+        @Path("id_post") id:Int,
+        @Field("id_gamelan") idGamelan:Int,
+    ):Call<CrudModel>
+
+    @POST("admin/deletegamelanonyadnya/{id_post}")
+    fun deleteDataGamelanOnYadnyaAdmin (
+        @Path("id_post") id:Int
+    ):Call<CrudModel>
 //
 //    @GET("admin/listtarinotonyadnya/{id_post}")
 //    fun getDetailAllTariNotOnYadnyaAdmin(@Path("id_post") id:Int) : Call<ArrayList<AllTariAdminModel>>

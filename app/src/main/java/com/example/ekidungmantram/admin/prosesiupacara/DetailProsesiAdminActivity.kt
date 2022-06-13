@@ -13,14 +13,12 @@ import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.*
-import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.*
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import kotlinx.android.synthetic.main.activity_detail_gamelan_admin.*
-import kotlinx.android.synthetic.main.activity_detail_prosesi.*
 import kotlinx.android.synthetic.main.activity_detail_prosesi_admin.*
 import retrofit2.Call
 import retrofit2.Callback
