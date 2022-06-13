@@ -29,8 +29,8 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
     private lateinit var prosesiPuncakAdapter : ProsesiPuncakYadnyaAdminAdapter
     private lateinit var prosesiAkhirAdapter  : ProsesiAkhirYadnyaAdminAdapter
     private lateinit var gamelansAdapter      : GamelanYadnyaAdminAdapter
-//    private lateinit var tariAdapter    : TariProsesiAdminAdapter
-//    private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
+    private lateinit var tariAdapter          : TariYadnyaAdminAdapter
+    private lateinit var kidungAdapter        : KidungYadnyaAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_yadnya_admin)
@@ -122,6 +122,46 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 startActivity(intent)
             }
 
+            tariYadnyaListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getTariData(postID)
+            editTariYadnya.setOnClickListener {
+                val intent = Intent(this, AllTariOnYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahTariYadnya.setOnClickListener {
+                val intent = Intent(this, AddTariToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            kidungYadnyaListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
+            getKidungData(postID)
+            editKidungYadnya.setOnClickListener {
+                val intent = Intent(this, AllKidungOnYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahKidungYadnya.setOnClickListener {
+                val intent = Intent(this, AddKidungToYadnyaAdminActivity::class.java)
+                bundle.putInt("id_kategori", katID)
+                bundle.putInt("id_yadnya", postID)
+                bundle.putString("nama_yadnya", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
             goToEditYadnya.setOnClickListener {
                 val intent = Intent(this, EditYadnyaAdminActivity::class.java)
                 bundle.putInt("id_yadnya", postID)
@@ -153,6 +193,58 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                 finish()
             }
         }
+    }
+
+    private fun getKidungData(postID: Int) {
+        ApiService.endpoint.getDetailAllKidungOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllKidungOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllKidungOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllKidungOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editKidungYadnya.visibility   = View.VISIBLE
+                        tambahKidungYadnya.visibility = View.GONE
+                    }else{
+                        tambahKidungYadnya.visibility = View.VISIBLE
+                        editKidungYadnya.visibility   = View.GONE
+                    }
+
+                    kidungAdapter = KidungYadnyaAdminAdapter(datalist!!)
+                    kidungYadnyaListAdmin.adapter = kidungAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllKidungOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
+    }
+
+    private fun getTariData(postID: Int) {
+        ApiService.endpoint.getDetailAllTariOnYadnyaAdmin(postID)
+            .enqueue(object: Callback<ArrayList<DetailAllTariOnYadnyaAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllTariOnYadnyaAdminModel>>,
+                    response: Response<ArrayList<DetailAllTariOnYadnyaAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editTariYadnya.visibility   = View.VISIBLE
+                        tambahTariYadnya.visibility = View.GONE
+                    }else{
+                        tambahTariYadnya.visibility = View.VISIBLE
+                        editTariYadnya.visibility   = View.GONE
+                    }
+
+                    tariAdapter = TariYadnyaAdminAdapter(datalist!!)
+                    tariYadnyaListAdmin.adapter = tariAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllTariOnYadnyaAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getGamelanData(postID: Int) {
