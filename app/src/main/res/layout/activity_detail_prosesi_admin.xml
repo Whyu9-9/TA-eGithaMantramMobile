@@ -109,6 +109,7 @@
                             android:layout_marginBottom="20dp"
                             android:layout_marginTop="10dp"/>
                         <TextView
+                            android:id="@+id/testP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Deskripsi Prosesi"
@@ -134,6 +135,57 @@
                             android:layout_width="match_parent"
                             android:layout_height="60dp"
                             android:text="Edit Prosesi"/>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/layoutProsesiKhususAdmin"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_marginBottom="15dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center_horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Prosesi"
+                                android:textStyle="bold"
+                                android:textColor="@color/black"
+                                android:textSize="16sp" />
+                            <TextView
+                                android:id="@+id/editProsesiKhusus"
+                                android:gravity="end"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Edit Prosesi"
+                                android:textColor="#4F88C7"
+                                android:textSize="14sp"/>
+                        </LinearLayout>
+                        <TextView
+                            android:visibility="gone"
+                            android:id="@+id/tambahProsesiKhusus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="+ Tambah Prosesi"
+                            android:textColor="@color/shimmer_secondary"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/prosesiKhususListAdmin"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_gamelan_detail_prosesi_admin"/>
+                        </RelativeLayout>
                     </LinearLayout>
                     <LinearLayout
                         android:id="@+id/layoutGamelanProsesiAdmin"

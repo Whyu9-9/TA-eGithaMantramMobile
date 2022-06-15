@@ -294,6 +294,7 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                             override fun onClick(result: DetailAllProsesiAkhirOnYadnyaAdminModel) {
                                 val bundle = Bundle()
                                 val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_yadnya", postID)
                                 bundle.putInt("id_prosesi", result.id_post)
                                 bundle.putString("nama_prosesi", result.nama_post)
                                 intent.putExtras(bundle)
@@ -330,6 +331,7 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                             override fun onClick(result: DetailAllProsesiPuncakOnYadnyaAdminModel) {
                                 val bundle = Bundle()
                                 val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_yadnya", postID)
                                 bundle.putInt("id_prosesi", result.id_post)
                                 bundle.putString("nama_prosesi", result.nama_post)
                                 intent.putExtras(bundle)
@@ -366,6 +368,7 @@ class DetailYadnyaAdminActivity : YouTubeBaseActivity() {
                             override fun onClick(result: DetailAllProsesiAwalOnYadnyaAdminModel) {
                                 val bundle = Bundle()
                                 val intent = Intent(this@DetailYadnyaAdminActivity, DetailProsesiAdminActivity::class.java)
+                                bundle.putInt("id_yadnya", postID)
                                 bundle.putInt("id_prosesi", result.id_post)
                                 bundle.putString("nama_prosesi", result.nama_post)
                                 intent.putExtras(bundle)

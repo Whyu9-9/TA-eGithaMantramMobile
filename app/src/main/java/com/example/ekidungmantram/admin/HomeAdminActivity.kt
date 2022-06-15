@@ -1,5 +1,6 @@
 package com.example.ekidungmantram.admin
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
@@ -8,7 +9,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AlertDialog
@@ -27,10 +27,15 @@ import com.example.ekidungmantram.admin.prosesiupacara.AllProsesiAdminActivity
 import com.example.ekidungmantram.admin.tabuh.AllTabuhAdminActivity
 import com.example.ekidungmantram.admin.tari.AllTariAdminActivity
 import com.example.ekidungmantram.admin.upacarayadnya.AllYadnyaAdminActivity
+import com.example.ekidungmantram.api.ApiService
+import com.example.ekidungmantram.model.AdminModel
 import com.example.ekidungmantram.user.MainActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_home_admin.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class HomeAdminActivity : AppCompatActivity() {
@@ -62,6 +67,7 @@ class HomeAdminActivity : AppCompatActivity() {
 
         sharedPreferences = this.getSharedPreferences("is_logged", Context.MODE_PRIVATE)
         val role          = sharedPreferences.getString("ROLE", null)
+        val id            = sharedPreferences.getString("ID_ADMIN", null)
 
         if(role != "1") {
             val nav_Menu: Menu = navView.getMenu()
@@ -80,7 +86,7 @@ class HomeAdminActivity : AppCompatActivity() {
 //                R.id.approval -> goToKajiMantram()
                 R.id.prosesi_upacara_admin -> goToProsesi()
                 R.id.kelola_admin -> goToAdmin()
-                R.id.logout -> goToLogout()
+                R.id.logout -> goToLogout(id?.toInt())
                 R.id.about_admin -> goToAbout()
             }
 
@@ -138,21 +144,48 @@ class HomeAdminActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun goToLogout() {
+    private fun goToLogout(id: Int?) {
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Log Out")
             .setMessage("Apakah anda yakin ingin keluar dari halaman admin?")
             .setCancelable(true)
             .setPositiveButton("Iya") { _, _ ->
-                sharedPreferences = getSharedPreferences("is_logged", Context.MODE_PRIVATE)
-                sharedPreferences.edit().remove("ID_ADMIN").apply()
-
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
-                finish()
+                invalidateAdminSession(id)
             }.setNegativeButton("Batal") { dialogInterface, _ ->
                 dialogInterface.cancel()
             }.show()
+    }
+
+    private fun invalidateAdminSession(id: Int?) {
+        val progressDialog = ProgressDialog(this)
+        progressDialog.setMessage("Mencoba Logout")
+        progressDialog.show()
+        ApiService.endpoint.logoutAdmin(id!!)
+            .enqueue(object: Callback<AdminModel> {
+                override fun onResponse(
+                    call: Call<AdminModel>,
+                    response: Response<AdminModel>
+                ) {
+                    if(!response.body()?.error!!){
+                        sharedPreferences = getSharedPreferences("is_logged", Context.MODE_PRIVATE)
+                        sharedPreferences.edit().remove("ID_ADMIN").apply()
+                        val intent = Intent(this@HomeAdminActivity, MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                        Toast.makeText(this@HomeAdminActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
+                    }else{
+                        Toast.makeText(this@HomeAdminActivity, response.body()?.message, Toast.LENGTH_SHORT).show()
+                        progressDialog.dismiss()
+                    }
+                }
+
+                override fun onFailure(call: Call<AdminModel>, t: Throwable) {
+                    Toast.makeText(this@HomeAdminActivity, t.message, Toast.LENGTH_SHORT).show()
+                    progressDialog.dismiss()
+                }
+
+            })
     }
 
     private fun goToAbout() {

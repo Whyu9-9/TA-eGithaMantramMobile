@@ -13,6 +13,8 @@ import com.bumptech.glide.Glide
 import com.example.ekidungmantram.Constant
 import com.example.ekidungmantram.R
 import com.example.ekidungmantram.adapter.admin.*
+import com.example.ekidungmantram.admin.prosesiupacara.prosesikhusus.AddProsesiKhususActivity
+import com.example.ekidungmantram.admin.prosesiupacara.prosesikhusus.AllProsesiKhususActivity
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.*
 import com.google.android.youtube.player.YouTubeBaseActivity
@@ -25,11 +27,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class DetailProsesiAdminActivity : YouTubeBaseActivity() {
-    private lateinit var gamelanAdapter : GamelanProsesiAdminAdapter
-    private lateinit var tariAdapter    : TariProsesiAdminAdapter
-    private lateinit var kidungAdapter  : KidungProsesiAdminAdapter
-    private lateinit var tabuhAdapter   : TabuhProsesiAdminAdapter
-    private lateinit var mantramAdapter : MantramProsesiAdminAdapter
+    private lateinit var gamelanAdapter       : GamelanProsesiAdminAdapter
+    private lateinit var tariAdapter          : TariProsesiAdminAdapter
+    private lateinit var kidungAdapter        : KidungProsesiAdminAdapter
+    private lateinit var tabuhAdapter         : TabuhProsesiAdminAdapter
+    private lateinit var mantramAdapter       : MantramProsesiAdminAdapter
+    private lateinit var prosesiKhususAdapter : ProsesiKhususAdminAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_prosesi_admin)
@@ -37,8 +40,32 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")
             val namaPost = bundle.getString("nama_prosesi")
+            val yadnya = bundle.getInt("id_yadnya")
+
+            if(yadnya != 0){
+                layoutProsesiKhususAdmin.visibility = View.VISIBLE
+            }
 
             getDetailData(postID)
+            prosesiKhususListAdmin.layoutManager = LinearLayoutManager(this)
+            getProsesiKhususData(postID, yadnya)
+            editProsesiKhusus.setOnClickListener {
+                val intent = Intent(this, AllProsesiKhususActivity::class.java)
+                bundle.putInt("id_yadnya", yadnya)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+
+            tambahProsesiKhusus.setOnClickListener {
+                val intent = Intent(this, AddProsesiKhususActivity::class.java)
+                bundle.putInt("id_yadnya", yadnya)
+                bundle.putInt("id_prosesi", postID)
+                bundle.putString("nama_prosesi", namaPost)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
 
             gamelanProsesiListAdmin.layoutManager = GridLayoutManager(this, 3, LinearLayoutManager.VERTICAL, false)
             getGamelanData(postID)
@@ -150,6 +177,31 @@ class DetailProsesiAdminActivity : YouTubeBaseActivity() {
             startActivity(intent)
             finish()
         }
+    }
+
+    private fun getProsesiKhususData(postID: Int, yadnya: Int) {
+        ApiService.endpoint.getDetailAllProsesiKhusus(postID, yadnya)
+            .enqueue(object: Callback<ArrayList<DetailAllProsesiKhususAdminModel>> {
+                override fun onResponse(
+                    call: Call<ArrayList<DetailAllProsesiKhususAdminModel>>,
+                    response: Response<ArrayList<DetailAllProsesiKhususAdminModel>>
+                ) {
+                    val datalist = response.body()
+                    if(datalist!!.isNotEmpty()){
+                        editProsesiKhusus.visibility = View.VISIBLE
+                        tambahProsesiKhusus.visibility = View.GONE
+                    }else{
+                        tambahProsesiKhusus.visibility = View.VISIBLE
+                        editProsesiKhusus.visibility = View.GONE
+                    }
+                    prosesiKhususAdapter = ProsesiKhususAdminAdapter(datalist!!)
+                    prosesiKhususListAdmin.adapter = prosesiKhususAdapter
+                }
+
+                override fun onFailure(call: Call<ArrayList<DetailAllProsesiKhususAdminModel>>, t: Throwable) {
+                    printLog("on failure: $t")
+                }
+            })
     }
 
     private fun getMantramData(postID: Int) {

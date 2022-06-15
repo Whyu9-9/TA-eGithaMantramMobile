@@ -2,6 +2,7 @@ package com.example.ekidungmantram.admin.mantram
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -23,9 +24,12 @@ import retrofit2.Response
 import java.io.ByteArrayOutputStream
 import java.util.*
 import android.content.Intent
+import android.content.SharedPreferences
+import androidx.fragment.app.FragmentManager
 
 @Suppress("DEPRECATION")
 class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
+    private lateinit var sharedPreferences: SharedPreferences
     private val REQUEST_CODE     = 100
     private var bitmap: Bitmap?  = null
     private var yadnya : String? = null
@@ -35,6 +39,14 @@ class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickList
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_mantram_admin)
+
+        sharedPreferences = this.getSharedPreferences("is_logged", Context.MODE_PRIVATE)
+        val role          = sharedPreferences.getString("ROLE", null)
+
+        if(role?.toInt() != 1){
+            layoutApprovalNotes.visibility = View.VISIBLE
+        }
+
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Tambah Mantram"
         setupSpinnerTipe()
@@ -53,8 +65,10 @@ class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickList
             val video         = linkMantram.text.toString()
             val deskripsi     = deskripsiMantram.text.toString()
             val gambar        = bitmapToString(bitmap).toString()
+            val approveNotes  = catatanMantram.text.toString()
+            val adminId       = role?.toInt()
             if(validateInput()){
-                postMantram(nama_post, jenis_mantram!!, kategori!!, video, deskripsi, gambar)
+                postMantram(adminId!!, nama_post, jenis_mantram!!, kategori!!, video, deskripsi, gambar, approveNotes)
             }
         }
 
@@ -63,11 +77,11 @@ class AddMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickList
         }
     }
 
-    private fun postMantram(namaPost: String, jenisMantram: String, kategori: String, video: String, deskripsi: String, gambar: String) {
+    private fun postMantram(id: Int, namaPost: String, jenisMantram: String, kategori: String, video: String, deskripsi: String, gambar: String, note:String) {
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Mengunggah Data")
         progressDialog.show()
-        ApiService.endpoint.createMantramAdmin(namaPost, jenisMantram, video, deskripsi, kategori, gambar)
+        ApiService.endpoint.createMantramAdmin(id, namaPost, jenisMantram, video, deskripsi, kategori, gambar, note)
             .enqueue(object: Callback<CrudModel> {
                 override fun onResponse(
                     call: Call<CrudModel>,

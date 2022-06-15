@@ -127,6 +127,42 @@
                             android:textSize="15sp" />
                     </LinearLayout>
                     <LinearLayout
+                        android:id="@+id/layoutProsesiKhusus"
+                        android:visibility="gone"
+                        android:layout_marginBottom="20dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Prosesi"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:textSize="16sp"
+                            android:layout_marginBottom="15dp"/>
+                        <TextView
+                            android:id="@+id/nodataprosesikhusus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="Tidak ada data"
+                            android:textColor="@color/shimmer_secondary"
+                            android:textStyle="bold"
+                            android:textSize="17sp"
+                            android:layout_marginBottom="15dp"
+                            android:layout_marginTop="15dp"/>
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/prosesiKhususList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                tools:listitem="@layout/layout_gamelan_detail_yadnya"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <LinearLayout
                         android:id="@+id/layoutGamelanProsesi"
                         android:visibility="visible"
                         android:layout_marginBottom="20dp"

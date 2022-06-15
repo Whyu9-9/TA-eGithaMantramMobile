@@ -14,6 +14,12 @@ interface ApiEndpoint {
         @Field("password") password:String
     ):Call<AdminModel>
 
+    @FormUrlEncoded
+    @POST("logout")
+    fun logoutAdmin (
+        @Field("id_admin") idAdmin:Int
+    ):Call<AdminModel>
+
     //Admin
     //Home
     @GET("admin/listyadnya")
@@ -29,12 +35,14 @@ interface ApiEndpoint {
     @FormUrlEncoded
     @POST("admin/createmantram")
     fun createMantramAdmin (
+        @Field("role_admin") roleAdmin: Int,
         @Field("nama_post") namaPost:String,
         @Field("jenis_mantram") jenisMantram:String,
         @Field("video") video:String,
         @Field("deskripsi") deskripsi:String,
         @Field("kategori") kategori:String,
         @Field("gambar") gambar:String,
+        @Field("approval_notes") approve:String
     ):Call<CrudModel>
 
     @GET("admin/showmantram/{id_post}")
@@ -69,6 +77,19 @@ interface ApiEndpoint {
     fun editArtiMantram (
         @Path("id_post") id:Int,
         @Field("arti_mantra") artiMantra:String,
+    ):Call<CrudModel>
+
+    @GET("admin/listnotapprovedmantram")
+    fun getAllNotApprovedMantramListAdmin() : Call<ArrayList<AllMantramAdminModel>>
+
+    @GET("admin/detailneedapprovalmantram/{id_post}")
+    fun getDetailNeedApprovalMantramAdmin(@Path("id_post") id:Int) : Call<DetailMantramAdminModel>
+
+    @FormUrlEncoded
+    @POST("admin/approvemantram/{id_post}")
+    fun approveMantram (
+        @Path("id_post") id:Int,
+        @Field("stats") stats:String,
     ):Call<CrudModel>
 
     //Admin Management
@@ -326,6 +347,12 @@ interface ApiEndpoint {
     @GET("admin/listmantramonprosesi/{id_post}")
     fun getDetailAllMantramOnProsesiAdmin(@Path("id_post") id:Int) : Call<ArrayList<DetailAllMantramOnProsesiAdminModel>>
 
+    @GET("admin/listprosesikhusus/{id_prosesi}/{id_yadnya}")
+    fun getDetailAllProsesiKhusus(
+        @Path("id_prosesi") idProsesi:Int,
+        @Path("id_yadnya") idYadnya:Int
+    ) : Call<ArrayList<DetailAllProsesiKhususAdminModel>>
+
     @FormUrlEncoded
     @POST("admin/createprosesi")
     fun createDataProsesiAdmin (
@@ -426,6 +453,25 @@ interface ApiEndpoint {
     @POST("admin/deletemantramonprosesi/{id_post}")
     fun deleteDataMantramOnProsesiAdmin (
         @Path("id_post") id:Int
+    ):Call<CrudModel>
+
+    @GET("admin/listprosesikhususnotyet/{id_prosesi}/{id_yadnya}")
+    fun getDetailAllProsesiKhususNotYet(
+        @Path("id_prosesi") idProsesi:Int,
+        @Path("id_yadnya") idYadnya:Int
+    ) : Call<ArrayList<AllProsesiAdminModel>>
+
+    @FormUrlEncoded
+    @POST("admin/addprosesikhusus/{id_prosesi}/{id_yadnya}")
+    fun addDataProsesiKhusus (
+        @Path("id_prosesi") idProsesi:Int,
+        @Path("id_yadnya") idYadnya:Int,
+        @Field("id_prosesis") idProsesis:Int,
+    ):Call<CrudModel>
+
+    @POST("admin/deleteprosesikhusus/{id}")
+    fun deleteprosesikhusus (
+        @Path("id") id:Int
     ):Call<CrudModel>
 
     //Yadnya
@@ -701,4 +747,10 @@ interface ApiEndpoint {
     fun getDetailTabuhProsesi(@Path("id_post") id: Int) : Call<TabuhProsesiModel>
     @GET("detailmantramprosesi/{id_post}")
     fun getDetailMantramProsesi(@Path("id_post") id: Int) : Call<MantramProsesiModel>
+
+    @GET("prosesicr/{id_prosesi}/{id_yadnya}")
+    fun getDetailProsesiKhusus(
+        @Path("id_prosesi") idProsesi: Int,
+        @Path("id_yadnya") idYadnya: Int,
+    ) : Call<ProsesiKhususModel>
 }

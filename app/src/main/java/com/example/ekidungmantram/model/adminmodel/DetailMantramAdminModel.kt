@@ -10,4 +10,5 @@ data class DetailMantramAdminModel(
     val deskripsi: String,
     val nama_kategori: String,
     val arti_mantra: String,
+    val approval_notes: String
 )

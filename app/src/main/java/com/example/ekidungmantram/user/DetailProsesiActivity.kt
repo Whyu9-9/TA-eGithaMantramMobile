@@ -33,6 +33,8 @@ class DetailProsesiActivity : YouTubeBaseActivity() {
     private lateinit var tabuhAdapter   : TabuhProsesiAdapter
     private var LayoutManagerMantram    : LinearLayoutManager? = null
     private lateinit var mantramAdapter : MantramProsesiAdapter
+    private var LayoutManagerProsesiKhusus    : LinearLayoutManager? = null
+    private lateinit var prosesiKhususAdapter : ProsesiKhususAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +42,7 @@ class DetailProsesiActivity : YouTubeBaseActivity() {
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_prosesi")
+            val yadID = bundle.getInt("id_yadnya")
 
             getDetailData(postID)
 
@@ -57,6 +60,12 @@ class DetailProsesiActivity : YouTubeBaseActivity() {
 
             setupRecyclerViewMantram()
             getProsesiMantramData(postID)
+
+            if(yadID != 0){
+                layoutProsesiKhusus.visibility = View.VISIBLE
+                setupRecyclerViewProsesiKhusus()
+                getProsesiKhususData(postID,yadID)
+            }
         }
 
         backToHomeProsesi.setOnClickListener {
@@ -68,6 +77,52 @@ class DetailProsesiActivity : YouTubeBaseActivity() {
 
     private fun printLog(message: String) {
         Log.d("DetailProsesiActivity", message)
+    }
+
+    private fun getProsesiKhususData(postID: Int, yadID: Int) {
+        ApiService.endpoint.getDetailProsesiKhusus(postID, yadID).enqueue(object : Callback<ProsesiKhususModel>{
+            override fun onResponse(
+                call: Call<ProsesiKhususModel>,
+                response: Response<ProsesiKhususModel>
+            ) {
+                if(response.body()!!.data.toString() == "[]") {
+                    layoutProsesiKhusus.visibility = View.GONE
+                }else{
+                    layoutProsesiKhusus.visibility = View.VISIBLE
+                    nodataprosesikhusus.visibility = View.GONE
+                    showProsesiKhusus(response.body()!!)
+                }
+            }
+
+            override fun onFailure(call: Call<ProsesiKhususModel>, t: Throwable) {
+                printLog("on failure: $t")
+            }
+
+        })
+    }
+
+    private fun showProsesiKhusus(body: ProsesiKhususModel) {
+        val results = body.data
+        prosesiKhususAdapter.setData(results)
+    }
+
+    private fun setupRecyclerViewProsesiKhusus() {
+        prosesiKhususAdapter = ProsesiKhususAdapter(arrayListOf(), object : ProsesiKhususAdapter.OnAdapterProsesiKhususListener{
+            override fun onClick(result: ProsesiKhususModel.Data) {
+                val bundle = Bundle()
+                val intent = Intent(this@DetailProsesiActivity, DetailProsesiActivity::class.java)
+                bundle.putInt("id_prosesi", result.id_post)
+                intent.putExtras(bundle)
+                startActivity(intent)
+            }
+        })
+
+        prosesiKhususList.apply {
+            LayoutManagerProsesiKhusus = LinearLayoutManager(this@DetailProsesiActivity)
+            layoutManager        = LayoutManagerProsesiKhusus
+            adapter              = prosesiKhususAdapter
+            setHasFixedSize(true)
+        }
     }
 
     private fun getProsesiMantramData(postID: Int) {
