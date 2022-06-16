@@ -21,6 +21,7 @@ import com.example.ekidungmantram.R
 import com.example.ekidungmantram.admin.adminmanager.AllAdminActivity
 import com.example.ekidungmantram.admin.fragment.HomeAdminFragment
 import com.example.ekidungmantram.admin.gamelan.AllGamelanAdminActivity
+import com.example.ekidungmantram.admin.kajimantram.ListMantramNeedApprovalActivity
 import com.example.ekidungmantram.admin.kidung.AllKidungAdminActivity
 import com.example.ekidungmantram.admin.mantram.AllMantramAdminActivity
 import com.example.ekidungmantram.admin.prosesiupacara.AllProsesiAdminActivity
@@ -83,7 +84,7 @@ class HomeAdminActivity : AppCompatActivity() {
                 R.id.gamelan_bali_admin -> goToGamelan()
                 R.id.kidung_admin -> goToKidung()
                 R.id.mantram_admin -> goToMantram()
-//                R.id.approval -> goToKajiMantram()
+                R.id.approval -> goToKajiMantram()
                 R.id.prosesi_upacara_admin -> goToProsesi()
                 R.id.kelola_admin -> goToAdmin()
                 R.id.logout -> goToLogout(id?.toInt())
@@ -126,6 +127,11 @@ class HomeAdminActivity : AppCompatActivity() {
 
     private fun goToMantram() {
         val intent = Intent(this, AllMantramAdminActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun goToKajiMantram() {
+        val intent = Intent(this, ListMantramNeedApprovalActivity::class.java)
         startActivity(intent)
     }
 
