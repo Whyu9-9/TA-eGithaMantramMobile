@@ -26,7 +26,6 @@ class AddProsesiAwalToYadnyaAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_prosesi_awal_to_yadnya_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Semua Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

@@ -19,7 +19,6 @@ class EditArtiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_arti)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Edit Arti Mantram"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

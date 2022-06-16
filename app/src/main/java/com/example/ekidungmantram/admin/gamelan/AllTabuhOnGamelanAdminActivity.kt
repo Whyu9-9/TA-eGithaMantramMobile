@@ -26,7 +26,6 @@ class AllTabuhOnGamelanAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tabuh_on_gamelan_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Tabuh Gamelan"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

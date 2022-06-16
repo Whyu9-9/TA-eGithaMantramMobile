@@ -26,7 +26,6 @@ class AllKidungOnYadnyaAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_kidung_on_yadnya_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Kidung Yadnya"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

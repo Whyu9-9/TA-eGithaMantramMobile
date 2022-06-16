@@ -26,7 +26,6 @@ class AllProsesiAkhirYadnyaAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_prosesi_akhir_yadnya_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Prosesi Akhir"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

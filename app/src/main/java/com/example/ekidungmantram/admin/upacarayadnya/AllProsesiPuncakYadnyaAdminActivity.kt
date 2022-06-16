@@ -29,7 +29,6 @@ class AllProsesiPuncakYadnyaAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_prosesi_puncak_yadnya_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Prosesi Puncak"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

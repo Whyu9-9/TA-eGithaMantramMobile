@@ -26,7 +26,6 @@ class AddKidungToProsesiAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_kidung_to_prosesi_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Semua Kidung"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

@@ -17,7 +17,6 @@ class AddBaitActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_bait)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Tambah Bait Mantram"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

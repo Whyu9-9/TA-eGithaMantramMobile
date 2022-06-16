@@ -28,7 +28,6 @@ class AllLirikKidungAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_lirik_kidung_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Lirik Kidung"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

@@ -26,7 +26,6 @@ class AllTabuhOnProsesiAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_tabuh_on_prosesi_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Tabuh Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

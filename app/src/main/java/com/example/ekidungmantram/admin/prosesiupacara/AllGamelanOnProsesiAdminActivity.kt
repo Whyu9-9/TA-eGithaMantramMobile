@@ -31,7 +31,6 @@ class AllGamelanOnProsesiAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_all_gamelan_on_prosesi_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Gamelan Prosesi"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {

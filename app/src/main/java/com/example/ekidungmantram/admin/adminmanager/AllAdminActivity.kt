@@ -71,10 +71,6 @@ class AllAdminActivity : AppCompatActivity() {
                                 startActivity(intent)
                             }
                         }) }!!
-
-                    setAdapter.setOnClickName {
-                        Toast.makeText(this@AllAdminActivity, it.name, Toast.LENGTH_SHORT).show()
-                    }
                     allDataAdmin1.adapter  = setAdapter
                     noAdminData.visibility = View.GONE
                     setShimmerToStop()
@@ -101,9 +97,6 @@ class AllAdminActivity : AppCompatActivity() {
                                                 startActivity(intent)
                                             }
                                         })
-                                    adminAdapter.setOnClickName {
-                                        Toast.makeText(this@AllAdminActivity, it.name, Toast.LENGTH_SHORT).show()
-                                    }
                                     if(filter.isEmpty()){
                                         noAdminData.visibility   = View.VISIBLE
                                         allDataAdmin1.visibility = View.GONE

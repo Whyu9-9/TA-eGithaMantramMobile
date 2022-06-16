@@ -27,7 +27,6 @@ class AddMantramToProsesiAdminActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_mantram_to_prosesi_admin)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.title = "Daftar Semua Mantram"
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
