@@ -16,6 +16,7 @@ import com.example.ekidungmantram.model.adminmodel.DetailMantramAdminModel
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
+import kotlinx.android.synthetic.main.activity_detail_mantram_admin.*
 import kotlinx.android.synthetic.main.activity_detail_mantram_need_approval.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -105,6 +106,18 @@ class DetailMantramNeedApprovalActivity : YouTubeBaseActivity() {
                         detailJenisMantramNAAdmin.text = "Mantram Hindu"
                     }
                     keteranganMantramNAAdmin.text  = result.jenis_mantram
+
+                    if(result.bait_mantra != null) {
+                        baitMantramNAAdmin.text = result.bait_mantra
+                    }else{
+                        baitMantramNAAdmin.text = "-"
+                    }
+
+                    if(result.arti_mantra != null) {
+                        artiMantramNAAdmin.text = result.arti_mantra
+                    }else{
+                        artiMantramNAAdmin.text = "-"
+                    }
 
                     catatanMantramNAAdmin.text = result.approval_notes
 
