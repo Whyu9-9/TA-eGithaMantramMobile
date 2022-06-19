@@ -51,6 +51,7 @@ interface ApiEndpoint {
     @FormUrlEncoded
     @POST("admin/updatemantram/{id_post}")
     fun updateMantramAdmin (
+        @Field("role_admin") roleAdmin: Int,
         @Path("id_post") id:Int,
         @Field("nama_post") namaPost:String,
         @Field("jenis_mantram") jenisMantram:String,
@@ -58,6 +59,7 @@ interface ApiEndpoint {
         @Field("deskripsi") deskripsi:String,
         @Field("kategori") kategori:String,
         @Field("gambar") gambar:String,
+        @Field("approval_notes") approve:String
     ):Call<CrudModel>
 
     @POST("admin/deletemantram/{id_post}")

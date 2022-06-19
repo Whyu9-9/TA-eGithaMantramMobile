@@ -2,7 +2,9 @@ package com.example.ekidungmantram.admin.mantram
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -20,6 +22,7 @@ import com.example.ekidungmantram.R
 import com.example.ekidungmantram.api.ApiService
 import com.example.ekidungmantram.model.adminmodel.CrudModel
 import com.example.ekidungmantram.model.adminmodel.DetailMantramAdminModel
+import kotlinx.android.synthetic.main.activity_add_mantram_admin.*
 import kotlinx.android.synthetic.main.activity_edit_mantram_admin.*
 import retrofit2.Call
 import retrofit2.Response
@@ -28,6 +31,7 @@ import java.util.*
 
 @Suppress("DEPRECATION")
 class EditMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickListener {
+    private lateinit var sharedPreferences: SharedPreferences
     private val REQUEST_CODE     = 100
     private var bitmap: Bitmap?  = null
     private var yadnya : String? = null
@@ -37,6 +41,14 @@ class EditMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickLis
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_mantram_admin)
+
+        sharedPreferences = this.getSharedPreferences("is_logged", Context.MODE_PRIVATE)
+        val role          = sharedPreferences.getString("ROLE", null)
+
+        if(role?.toInt() != 1){
+            layoutEditedApprovalNotes.visibility = View.VISIBLE
+        }
+
         val bundle :Bundle ?= intent.extras
         if (bundle!=null) {
             val postID = bundle.getInt("id_mantram")
@@ -58,8 +70,10 @@ class EditMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickLis
                 val video         = linkEditedMantram.text.toString()
                 val deskripsi     = deskripsiEditedMantram.text.toString()
                 val gambar        = bitmapToString(bitmap).toString()
+                val approveNotes  = catatanEditedMantram.text.toString()
+                val adminId       = role?.toInt()
                 if(validateInput()){
-                    postEditedMantram(postID, nama_post, jenis_mantram!!, kategori!!, video, deskripsi, gambar)
+                    postEditedMantram(adminId!!, postID, nama_post, jenis_mantram!!, kategori!!, video, deskripsi, gambar, approveNotes)
                 }
             }
 
@@ -81,6 +95,7 @@ class EditMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickLis
                     deskripsiEditedMantram.setText(result.deskripsi)
                     namaEditedMantram.setText(result.nama_post)
                     linkEditedMantram.setText(result.video)
+                    catatanEditedMantram.setText(result.approval_notes)
 
                     if(result.nama_kategori != null){
                         setupSpinnerYadnya(result.nama_kategori)
@@ -108,11 +123,11 @@ class EditMantramAdminActivity : AppCompatActivity(), AdapterView.OnItemClickLis
         })
     }
 
-    private fun postEditedMantram(id: Int, namaPost: String, jenisMantram: String, kategori: String, video: String, deskripsi: String, gambar: String) {
+    private fun postEditedMantram(idAdmin: Int, id: Int, namaPost: String, jenisMantram: String, kategori: String, video: String, deskripsi: String, gambar: String, note:String) {
         val progressDialog = ProgressDialog(this)
         progressDialog.setMessage("Mengunggah Data")
         progressDialog.show()
-        ApiService.endpoint.updateMantramAdmin(id ,namaPost, jenisMantram, video, deskripsi, kategori, gambar)
+        ApiService.endpoint.updateMantramAdmin(idAdmin, id ,namaPost, jenisMantram, video, deskripsi, kategori, gambar, note)
             .enqueue(object: retrofit2.Callback<CrudModel> {
                 override fun onResponse(
                     call: Call<CrudModel>,
