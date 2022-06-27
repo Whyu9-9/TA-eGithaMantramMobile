@@ -83,9 +83,21 @@ class AddAdminActivity : AppCompatActivity() {
             return false
         }
 
+        if(passwordAdmin.text.toString().isEmpty()){
+            layoutPasswordAdmin.isErrorEnabled = true
+            layoutPasswordAdmin.error = "Password Admin tidak boleh kosong!"
+            return false
+        }
+
         if(passwordAdmin.text.toString().length < 8){
             layoutPasswordAdmin.isErrorEnabled = true
             layoutPasswordAdmin.error = "Password Admin harus berisi minimal 8 karakter!"
+            return false
+        }
+
+        if(konfirmasiPassword.text.toString().isEmpty()){
+            layoutKonfirmasiPassword.isErrorEnabled = true
+            layoutKonfirmasiPassword.error = "Konfirmasi Password Admin tidak boleh kosong!"
             return false
         }
 
